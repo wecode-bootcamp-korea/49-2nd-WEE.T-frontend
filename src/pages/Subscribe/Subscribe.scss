@@ -1,5 +1,117 @@
 .subscribe {
   section {
-    width: 1200px;
+    .sectionInner {
+      flex-direction: column;
+      margin-bottom: 30px;
+      text-align: center;
+
+      h2 {
+        padding: 50px;
+        font-size: 30px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .secondSection {
+    padding: 50px;
+
+    .sectionInner {
+      .subscribeContent {
+        ul {
+          li {
+            margin-right: 15px;
+            padding: 30px 15px;
+            width: 250px;
+            height: 380px;
+            border: 1px solid #eff0f4;
+            border-radius: 6px;
+
+            .paymentWrap {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              height: 100%;
+
+              .checkInputDiv {
+                // position: relative;
+                height: 20px;
+
+                .subscribeCheck {
+                  // position: absolute;
+                  // right: 0;
+                  // top: 0;
+                }
+
+                input[type='checkbox'] {
+                  zoom: 1.5;
+                  cursor: pointer;
+                }
+              }
+
+              .paymentMonth {
+                font-size: 20px;
+                margin-top: 30px;
+                margin-bottom: 40px;
+                line-height: 1.2;
+              }
+
+              .paymentInfo {
+                min-height: 80px;
+                font-size: 14px;
+                word-break: keep-all;
+              }
+
+              .paymentPlan {
+                line-height: 1.2;
+                min-height: 85px;
+
+                p {
+                  margin: 0 0 10px;
+
+                  strong {
+                    font-size: 27px;
+                    font-weight: bold;
+                    letter-spacing: normal;
+                  }
+
+                  b {
+                    font-size: 27px;
+                    font-weight: bold;
+                    letter-spacing: normal;
+                  }
+                }
+
+                .paymentOriginal {
+                  text-decoration: line-through;
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .btnDiv {
+    display: flex;
+    justify-content: center;
+
+    .orderBtn {
+      width: 300px;
+      padding: 16px 12px;
+      border: none;
+      border-radius: 6px;
+      background-color: #5e3dea;
+      color: #fff;
+      text-align: center;
+      font-weight: bold;
+      line-height: 1.428571429;
+      cursor: pointer;
+    }
   }
 }

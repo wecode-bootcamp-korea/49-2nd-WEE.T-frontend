@@ -1,7 +1,15 @@
 * {
   box-sizing: border-box;
 }
-
-li {
-  list-style: none;
+body {
+  font-size: 18px;
+  color: #333;
+}
+.sectionInner {
+  width: 1200px;
+  margin: auto;
+}
+.flexCenter {
+  display: flex;
+  justify-content: center;
 }
