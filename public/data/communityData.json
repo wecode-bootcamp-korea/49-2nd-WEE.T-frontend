@@ -1,0 +1,41 @@
+{
+  "message": "READ_SUCCESS",
+  "data": {
+    "feeds": [
+      {
+        "id": 1,
+        "userNickname": "wecode",
+        "badge": 2,
+        "imgUrl": "[]",
+        "content": "오늘의 식단",
+        "challenge": true,
+        "createdAt": "2023-08-01T09:12:37.000Z",
+        "coment": 12,
+        "isMyPost": true
+      },
+      {
+        "id": 2,
+        "userNickname": "candy",
+        "badge": 2,
+        "imgurl": "[]",
+        "content": "오늘의 운동법 공유",
+        "isChallenge": false,
+        "createdAt": "2023-08-02T09:12:37.000Z",
+        "coment": 3,
+        "isMyPost": false
+      },
+      {
+        "id": 3,
+        "userNickname": "joker",
+        "badge": 3,
+        "imgurl": "[]",
+        "content": "챌린지를 해봅시다",
+        "isChallenge": true,
+        "createdAt": "2023-08-03T09:12:37.000Z",
+        "coment": 30,
+        "isMyPost": false
+      }
+    ],
+    "totalCount": 120
+  }
+}

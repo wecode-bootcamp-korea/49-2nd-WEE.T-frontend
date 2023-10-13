@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Community.scss';
 
 const Community = () => {
+  const [feedList, setFeedList] = useState({});
+
+  useEffect(() => {
+    fetch('/data/communityData.json', {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const feedData = data.data;
+        setFeedList(feedData);
+      });
+  }, []);
+
+  const isEmpty = Object.keys(feedList).length > 0;
+
+  if (!isEmpty) {
+    return null;
+  }
+
   return (
     <div id="content" className="community">
       <div className="container sectionInner">
@@ -13,47 +33,51 @@ const Community = () => {
                 글쓰기
               </button>
             </div>
+            <div className="totalFeedCount">
+              총 {feedList.totalCount}개의 게시글이 있습니다.
+            </div>
             <ul className="feedList">
-              <li>
-                <div className="feedContent">
-                  <div className="userDiv">
-                    <div className="userInfo">
-                      <div className="badge">
-                        <img src="/images/dog.jpg" alt="배지" />
+              {feedList.feeds.map((feed) => (
+                <li key={feed.id}>
+                  <div className="feedContent">
+                    <div className="userDiv">
+                      <div className="userInfo">
+                        <div className="badge">
+                          <img src="/images/dog.jpg" alt="배지" />
+                        </div>
+                        <div className="nickname">{feed.userNickname}</div>
                       </div>
-                      <div className="nickname">Wecode</div>
+                      {feed.isMyPost ? (
+                        <div className="btnBox">
+                          <button type="button" className="changeBtn">
+                            수정
+                          </button>
+                          <button type="button" className="deleteBtn">
+                            삭제
+                          </button>
+                        </div>
+                      ) : null}
                     </div>
-                    <div className="btnBox">
-                      <button type="button" className="changeBtn">
-                        수정
-                      </button>
-                      <button type="button" className="deleteBtn">
-                        삭제
-                      </button>
+                    <div className="feedImage">
+                      <img
+                        src="https://i.postimg.cc/6px0W0df/1.jpg"
+                        alt="feed이미지"
+                      />
+                    </div>
+                    <div className="feedText">
+                      <div className="text">{feed.content}</div>
+                      <div className="commentDiv">
+                        <div className="commentThings">댓글 12개</div>
+                        <div>comment component 자리</div>
+                      </div>
+                      <div className="writeDate">2023년 10월 13일</div>
                     </div>
                   </div>
-                  <div className="feedImage">
-                    <img
-                      src="https://i.postimg.cc/6px0W0df/1.jpg"
-                      alt="feed이미지"
-                    />
-                  </div>
-                  <div className="feedText">
-                    <h4>How to Create Sunshine Effect in Studio</h4>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat.
-                    </p>
-                  </div>
-                </div>
-              </li>
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="">1</div>
+          <div className="ranking">1</div>
         </section>
       </div>
     </div>
