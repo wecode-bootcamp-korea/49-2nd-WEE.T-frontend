@@ -34,12 +34,6 @@ const Subscribe = () => {
       });
   };
 
-  const checkboxOptions = [
-    { subscribeId: 1, name: '1개월', subscribe: 1, price: 4900 },
-    { subscribeId: 2, name: '3개월', subscribe: 3, price: 12900 },
-    { subscribeId: 3, name: '12개월', subscribe: 12, price: 45900 },
-  ];
-
   const handleCheckboxChange = (option) => {
     setSelectedCheckbox(option);
   };
@@ -157,3 +151,9 @@ const Subscribe = () => {
 };
 
 export default Subscribe;
+
+const checkboxOptions = [
+  { subscribeId: 1, name: '1개월', subscribe: 1, price: 4900 },
+  { subscribeId: 2, name: '3개월', subscribe: 3, price: 12900 },
+  { subscribeId: 3, name: '12개월', subscribe: 12, price: 45900 },
+];
