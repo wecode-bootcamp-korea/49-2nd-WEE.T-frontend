@@ -37,14 +37,7 @@
               height: 100%;
 
               .checkInputDiv {
-                // position: relative;
                 height: 20px;
-
-                .subscribeCheck {
-                  // position: absolute;
-                  // right: 0;
-                  // top: 0;
-                }
 
                 input[type='checkbox'] {
                   zoom: 1.5;
@@ -62,6 +55,7 @@
               .paymentInfo {
                 min-height: 80px;
                 font-size: 14px;
+                line-height: 1.5;
                 word-break: keep-all;
               }
 
@@ -93,25 +87,26 @@
             }
           }
         }
+
+        .btnDiv {
+          display: flex;
+          justify-content: center;
+          margin-top: 100px;
+
+          .orderBtn {
+            width: 300px;
+            padding: 16px 12px;
+            border: none;
+            border-radius: 6px;
+            background-color: #5e3dea;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+            line-height: 1.428571429;
+            cursor: pointer;
+          }
+        }
       }
-    }
-  }
-
-  .btnDiv {
-    display: flex;
-    justify-content: center;
-
-    .orderBtn {
-      width: 300px;
-      padding: 16px 12px;
-      border: none;
-      border-radius: 6px;
-      background-color: #5e3dea;
-      color: #fff;
-      text-align: center;
-      font-weight: bold;
-      line-height: 1.428571429;
-      cursor: pointer;
     }
   }
 }
