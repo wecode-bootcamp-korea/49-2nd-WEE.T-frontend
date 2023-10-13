@@ -17,7 +17,8 @@ const Subscribe = () => {
     fetch('ENDPOINT/subscription', {
       headers: {
         'Content-Type': 'application/json',
-        // authorization: "토큰"
+        // Authorization: '토큰',
+        // Refresh: '토큰',
       },
     })
       .then((response) => response.json())
