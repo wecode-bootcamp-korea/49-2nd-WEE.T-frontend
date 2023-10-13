@@ -13,6 +13,7 @@
     }
 
     .feedAndRank {
+      display: flex;
       margin-top: 50px;
       margin-right: -15px;
       margin-left: -15px;
@@ -25,9 +26,6 @@
         padding-left: 15px;
 
         .btnDiv {
-          // display: flex;
-          // justify-content: flex-end;
-
           .writeBtn {
             width: 100px;
             padding: 16px 12px;
@@ -153,7 +151,12 @@
       }
 
       .ranking {
+        position: relative;
+        min-height: 1px;
         padding-left: 20px;
+        padding-right: 15px;
+        width: 33.33333333333333%;
+        float: left;
       }
     }
   }

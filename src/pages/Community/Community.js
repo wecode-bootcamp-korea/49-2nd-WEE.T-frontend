@@ -77,7 +77,9 @@ const Community = () => {
               ))}
             </ul>
           </div>
-          <div className="ranking">1</div>
+          <div className="ranking">
+            <div>랭킹박스</div>
+          </div>
         </section>
       </div>
     </div>
