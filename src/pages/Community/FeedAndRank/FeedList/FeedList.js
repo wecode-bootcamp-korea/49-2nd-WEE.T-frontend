@@ -4,7 +4,7 @@ import './FeedList.scss';
 const FeedList = ({ feedList }) => {
   return (
     <ul className="feedList">
-      {feedList.feeds.map((feed) => (
+      {feedList.feeds?.map((feed) => (
         <li key={feed.id}>
           <div className="feedContent">
             <div className="userDiv">

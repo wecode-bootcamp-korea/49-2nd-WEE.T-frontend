@@ -3,7 +3,7 @@ import FeedList from './FeedList/FeedList';
 import Rank from './Rank/Rank';
 import './FeedAndRank.scss';
 
-const FeedAndRank = ({ feedList }) => {
+const FeedAndRank = ({ feedList, totalCount }) => {
   return (
     <section className="feedAndRank">
       <div className="feedBox">
@@ -13,7 +13,7 @@ const FeedAndRank = ({ feedList }) => {
           </button>
         </div>
         <div className="totalFeedCount">
-          총 <strong>{feedList.totalCount}</strong>개의 게시글이 있습니다.
+          총 <strong>{totalCount}</strong>개의 게시글이 있습니다.
         </div>
         <FeedList feedList={feedList} />
       </div>
