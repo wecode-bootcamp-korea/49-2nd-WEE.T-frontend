@@ -1,9 +1,10 @@
-img {
-  display: block;
-  width: 100%;
-}
 .Login {
   padding: 80px 0 0 0;
+
+  img {
+    display: block;
+    width: 100%;
+  }
 
   .loginSectionInner {
     display: flex;
@@ -14,12 +15,12 @@ img {
     box-shadow: 2px 2px 10px 2px #ededed;
     border-radius: 20px;
 
-    h1 {
+    .logo {
       width: 50%;
       margin: auto;
     }
 
-    p {
+    .subText {
       margin: 0 auto 40px;
     }
     .btnLogin {
@@ -28,7 +29,7 @@ img {
       border-radius: 6px;
       cursor: pointer;
 
-      a {
+      .btnInner {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -41,12 +42,13 @@ img {
         line-height: 27px;
       }
 
-      span {
+      .loginText {
         display: inline-block;
-        padding-right: 6px;
+        padding: 0 6px 0 10px;
         height: 100%;
+        font-weight: 500;
 
-        img {
+        .iconImg {
           display: block;
           width: 30px;
         }
@@ -59,11 +61,11 @@ img {
     }
 
     .btnNaverLogin {
-      background-color: #fff;
-      border: 1px solid #03c75a;
+      background-color: #03c75a;
+      border: 1px solid #fff;
 
-      a {
-        color: #333;
+      .loginText {
+        color: #fff;
       }
     }
   }

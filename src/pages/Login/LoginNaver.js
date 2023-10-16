@@ -12,16 +12,20 @@ const LoginNaver = () => {
         method: 'GET',
       })
         .then((res) => res.json())
-        .then((data) => {
-          if (data.message === 'LOGIN_SUCCESS') {
-            navigate('/SignUp');
+        .then((result) => {
+          if (result.message === 'LOGIN_SUCCESS') {
+            if (result.data.isNew) {
+              navigate('/SignUp');
+            } else {
+              localStorage.setItem(result.data.accessToken);
+              localStorage.setItem(result.data.refreshToken);
+              navigate('/');
+            }
+          } else {
+            alert('오류입니다. 관리자에게 문의하세요.');
           }
-        })
-        .catch((error) => {
-          console.error('Error fetching cart data:', error);
         });
   }, []);
-  console.log(code);
   return <></>;
 };
 
