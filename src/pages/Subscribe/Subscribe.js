@@ -67,7 +67,12 @@ const Subscribe = () => {
           subscribeId: selectedCheckbox.subscribeId,
         }),
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
         .then((data) => {
           console.log(data);
           // 결제 성공 시 구독 상태 업데이트
