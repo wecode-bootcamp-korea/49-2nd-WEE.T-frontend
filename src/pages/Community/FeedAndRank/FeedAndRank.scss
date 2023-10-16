@@ -28,6 +28,10 @@
     .totalFeedCount {
       display: flex;
       justify-content: end;
+
+      strong {
+        font-weight: bold;
+      }
     }
   }
 }

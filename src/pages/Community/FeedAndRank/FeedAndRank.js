@@ -13,7 +13,7 @@ const FeedAndRank = ({ feedList }) => {
           </button>
         </div>
         <div className="totalFeedCount">
-          총 {feedList.totalCount}개의 게시글이 있습니다.
+          총 <strong>{feedList.totalCount}</strong>개의 게시글이 있습니다.
         </div>
         <FeedList feedList={feedList} />
       </div>
