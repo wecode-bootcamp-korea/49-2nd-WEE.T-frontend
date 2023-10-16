@@ -21,12 +21,17 @@ const Subscribe = () => {
         // Refresh: '토큰',
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
         console.log(data);
         if (data.status === 1) {
           // 구독한 상태이면,
-          // setSubscribeStatusStatus(1);
+          setSubscribeStatusStatus(1);
         }
       })
       .catch((error) => {
@@ -55,7 +60,8 @@ const Subscribe = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // authorization: "토큰"
+          // Authorization: '토큰',
+          // Refresh: '토큰',
         },
         body: JSON.stringify({
           subscribeId: selectedCheckbox.subscribeId,
