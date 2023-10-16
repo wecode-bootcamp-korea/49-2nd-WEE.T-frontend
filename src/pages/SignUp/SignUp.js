@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.scss';
 
 const SignUp = () => {
@@ -14,8 +15,20 @@ const SignUp = () => {
     isSubscribe: '',
     badge: '',
   });
-  console.log(userInfo);
 
+  const handleSignUp = () => {
+    fetch(`http://10.58.52.184:8000/auth/signup`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify(userInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
+  const navigate = useNavigate();
   const saveJoinUserInfo = (event) => {
     const { name, value } = event.target;
     setUserInfo({ ...userInfo, [name]: value });
@@ -113,7 +126,9 @@ const SignUp = () => {
             onChange={saveJoinUserInfo}
           />
         </div>
-        <button className="btnSignUp">회원가입</button>
+        <button className="btnSignUp" onClick={handleSignUp}>
+          회원가입
+        </button>
       </div>
     </div>
   );
