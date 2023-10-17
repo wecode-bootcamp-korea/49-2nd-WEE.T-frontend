@@ -7,10 +7,11 @@ const Subscribe = () => {
   const [subscribeData, setSubscribeData] = useState();
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const navigate = useNavigate();
+  const accessToken = localStorage.getItem('accessToken');
 
   useEffect(() => {
     // 토큰이 있다면 사용자 정보를 가져오는 함수 호출
-    // if (TOKEN) {
+    // if (accessToken) {
     getUserSubscribeData();
     // }
   }, []);
@@ -19,8 +20,7 @@ const Subscribe = () => {
     fetch('http://10.58.52.201:8000/subscribe', {
       headers: {
         'Content-Type': 'application/json',
-        // Authorization: '토큰',
-        // Refresh: '토큰',
+        Authorization: accessToken,
       },
     })
       .then((response) => {
@@ -61,7 +61,7 @@ const Subscribe = () => {
   };
 
   // 사용자가 로그인하지 않았다면 로그인 페이지로 리다이렉션
-  // if (!TOKEN) {
+  // if (!accessToken) {
   //   return <Redirect to="/login" />;
   // }
 
