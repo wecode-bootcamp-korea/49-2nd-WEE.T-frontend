@@ -56,7 +56,7 @@ const Community = () => {
         console.log(data);
         const feedData = data.data;
         const newFeedData = feedData.feeds;
-        setTotalCount(feedData.totalCount);
+        setTotalCount(feedData.feedCount);
         setFeedList((prevFeedList) => {
           return {
             ...prevFeedList,

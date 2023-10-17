@@ -14,7 +14,7 @@
         "content": "오늘의 식단",
         "challenge": 1,
         "createdAt": "2023-08-01T09:12:37.000Z",
-        "coment": 12,
+        "comment": 12,
         "isMyPost": 1
       },
       {
@@ -29,7 +29,7 @@
         "content": "오늘의 운동법 공유",
         "isChallenge": 0,
         "createdAt": "2023-08-02T09:12:37.000Z",
-        "coment": 3,
+        "comment": 3,
         "isMyPost": 0
       },
       {
@@ -44,7 +44,7 @@
         "content": "챌린지를 해봅시다",
         "isChallenge": 1,
         "createdAt": "2023-08-03T09:12:37.000Z",
-        "coment": 30,
+        "comment": 30,
         "isMyPost": 0
       },
       {
@@ -59,7 +59,7 @@
         "content": "처음 글을 써보네요. 잘 부탁해요 ㅎㅎ",
         "isChallenge": 1,
         "createdAt": "2023-08-04T09:12:37.000Z",
-        "coment": 2,
+        "comment": 2,
         "isMyPost": 0
       },
       {
@@ -74,7 +74,7 @@
         "content": "챌린지를 하는데, 식단이 ㅋㅋㅋ",
         "isChallenge": 1,
         "createdAt": "2023-08-05T09:12:37.000Z",
-        "coment": 1,
+        "comment": 1,
         "isMyPost": 0
       },
       {
@@ -89,7 +89,7 @@
         "content": "user는 항상 힘들다",
         "isChallenge": 1,
         "createdAt": "2023-08-06T09:12:37.000Z",
-        "coment": 0,
+        "comment": 0,
         "isMyPost": 0
       },
       {
@@ -104,7 +104,7 @@
         "content": "초콜릿 먹고 싶다고!!!",
         "isChallenge": 1,
         "createdAt": "2023-08-07T09:12:37.000Z",
-        "coment": 11,
+        "comment": 11,
         "isMyPost": 0
       },
       {
@@ -119,7 +119,7 @@
         "content": "설탕을 넣으면 만사오케이, 성격이 좋아집니다",
         "isChallenge": 1,
         "createdAt": "2023-08-08T09:12:37.000Z",
-        "coment": 2,
+        "comment": 2,
         "isMyPost": 0
       },
       {
@@ -134,7 +134,7 @@
         "content": "챌린지는 필수로 작성합니다!",
         "isChallenge": 1,
         "createdAt": "2023-08-09T09:12:37.000Z",
-        "coment": 3,
+        "comment": 3,
         "isMyPost": 1
       },
       {
@@ -149,7 +149,7 @@
         "content": "오늘은 무엇을 먹어야 될까요, 추천해주세요!",
         "isChallenge": 1,
         "createdAt": "2023-08-10T09:12:37.000Z",
-        "coment": 6,
+        "comment": 6,
         "isMyPost": 1
       },
       {
@@ -164,7 +164,7 @@
         "content": "스타벅스 아아 마시고 싶어요~",
         "isChallenge": 0,
         "createdAt": "2023-08-11T09:12:37.000Z",
-        "coment": 19,
+        "comment": 19,
         "isMyPost": 0
       },
       {
@@ -179,10 +179,10 @@
         "content": "오늘의 식단, 운동법 공유합니다.",
         "isChallenge": 0,
         "createdAt": "2023-08-12T09:12:37.000Z",
-        "coment": 1,
+        "comment": 1,
         "isMyPost": 0
       }
     ],
-    "totalCount": 120
+    "feedCount": 120
   }
 }
