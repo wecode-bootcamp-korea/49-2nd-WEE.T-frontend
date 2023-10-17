@@ -13,7 +13,7 @@ img {
   height: auto;
 
   .signUpInner {
-    width: 560px;
+    width: 600px;
     padding: 60px;
     border: 1px solid #ededed;
     border-radius: 16px;
@@ -40,6 +40,7 @@ img {
       flex-direction: column;
 
       .nickNameInput {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -87,9 +88,11 @@ img {
       }
 
       .genderAndageBox {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 10px;
 
         .genderCheck {
           .checkBoxInput {
@@ -130,5 +133,20 @@ img {
       padding: 12px 0;
       cursor: pointer;
     }
+  }
+  .errors {
+    position: absolute;
+    left: 0;
+    bottom: 6px;
+    font-size: 12px;
+    color: #f05650;
+  }
+
+  .inputBox {
+    position: relative;
+  }
+
+  .fontBold {
+    font-weight: bold;
   }
 }
