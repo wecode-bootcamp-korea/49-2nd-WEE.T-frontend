@@ -25,11 +25,35 @@ const Community = () => {
 
   useEffect(() => {
     fetchFeedList();
+    // if (window.localStorage.getItem('loginToken')) {
+    //   fetchFeedList();
+    // } else { // 로그인하지 않은 상태에서는 토큰값 제외
+    //   fetch(`/feeds?limit=${limit || 10}&page=${page}`, {
+    //     method: 'GET',
+    //   })
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       console.log(data);
+    //       const feedData = data.data;
+    //       const newFeedData = feedData.feeds;
+    //       setTotalCount(feedData.totalCount);
+    //       setFeedList((prevFeedList) => {
+    //         return {
+    //           ...prevFeedList,
+    //           feeds: [...(prevFeedList.feeds || []), ...newFeedData],
+    //         };
+    //       });
+    //     });
+    // }
   }, [page]);
 
   const fetchFeedList = () => {
-    fetch(`/data/communityData.json?limit=${limit || 10}&page=${page}`, {
+    fetch(`data/communityData.json?limit=${limit || 10}&page=${page}`, {
+      // /feeds?limit=${limit || 10}&page=${page}
       method: 'GET',
+      headers: {
+        // authorization: window.localStorage.getItem('loginToken'),
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -46,16 +70,29 @@ const Community = () => {
       });
   };
 
+  // 한 페이지에 표시되는 게시물 수
+  const itemsPerPage = 10;
+
+  // 마지막 페이지 계산
+  const lastPage = Math.ceil(totalCount / itemsPerPage);
+
+  // 현재 페이지
+  const currentPage = parseInt(page) || 1;
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
+
+      // 현재 페이지가 마지막 페이지보다 크면 동작 중지
+      if (currentPage >= lastPage) {
+        return;
+      }
 
       if (
         window.innerHeight + scrollY >= document.body.offsetHeight &&
         feedList.feeds.length < totalCount &&
         feedList.feeds.length >= page * limit
       ) {
-        console.log('scroll check');
         setPaginationParams();
       }
     };
