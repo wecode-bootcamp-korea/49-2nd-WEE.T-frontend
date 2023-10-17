@@ -5,7 +5,8 @@
       {
         "id": 1,
         "userNickname": "wecode",
-        "badge": 2,
+        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badgeId": 2,
         "imgurl": [
           { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
           { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
@@ -13,14 +14,15 @@
         ],
         "content": "오늘의 식단",
         "challenge": 1,
-        "createdAt": "2023-08-01T09:12:37.000Z",
+        "created_at": "2023-10-11",
         "comment": 12,
         "isMyPost": 1
       },
       {
         "id": 2,
         "userNickname": "candy",
-        "badge": 2,
+        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badgeId": 2,
         "imgurl": [
           { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
           { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
@@ -28,14 +30,15 @@
         ],
         "content": "오늘의 운동법 공유",
         "isChallenge": 0,
-        "createdAt": "2023-08-02T09:12:37.000Z",
+        "created_at": "2023-10-11",
         "comment": 3,
         "isMyPost": 0
       },
       {
         "id": 3,
         "userNickname": "joker",
-        "badge": 3,
+        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badgeId": 2,
         "imgurl": [
           { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
           { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
@@ -43,14 +46,15 @@
         ],
         "content": "챌린지를 해봅시다",
         "isChallenge": 1,
-        "createdAt": "2023-08-03T09:12:37.000Z",
+        "created_at": "2023-10-11",
         "comment": 30,
         "isMyPost": 0
       },
       {
         "id": 4,
         "userNickname": "flow",
-        "badge": 1,
+        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badgeId": 2,
         "imgurl": [
           { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
           { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
@@ -58,14 +62,15 @@
         ],
         "content": "처음 글을 써보네요. 잘 부탁해요 ㅎㅎ",
         "isChallenge": 1,
-        "createdAt": "2023-08-04T09:12:37.000Z",
+        "created_at": "2023-10-11",
         "comment": 2,
         "isMyPost": 0
       },
       {
         "id": 5,
         "userNickname": "사고뭉치",
-        "badge": 4,
+        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badgeId": 2,
         "imgurl": [
           { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
           { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
@@ -73,14 +78,15 @@
         ],
         "content": "챌린지를 하는데, 식단이 ㅋㅋㅋ",
         "isChallenge": 1,
-        "createdAt": "2023-08-05T09:12:37.000Z",
+        "created_at": "2023-10-11",
         "comment": 1,
         "isMyPost": 0
       },
       {
         "id": 6,
         "userNickname": "user1234",
-        "badge": 1,
+        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badgeId": 2,
         "imgurl": [
           { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
           { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
@@ -88,14 +94,15 @@
         ],
         "content": "user는 항상 힘들다",
         "isChallenge": 1,
-        "createdAt": "2023-08-06T09:12:37.000Z",
+        "created_at": "2023-10-11",
         "comment": 0,
         "isMyPost": 0
       },
       {
         "id": 7,
         "userNickname": "감귤초콜릿",
-        "badge": 1,
+        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badgeId": 2,
         "imgurl": [
           { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
           { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
@@ -103,14 +110,15 @@
         ],
         "content": "초콜릿 먹고 싶다고!!!",
         "isChallenge": 1,
-        "createdAt": "2023-08-07T09:12:37.000Z",
+        "created_at": "2023-10-11",
         "comment": 11,
         "isMyPost": 0
       },
       {
         "id": 8,
         "userNickname": "집밥백선생",
-        "badge": 3,
+        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badgeId": 2,
         "imgurl": [
           { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
           { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
@@ -118,14 +126,15 @@
         ],
         "content": "설탕을 넣으면 만사오케이, 성격이 좋아집니다",
         "isChallenge": 1,
-        "createdAt": "2023-08-08T09:12:37.000Z",
+        "created_at": "2023-10-11",
         "comment": 2,
         "isMyPost": 0
       },
       {
         "id": 9,
         "userNickname": "wecode",
-        "badge": 2,
+        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badgeId": 2,
         "imgurl": [
           { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
           { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
@@ -133,14 +142,15 @@
         ],
         "content": "챌린지는 필수로 작성합니다!",
         "isChallenge": 1,
-        "createdAt": "2023-08-09T09:12:37.000Z",
+        "created_at": "2023-10-11",
         "comment": 3,
         "isMyPost": 1
       },
       {
         "id": 10,
         "userNickname": "wecode",
-        "badge": 2,
+        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badgeId": 2,
         "imgurl": [
           { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
           { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
@@ -148,14 +158,15 @@
         ],
         "content": "오늘은 무엇을 먹어야 될까요, 추천해주세요!",
         "isChallenge": 1,
-        "createdAt": "2023-08-10T09:12:37.000Z",
+        "created_at": "2023-10-11",
         "comment": 6,
         "isMyPost": 1
       },
       {
         "id": 11,
         "userNickname": "joker",
-        "badge": 3,
+        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badgeId": 2,
         "imgurl": [
           { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
           { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
@@ -163,14 +174,15 @@
         ],
         "content": "스타벅스 아아 마시고 싶어요~",
         "isChallenge": 0,
-        "createdAt": "2023-08-11T09:12:37.000Z",
+        "created_at": "2023-10-11",
         "comment": 19,
         "isMyPost": 0
       },
       {
         "id": 12,
         "userNickname": "가나다라",
-        "badge": 1,
+        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badgeId": 2,
         "imgurl": [
           { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
           { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
@@ -178,7 +190,7 @@
         ],
         "content": "오늘의 식단, 운동법 공유합니다.",
         "isChallenge": 0,
-        "createdAt": "2023-08-12T09:12:37.000Z",
+        "created_at": "2023-10-11",
         "comment": 1,
         "isMyPost": 0
       }

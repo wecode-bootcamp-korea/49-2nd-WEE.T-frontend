@@ -3,8 +3,8 @@ import FeedImages from './FeedImages/FeedImages';
 import './FeedList.scss';
 
 const FeedList = ({ feedList }) => {
-  const formatCreatedAt = (createdAt) => {
-    const formattedDate = new Date(createdAt).toLocaleDateString('ko-KR', {
+  const formatCreatedAt = (created_at) => {
+    const formattedDate = new Date(created_at).toLocaleDateString('ko-KR', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -20,7 +20,7 @@ const FeedList = ({ feedList }) => {
             <div className="userDiv">
               <div className="userInfo">
                 <div className="badge">
-                  <img src="/images/dog.jpg" alt="배지" />
+                  <img src={feed.badge} alt="배지" />
                 </div>
                 <div className="nickname">{feed.userNickname}</div>
               </div>
@@ -39,10 +39,12 @@ const FeedList = ({ feedList }) => {
             <div className="feedText">
               <div className="text">{feed.content}</div>
               <div className="commentDiv">
-                <div className="commentThings">댓글 {feed.comment}개</div>
+                <div className="commentThings">댓글 1개</div>
                 <div>comment component 자리</div>
               </div>
-              <div className="writeDate">{formatCreatedAt(feed.createdAt)}</div>
+              <div className="writeDate">
+                {formatCreatedAt(feed.created_at)}
+              </div>
             </div>
           </div>
         </li>
