@@ -6,26 +6,21 @@ import './Community.scss';
 const Community = () => {
   const [feedList, setFeedList] = useState({});
   const [searchParams, setSearchParams] = useSearchParams();
-  const [limit, setLimit] = useState(searchParams.get('limit'));
-  const [page, setPage] = useState(searchParams.get('page'));
   const [totalCount, setTotalCount] = useState(0);
-
-  // const limit = searchParams.get('limit');
-
-  // const page = searchParams.get('page');
 
   // 두 번째 방법???? 그냥 샘플 -> useRef 사용방법 확인해보기
   // const limitRef = useRef(10);
   // limitRef.current = 20;
 
+  const page = parseInt(searchParams.get('page')) || 1;
+  const limit = searchParams.get('limit');
+
   //첫 번째 방법
   const setPaginationParams = () => {
-    // limit = 10;
-    setLimit(10);
-    setPage(0);
-    searchParams.set('page', page + 1);
-    searchParams.set('limit', limit);
-    setSearchParams(searchParams);
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('page', (parseInt(page) + 1).toString());
+    newSearchParams.set('limit', 10);
+    setSearchParams(newSearchParams);
   };
 
   useEffect(() => {
@@ -41,7 +36,6 @@ const Community = () => {
         console.log(data);
         const feedData = data.data;
         const newFeedData = feedData.feeds;
-        setPaginationParams();
         setTotalCount(feedData.totalCount);
         setFeedList((prevFeedList) => {
           return {
@@ -61,7 +55,8 @@ const Community = () => {
         feedList.feeds.length < totalCount &&
         feedList.feeds.length >= page * limit
       ) {
-        setPage((prevPage) => prevPage + 1);
+        console.log('scroll check');
+        setPaginationParams();
       }
     };
 
@@ -70,7 +65,7 @@ const Community = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [feedList, totalCount, page, limit]);
+  }, [feedList, totalCount, page]);
 
   const initialLoad =
     !feedList || (feedList.feeds && feedList.feeds.length === 0);
