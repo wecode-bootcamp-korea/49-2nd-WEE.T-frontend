@@ -6,25 +6,23 @@ import './Community.scss';
 const Community = () => {
   const [feedList, setFeedList] = useState({});
   const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(searchParams.get('limit'));
+  const [page, setPage] = useState(searchParams.get('page'));
   const [totalCount, setTotalCount] = useState(0);
 
   // const limit = searchParams.get('limit');
 
   // const page = searchParams.get('page');
 
-  //두번쨰 방법???? 그냥 샘플
+  // 두 번째 방법???? 그냥 샘플 -> useRef 사용방법 확인해보기
   // const limitRef = useRef(10);
-  // limitRef.current = 20
-  //첫번째 방법
+  // limitRef.current = 20;
 
-  const [limit, setLimit] = useState(searchParams.get('limit'));
-
+  //첫 번째 방법
   const setPaginationParams = () => {
     // limit = 10;
     setLimit(10);
-    // setSearchParams('page', 10)
-    const page = searchParams.get('page');
+    setPage(0);
     searchParams.set('page', page + 1);
     searchParams.set('limit', limit);
     setSearchParams(searchParams);
