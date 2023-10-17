@@ -1,37 +1,78 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Nav.scss';
 
 const Nav = () => {
   const navigate = useNavigate();
   const isLogin = !!localStorage.getItem('token');
+  const [userData, setUserData] = useState([]);
+
+  const getUserInfoData = () => {
+    fetch('Info데이터 주소', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: 'token',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUserData(data.data);
+      });
+  };
+
+  useEffect(() => {
+    getUserInfoData();
+  }, []);
+
+  const { nickname, badgeImageUrl } = userData;
+
+  // 댓글알람기능 구현중,전역상태관리
+  // cosnt handleAlarm = () => {
+
+  // };
 
   const goToSubscribe = () => {
     if (!isLogin) {
       alert('로그인 후 이용 가능합니다.');
+      navigate('/login');
       return;
-    } else {
-      navigate('/subscribe');
     }
+    navigate('/subscribe');
   };
 
   const goToCommunity = () => {
-    navigate('/');
+    navigate('/community');
   };
 
   const goToGuideLine = () => {
+    if (!isLogin) {
+      alert('로그인 후 이용 가능합니다.');
+      navigate('/login');
+      return;
+    }
     navigate('/');
   };
 
   const goToLocation = () => {
+    if (!isLogin) {
+      alert('로그인 후 이용 가능합니다.');
+      navigate('/login');
+      return;
+    }
     navigate('/');
   };
 
   const goToCondition = () => {
-    navigate('/');
+    if (!isLogin) {
+      alert('로그인 후 이용 가능합니다.');
+      navigate('/login');
+      return;
+    }
+    navigate('/info');
   };
 
-  const handleLogauto = () => {
+  const handleLogAuto = () => {
     localStorage.removeItem('token');
     alert('로그아웃 완료');
     window.location.reload();
@@ -43,18 +84,29 @@ const Nav = () => {
         <img src="images/Logo.png" alt="메인로고사진없음" />
       </div>
       <div className="logoTwo">
-        <span onclick={goToSubscribe}>구독</span>
-        <span onclick={goToCommunity}>커뮤니티</span>
-        <span onclick={goToGuideLine}>운동법</span>
-        <span onclick={goToLocation}>위치</span>
-        <span onclick={goToCondition}>상태페이지</span>
-        <img src="images/chatImage.png" alt="알림이미지" />
-        {/* <img src="images/chatImage.png" alt="챌린지이미지" /> */}
+        <button type="button" onClick={goToSubscribe}>
+          구독
+        </button>
+        <button onClick={goToCommunity}>커뮤니티</button>
+        <button onClick={goToGuideLine}>운동법</button>
+        <button onClick={goToLocation}>위치</button>
+        <button onClick={goToCondition}>상태페이지</button>
+        <img src={badgeImageUrl} alt="챌린지이미지" />
         {isLogin ? (
-          <span onClick={handleLogauto}>닉네임/로그아웃</span>
+          <button className="btnLogAuto" onClick={handleLogAuto}>
+            {nickname}/로그아웃
+          </button>
         ) : (
-          <Link to="/">로그인/회원가입</Link>
+          <Link className="btnSignUp" to="/login">
+            로그인
+          </Link>
         )}
+        {/* <img
+          src="images/chatImage.png"
+          alt="알림이미지"
+          onClick={handleAlarm}
+        />{' '}
+        피드 댓글 알람기능 구현중 */}
       </div>
     </nav>
   );
