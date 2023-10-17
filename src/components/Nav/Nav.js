@@ -32,6 +32,12 @@ const Nav = () => {
 
   // };
 
+  // const isLogin = useState(true);
+
+  const goToMain = () => {
+    navigate('/main');
+  };
+
   const goToSubscribe = () => {
     if (!isLogin) {
       alert('로그인 후 이용 가능합니다.');
@@ -81,17 +87,15 @@ const Nav = () => {
   return (
     <nav className="nav">
       <div className="logo">
-        <img src="images/Logo.png" alt="메인로고사진없음" />
+        <img src="images/Logo.png" onClick={goToMain} alt="메인로고사진없음" />
       </div>
       <div className="logoTwo">
-        <button type="button" onClick={goToSubscribe}>
-          구독
-        </button>
+        <button onClick={goToSubscribe}>구독</button>
         <button onClick={goToCommunity}>커뮤니티</button>
         <button onClick={goToGuideLine}>운동법</button>
         <button onClick={goToLocation}>위치</button>
-        <button onClick={goToCondition}>상태페이지</button>
-        <img src={badgeImageUrl} alt="챌린지이미지" />
+        {isLogin && <button onClick={goToCondition}>상태페이지</button>}
+        {isLogin && <img src={badgeImageUrl} alt="챌린지이미지" />}
         {isLogin ? (
           <button className="btnLogAuto" onClick={handleLogAuto}>
             {nickname}/로그아웃
