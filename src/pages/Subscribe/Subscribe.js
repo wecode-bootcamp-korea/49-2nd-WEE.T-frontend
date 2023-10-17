@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
 import './Subscribe.scss';
 
 const Subscribe = () => {
-  const [subscribeStatus, setSubscribeStatusStatus] = useState(0); //구독하지 않은 상태 기본값
+  const [subscribeData, setSubscribeData] = useState();
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   // 토큰이 있다면 사용자 정보를 가져오는 함수 호출
-  //   if (TOKEN) {
-  //     getUserSubscribeData();
-  //   }
-  // }, [TOKEN]);
+  useEffect(() => {
+    // 토큰이 있다면 사용자 정보를 가져오는 함수 호출
+    // if (TOKEN) {
+    getUserSubscribeData();
+    // }
+  }, []);
 
   const getUserSubscribeData = () => {
-    fetch('ENDPOINT/subscription', {
+    fetch('http://10.58.52.201:8000/subscribe', {
       headers: {
         'Content-Type': 'application/json',
         // Authorization: '토큰',
@@ -22,17 +24,12 @@ const Subscribe = () => {
       },
     })
       .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+        if (response.ok) {
+          return response.json();
         }
-        return response.json();
       })
       .then((data) => {
-        console.log(data);
-        if (data.status === 1) {
-          // 구독한 상태이면,
-          setSubscribeStatusStatus(1);
-        }
+        setSubscribeData(data);
       })
       .catch((error) => {
         console.log(error);
@@ -43,9 +40,9 @@ const Subscribe = () => {
     setSelectedCheckbox(option);
   };
 
-  const handleOrderButton = () => {
+  const handleOrderButton = (selectedCheckbox) => {
     if (selectedCheckbox) {
-      if (subscribeStatus === 1) {
+      if (subscribeData.status === 1) {
         const isExtend = window.confirm(
           '이미 구독한 상태입니다. 계속 진행하시면 구독 기간이 연장됩니다. 계속하시겠습니까?',
         );
@@ -55,34 +52,9 @@ const Subscribe = () => {
         }
       }
 
-      // 서버로 데이터 보내기
-      fetch('ENDPOINT/subscription', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Authorization: '토큰',
-          // Refresh: '토큰',
-        },
-        body: JSON.stringify({
-          subscribeId: selectedCheckbox.subscribeId,
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data);
-          // 결제 성공 시 구독 상태 업데이트
-          setSubscribeStatusStatus(1);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
-      setSelectedCheckbox(null);
+      // 결제 페이지로 데이터 전달하기
+      const orderSubscribeId = selectedCheckbox.subscribeId;
+      navigate('/order', { state: { subscribeId: orderSubscribeId } });
     } else {
       console.log('구독하실 개월 수를 선택해주세요.');
     }
@@ -108,7 +80,7 @@ const Subscribe = () => {
         <div className="sectionInner">
           <form className="subscribeContent">
             <ul className="flexCenter">
-              {checkboxOptions.map((option) => (
+              {subscribeData.data.map((option) => (
                 <li key={option.subscribeId}>
                   <div className="paymentWrap">
                     <div className="checkInputDiv">
@@ -126,7 +98,7 @@ const Subscribe = () => {
                       />
                       <label htmlFor={option.subscribeId} />
                     </div>
-                    <div className="paymentMonth">{`${option.subscribe}개월`}</div>
+                    <div className="paymentMonth">{`${option.month}개월`}</div>
                     <div className="paymentInfo">
                       전문 트레이너의 맞춤 관리를 합리적인 가격으로 이용할 수
                       있습니다.
@@ -149,7 +121,7 @@ const Subscribe = () => {
               <button
                 className="orderBtn"
                 type="button"
-                onClick={handleOrderButton}
+                onClick={handleOrderButton(selectedCheckbox)}
               >
                 결제하기
               </button>
@@ -162,9 +134,3 @@ const Subscribe = () => {
 };
 
 export default Subscribe;
-
-const checkboxOptions = [
-  { subscribeId: 1, name: '1개월', subscribe: 1, price: 4900 },
-  { subscribeId: 2, name: '3개월', subscribe: 3, price: 12900 },
-  { subscribeId: 3, name: '12개월', subscribe: 12, price: 45900 },
-];
