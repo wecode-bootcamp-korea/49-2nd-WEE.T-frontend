@@ -6,181 +6,181 @@
         "id": 1,
         "userNickname": "wecode",
         "badge": 2,
-        "imgUrl": [
-          "https://i.postimg.cc/6px0W0df/1.jpg",
-          "https://i.postimg.cc/43L2xc44/2.jpg",
-          "https://i.postimg.cc/fyxvmSs9/3.jpg"
+        "imgurl": [
+          { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
+          { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
+          { "url": "https://i.postimg.cc/fyxvmSs9/3.jpg" }
         ],
         "content": "오늘의 식단",
-        "challenge": true,
+        "challenge": 1,
         "createdAt": "2023-08-01T09:12:37.000Z",
         "coment": 12,
-        "isMyPost": true
+        "isMyPost": 1
       },
       {
         "id": 2,
         "userNickname": "candy",
         "badge": 2,
         "imgurl": [
-          "https://i.postimg.cc/6px0W0df/1.jpg",
-          "https://i.postimg.cc/43L2xc44/2.jpg",
-          "https://i.postimg.cc/fyxvmSs9/3.jpg"
+          { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
+          { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
+          { "url": "https://i.postimg.cc/fyxvmSs9/3.jpg" }
         ],
         "content": "오늘의 운동법 공유",
-        "isChallenge": false,
+        "isChallenge": 0,
         "createdAt": "2023-08-02T09:12:37.000Z",
         "coment": 3,
-        "isMyPost": false
+        "isMyPost": 0
       },
       {
         "id": 3,
         "userNickname": "joker",
         "badge": 3,
         "imgurl": [
-          "https://i.postimg.cc/6px0W0df/1.jpg",
-          "https://i.postimg.cc/43L2xc44/2.jpg",
-          "https://i.postimg.cc/fyxvmSs9/3.jpg"
+          { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
+          { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
+          { "url": "https://i.postimg.cc/fyxvmSs9/3.jpg" }
         ],
         "content": "챌린지를 해봅시다",
-        "isChallenge": true,
+        "isChallenge": 1,
         "createdAt": "2023-08-03T09:12:37.000Z",
         "coment": 30,
-        "isMyPost": false
+        "isMyPost": 0
       },
       {
         "id": 4,
         "userNickname": "flow",
         "badge": 1,
         "imgurl": [
-          "https://i.postimg.cc/6px0W0df/1.jpg",
-          "https://i.postimg.cc/43L2xc44/2.jpg",
-          "https://i.postimg.cc/fyxvmSs9/3.jpg"
+          { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
+          { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
+          { "url": "https://i.postimg.cc/fyxvmSs9/3.jpg" }
         ],
         "content": "처음 글을 써보네요. 잘 부탁해요 ㅎㅎ",
-        "isChallenge": true,
+        "isChallenge": 1,
         "createdAt": "2023-08-04T09:12:37.000Z",
         "coment": 2,
-        "isMyPost": false
+        "isMyPost": 0
       },
       {
         "id": 5,
         "userNickname": "사고뭉치",
         "badge": 4,
         "imgurl": [
-          "https://i.postimg.cc/6px0W0df/1.jpg",
-          "https://i.postimg.cc/43L2xc44/2.jpg",
-          "https://i.postimg.cc/fyxvmSs9/3.jpg"
+          { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
+          { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
+          { "url": "https://i.postimg.cc/fyxvmSs9/3.jpg" }
         ],
         "content": "챌린지를 하는데, 식단이 ㅋㅋㅋ",
-        "isChallenge": true,
+        "isChallenge": 1,
         "createdAt": "2023-08-05T09:12:37.000Z",
         "coment": 1,
-        "isMyPost": false
+        "isMyPost": 0
       },
       {
         "id": 6,
         "userNickname": "user1234",
         "badge": 1,
         "imgurl": [
-          "https://i.postimg.cc/6px0W0df/1.jpg",
-          "https://i.postimg.cc/43L2xc44/2.jpg",
-          "https://i.postimg.cc/fyxvmSs9/3.jpg"
+          { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
+          { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
+          { "url": "https://i.postimg.cc/fyxvmSs9/3.jpg" }
         ],
         "content": "user는 항상 힘들다",
-        "isChallenge": true,
+        "isChallenge": 1,
         "createdAt": "2023-08-06T09:12:37.000Z",
         "coment": 0,
-        "isMyPost": false
+        "isMyPost": 0
       },
       {
         "id": 7,
         "userNickname": "감귤초콜릿",
         "badge": 1,
         "imgurl": [
-          "https://i.postimg.cc/6px0W0df/1.jpg",
-          "https://i.postimg.cc/43L2xc44/2.jpg",
-          "https://i.postimg.cc/fyxvmSs9/3.jpg"
+          { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
+          { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
+          { "url": "https://i.postimg.cc/fyxvmSs9/3.jpg" }
         ],
         "content": "초콜릿 먹고 싶다고!!!",
-        "isChallenge": true,
+        "isChallenge": 1,
         "createdAt": "2023-08-07T09:12:37.000Z",
         "coment": 11,
-        "isMyPost": false
+        "isMyPost": 0
       },
       {
         "id": 8,
         "userNickname": "집밥백선생",
         "badge": 3,
         "imgurl": [
-          "https://i.postimg.cc/6px0W0df/1.jpg",
-          "https://i.postimg.cc/43L2xc44/2.jpg",
-          "https://i.postimg.cc/fyxvmSs9/3.jpg"
+          { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
+          { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
+          { "url": "https://i.postimg.cc/fyxvmSs9/3.jpg" }
         ],
         "content": "설탕을 넣으면 만사오케이, 성격이 좋아집니다",
-        "isChallenge": true,
+        "isChallenge": 1,
         "createdAt": "2023-08-08T09:12:37.000Z",
         "coment": 2,
-        "isMyPost": false
+        "isMyPost": 0
       },
       {
         "id": 9,
         "userNickname": "wecode",
         "badge": 2,
         "imgurl": [
-          "https://i.postimg.cc/6px0W0df/1.jpg",
-          "https://i.postimg.cc/43L2xc44/2.jpg",
-          "https://i.postimg.cc/fyxvmSs9/3.jpg"
+          { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
+          { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
+          { "url": "https://i.postimg.cc/fyxvmSs9/3.jpg" }
         ],
         "content": "챌린지는 필수로 작성합니다!",
-        "isChallenge": true,
+        "isChallenge": 1,
         "createdAt": "2023-08-09T09:12:37.000Z",
         "coment": 3,
-        "isMyPost": true
+        "isMyPost": 1
       },
       {
         "id": 10,
         "userNickname": "wecode",
         "badge": 2,
         "imgurl": [
-          "https://i.postimg.cc/6px0W0df/1.jpg",
-          "https://i.postimg.cc/43L2xc44/2.jpg",
-          "https://i.postimg.cc/fyxvmSs9/3.jpg"
+          { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
+          { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
+          { "url": "https://i.postimg.cc/fyxvmSs9/3.jpg" }
         ],
         "content": "오늘은 무엇을 먹어야 될까요, 추천해주세요!",
-        "isChallenge": true,
+        "isChallenge": 1,
         "createdAt": "2023-08-10T09:12:37.000Z",
         "coment": 6,
-        "isMyPost": true
+        "isMyPost": 1
       },
       {
         "id": 11,
         "userNickname": "joker",
         "badge": 3,
         "imgurl": [
-          "https://i.postimg.cc/6px0W0df/1.jpg",
-          "https://i.postimg.cc/43L2xc44/2.jpg",
-          "https://i.postimg.cc/fyxvmSs9/3.jpg"
+          { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
+          { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
+          { "url": "https://i.postimg.cc/fyxvmSs9/3.jpg" }
         ],
         "content": "스타벅스 아아 마시고 싶어요~",
-        "isChallenge": false,
+        "isChallenge": 0,
         "createdAt": "2023-08-11T09:12:37.000Z",
         "coment": 19,
-        "isMyPost": false
+        "isMyPost": 0
       },
       {
         "id": 12,
         "userNickname": "가나다라",
         "badge": 1,
         "imgurl": [
-          "https://i.postimg.cc/6px0W0df/1.jpg",
-          "https://i.postimg.cc/43L2xc44/2.jpg",
-          "https://i.postimg.cc/fyxvmSs9/3.jpg"
+          { "url": "https://i.postimg.cc/6px0W0df/1.jpg" },
+          { "url": "https://i.postimg.cc/43L2xc44/2.jpg" },
+          { "url": "https://i.postimg.cc/fyxvmSs9/3.jpg" }
         ],
         "content": "오늘의 식단, 운동법 공유합니다.",
-        "isChallenge": false,
+        "isChallenge": 0,
         "createdAt": "2023-08-12T09:12:37.000Z",
         "coment": 1,
-        "isMyPost": false
+        "isMyPost": 0
       }
     ],
     "totalCount": 120

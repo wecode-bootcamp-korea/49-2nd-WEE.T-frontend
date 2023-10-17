@@ -1,7 +1,17 @@
 import React from 'react';
+import FeedImages from './FeedImages/FeedImages';
 import './FeedList.scss';
 
 const FeedList = ({ feedList }) => {
+  const formatCreatedAt = (createdAt) => {
+    const formattedDate = new Date(createdAt).toLocaleDateString('ko-KR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    return formattedDate;
+  };
+
   return (
     <ul className="feedList">
       {feedList.feeds?.map((feed) => (
@@ -25,16 +35,14 @@ const FeedList = ({ feedList }) => {
                 </div>
               ) : null}
             </div>
-            <div className="feedImage">
-              <img src="https://i.postimg.cc/6px0W0df/1.jpg" alt="feed이미지" />
-            </div>
+            <FeedImages feed={feed} />
             <div className="feedText">
               <div className="text">{feed.content}</div>
               <div className="commentDiv">
                 <div className="commentThings">댓글 {feed.coment}개</div>
                 <div>comment component 자리</div>
               </div>
-              <div className="writeDate">2023년 10월 13일</div>
+              <div className="writeDate">{formatCreatedAt(feed.createdAt)}</div>
             </div>
           </div>
         </li>

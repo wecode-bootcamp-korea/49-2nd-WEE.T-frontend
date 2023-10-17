@@ -8,14 +8,10 @@ const Community = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [totalCount, setTotalCount] = useState(0);
 
-  // 두 번째 방법???? 그냥 샘플 -> useRef 사용방법 확인해보기
-  // const limitRef = useRef(10);
-  // limitRef.current = 20;
-
+  const accessToken = localStorage.getItem('accessToken');
   const page = parseInt(searchParams.get('page')) || 1;
   const limit = searchParams.get('limit');
 
-  //첫 번째 방법
   const setPaginationParams = () => {
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set('page', (parseInt(page) + 1).toString());
@@ -25,7 +21,7 @@ const Community = () => {
 
   useEffect(() => {
     fetchFeedList();
-    // if (window.localStorage.getItem('loginToken')) {
+    // if (accessToken) {// 로그인 했을 때
     //   fetchFeedList();
     // } else { // 로그인하지 않은 상태에서는 토큰값 제외
     //   fetch(`/feeds?limit=${limit || 10}&page=${page}`, {
@@ -52,7 +48,7 @@ const Community = () => {
       // /feeds?limit=${limit || 10}&page=${page}
       method: 'GET',
       headers: {
-        // authorization: window.localStorage.getItem('loginToken'),
+        Authorization: accessToken,
       },
     })
       .then((res) => res.json())
