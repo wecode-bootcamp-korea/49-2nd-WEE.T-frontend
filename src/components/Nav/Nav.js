@@ -9,11 +9,10 @@ const Nav = () => {
   const goToSubscribe = () => {
     if (!isLogin) {
       alert('로그인 후 이용 가능합니다.');
-
       return;
+    } else {
+      navigate('/subscribe');
     }
-
-    navigate('/subscribe');
   };
 
   const goToCommunity = () => {
