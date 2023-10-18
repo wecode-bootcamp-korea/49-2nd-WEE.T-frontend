@@ -19,6 +19,7 @@ const SignUp = () => {
 
   const handleSignUp = () => {
     const accessToken = localStorage.getItem('newUser');
+    localStorage.removeItem('newUser');
     fetch(`http://10.58.52.218:8000/auth/signup`, {
       method: 'PUT',
       headers: {
@@ -31,13 +32,18 @@ const SignUp = () => {
       .then((result) => {
         if (result.message === 'MODIFIED_SUCCESS') {
           localStorage.setItem('accessToken', localStorage.getItem('newUser'));
-          localStorage.removeItem('newUser');
           navigate('/');
         } else {
           alert('오류입니다. 관리자에게 문의하세요.');
         }
       });
   };
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem('newUser');
+    };
+  }, []);
 
   const navigate = useNavigate();
 

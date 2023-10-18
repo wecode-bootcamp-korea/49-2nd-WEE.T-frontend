@@ -18,6 +18,7 @@ const LoginNaver = () => {
             if (result.data.isNew) {
               navigate('/sign-up');
             } else {
+              localStorage.setItem('accessToken', result.data.accessToken);
               navigate('/');
             }
           } else {

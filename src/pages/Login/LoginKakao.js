@@ -15,8 +15,9 @@ const LoginKakao = () => {
           if (result.message === 'LOGIN_SUCCESS') {
             localStorage.setItem('newUser', result.data.accessToken);
             if (result.data.isNew) {
-              navigate('/SignUp');
+              navigate('/sign-up');
             } else {
+              localStorage.setItem('accessToken', result.data.accessToken);
               navigate('/');
             }
           } else {
