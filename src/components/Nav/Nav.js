@@ -4,7 +4,7 @@ import './Nav.scss';
 
 const Nav = () => {
   const navigate = useNavigate();
-  const isLogin = !!localStorage.getItem('token');
+  const isLogin = !!localStorage.getItem('accessToken');
   const [userData, setUserData] = useState([]);
 
   const getUserInfoData = () => {
@@ -12,7 +12,7 @@ const Nav = () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: 'token',
+        Authorization: 'accessToken',
       },
     })
       .then((res) => res.json())
@@ -31,8 +31,6 @@ const Nav = () => {
   // cosnt handleAlarm = () => {
 
   // };
-
-  // const isLogin = useState(true);
 
   const goToMain = () => {
     navigate('/main');
@@ -79,7 +77,7 @@ const Nav = () => {
   };
 
   const handleLogAuto = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('accessToken');
     alert('로그아웃 완료');
     window.location.reload();
   };
