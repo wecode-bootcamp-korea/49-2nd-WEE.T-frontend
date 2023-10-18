@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FeedImages from './FeedImages/FeedImages';
-import Comment from '../Comment/Comment';
+import Comments from '../Comments/Comments';
 import './FeedList.scss';
 
 const FeedList = ({ feedList }) => {
+  const [moreBtn, setMoreBtn] = useState('댓글 더보기 ▼');
+  const [isView, setIsView] = useState(false);
+
+  const handleView = () => {
+    if (moreBtn === '댓글 더보기 ▼') {
+      setMoreBtn('댓글 접기 ▲');
+      setIsView(true);
+    } else {
+      setMoreBtn('댓글 더보기 ▼');
+      setIsView(false);
+    }
+  };
+
   const formatCreatedAt = (created_at) => {
     const formattedDate = new Date(created_at).toLocaleDateString('ko-KR', {
       year: 'numeric',
@@ -16,7 +29,7 @@ const FeedList = ({ feedList }) => {
   return (
     <ul className="feedList">
       {feedList.feeds?.map((feed) => (
-        <li key={feed.id}>
+        <li key={feed.id} className="feedTable">
           <div className="feedContent">
             <div className="userDiv">
               <div className="userInfo">
@@ -41,7 +54,10 @@ const FeedList = ({ feedList }) => {
               <div className="text">{feed.content}</div>
               <div className="commentDiv">
                 <div className="commentThings">댓글 1개</div>
-                <Comment />
+                <div className="moreView" onClick={handleView}>
+                  {moreBtn}
+                </div>
+                {isView ? <Comments feedId={feed.id} /> : null}
               </div>
               <div className="writeDate">
                 {formatCreatedAt(feed.created_at)}

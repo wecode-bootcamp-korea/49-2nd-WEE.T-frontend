@@ -9,7 +9,8 @@ const Rank = () => {
   }, []);
 
   const fetchRankTop10 = () => {
-    fetch(`http://10.58.52.172:8000/feeds/rank`, {
+    fetch(`endpoint`, {
+      //http://10.58.52.172:8000/feeds/rank
       method: 'GET',
     })
       .then((res) => res.json())

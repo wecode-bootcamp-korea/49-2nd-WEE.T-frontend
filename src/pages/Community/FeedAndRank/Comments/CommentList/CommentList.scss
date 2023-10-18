@@ -1,0 +1,62 @@
+.commentList {
+  .commentContainer {
+    .commentOlList {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      gap: 30px;
+      font-size: 14px;
+
+      .userInfo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+
+        .userBadgeImg {
+          width: 30px;
+          height: 30px;
+          border-radius: 100px;
+          border: 0.5px solid #ddd;
+        }
+
+        .userNickname {
+          width: 70px;
+          font-weight: bold;
+        }
+      }
+
+      .userComment {
+        width: 450px;
+        line-height: 1.5;
+      }
+
+      .isMyDiv {
+        width: 100px;
+
+        .btnDiv {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          gap: 5px;
+
+          .btnBox {
+            border: none;
+            border-radius: 6px;
+            background-color: #ccc;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+          }
+        }
+
+        .writeData {
+          width: 100px;
+        }
+      }
+    }
+  }
+}
