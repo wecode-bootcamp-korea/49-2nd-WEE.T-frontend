@@ -8,9 +8,9 @@ const Community = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [totalCount, setTotalCount] = useState(0);
 
-  const accessToken = localStorage.getItem('accessToken');
+  // const accessToken = localStorage.getItem('accessToken');
   const page = parseInt(searchParams.get('page')) || 1;
-  const limit = searchParams.get('limit');
+  const limit = searchParams.get('limit') || 10;
 
   const setPaginationParams = () => {
     const newSearchParams = new URLSearchParams(searchParams);
@@ -44,12 +44,13 @@ const Community = () => {
   }, [page]);
 
   const fetchFeedList = () => {
-    fetch(`/data/communityData.json?limit=${limit || 10}&page=${page}`, {
-      // http://10.58.52.176:8000/feeds?limit=${limit || 10}&page=${page}
+    console.log(limit, page);
+    fetch(`http://10.58.52.172:8000/feeds?limit=${limit || 10}&page=${page}`, {
+      // http://10.58.52.172:8000/feeds?limit=${limit || 10}&page=${page}
       // /data/communityData.json?limit=${limit || 10}&page=${page}
       method: 'GET',
       headers: {
-        Authorization: accessToken,
+        // Authorization: accessToken,
       },
     })
       .then((res) => res.json())
@@ -72,7 +73,7 @@ const Community = () => {
 
   // 마지막 페이지 계산
   const lastPage = Math.ceil(totalCount / itemsPerPage);
-
+  console.log('>>>>>>', lastPage);
   // 현재 페이지
   const currentPage = parseInt(page) || 1;
 
@@ -90,6 +91,7 @@ const Community = () => {
         feedList.feeds.length < totalCount &&
         feedList.feeds.length >= page * limit
       ) {
+        console.log('scroll 위치확인');
         setPaginationParams();
       }
     };

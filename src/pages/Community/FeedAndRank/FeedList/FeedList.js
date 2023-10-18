@@ -1,5 +1,6 @@
 import React from 'react';
 import FeedImages from './FeedImages/FeedImages';
+import Comment from '../Comment/Comment';
 import './FeedList.scss';
 
 const FeedList = ({ feedList }) => {
@@ -40,7 +41,7 @@ const FeedList = ({ feedList }) => {
               <div className="text">{feed.content}</div>
               <div className="commentDiv">
                 <div className="commentThings">댓글 1개</div>
-                <div>comment component 자리</div>
+                <Comment />
               </div>
               <div className="writeDate">
                 {formatCreatedAt(feed.created_at)}

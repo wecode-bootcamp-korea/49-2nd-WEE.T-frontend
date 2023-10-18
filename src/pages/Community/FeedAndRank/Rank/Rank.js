@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Rank.scss';
 
 const Rank = () => {
+  const [rankList, setRankList] = useState();
+
+  useEffect(() => {
+    fetchRankTop10();
+  }, []);
+
+  const fetchRankTop10 = () => {
+    fetch(`http://10.58.52.172:8000/feeds/rank`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setRankList(data.data.feedRanking);
+      });
+  };
+
   return (
     <div className="rank">
       <div className="titleDiv">
@@ -10,42 +27,18 @@ const Rank = () => {
       </div>
       <div className="rankDiv">
         <ol className="rankList">
-          <li>
-            <div className="ranking">1등</div>
-            <div className="userBadge">
-              <img
-                src="/images/dog.jpg"
-                alt="챌린지뱃지"
-                className="badgeImg"
-              />
-              <div className="userNickname">wecode</div>
-            </div>
-            <div className="userFeedCount">작성게시글 120개</div>
-          </li>
-          <li>
-            <div className="ranking">2등</div>
-            <div className="userBadge">
-              <img
-                src="/images/dog.jpg"
-                alt="챌린지뱃지"
-                className="badgeImg"
-              />
-              <div className="userNickname">candy</div>
-            </div>
-            <div className="userFeedCount">작성게시글 119개</div>
-          </li>
-          <li>
-            <div className="ranking">3등</div>
-            <div className="userBadge">
-              <img
-                src="/images/dog.jpg"
-                alt="챌린지뱃지"
-                className="badgeImg"
-              />
-              <div className="userNickname">joker</div>
-            </div>
-            <div className="userFeedCount">작성게시글 118개</div>
-          </li>
+          {rankList?.map((list, index) => (
+            <li key={index}>
+              <div className="ranking">{index + 1}등</div>
+              <div className="userBadge">
+                <img src={list.badge} alt="챌린지뱃지" className="badgeImg" />
+                <div className="userNickname">{list.nickname}</div>
+              </div>
+              <div className="userFeedCount">
+                작성게시글 {list.feed_count}개
+              </div>
+            </li>
+          ))}
         </ol>
       </div>
     </div>
