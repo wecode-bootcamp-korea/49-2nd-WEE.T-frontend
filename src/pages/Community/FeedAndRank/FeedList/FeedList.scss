@@ -5,7 +5,7 @@
 
   li {
     border: 1px solid #ddd;
-    border-radius: 6px;
+    border-radius: 16px;
     list-style: none;
     line-height: 1.7em;
     margin-bottom: 40px;
@@ -49,6 +49,7 @@
           display: flex;
           justify-content: flex-end;
           align-items: center;
+          padding-right: 7px;
           gap: 8px;
 
           .subBtn {

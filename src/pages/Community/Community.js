@@ -46,6 +46,7 @@ const Community = () => {
   const fetchFeedList = () => {
     fetch(`/data/communityData.json?limit=${limit || 10}&page=${page}`, {
       // http://10.58.52.176:8000/feeds?limit=${limit || 10}&page=${page}
+      // /data/communityData.json?limit=${limit || 10}&page=${page}
       method: 'GET',
       headers: {
         Authorization: accessToken,
