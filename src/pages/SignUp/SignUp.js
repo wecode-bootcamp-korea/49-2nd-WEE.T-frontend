@@ -18,8 +18,8 @@ const SignUp = () => {
   const [errors, setErrors] = useState({});
 
   const handleSignUp = () => {
-    const accessToken = localStorage.getItem('accessToken');
-    fetch(`http://10.58.52.220:8000/auth/signup`, {
+    const accessToken = localStorage.getItem('newUser');
+    fetch(`http://10.58.52.218:8000/auth/signup`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -30,6 +30,8 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.message === 'MODIFIED_SUCCESS') {
+          localStorage.setItem('accessToken', localStorage.getItem('newUser'));
+          localStorage.removeItem('newUser');
           navigate('/');
         } else {
           alert('오류입니다. 관리자에게 문의하세요.');
@@ -41,7 +43,6 @@ const SignUp = () => {
 
   const saveJoinUserInfo = (event) => {
     const { name, value, type } = event.target;
-    console.log(event.target);
 
     if (type === 'number') {
       event.target.value = value.replace(/[^0-9]/g, '');
@@ -49,7 +50,6 @@ const SignUp = () => {
     setUserInfo({ ...userInfo, [name]: value });
     validateField(name, value);
   };
-
   const validateField = (fieldName, value) => {
     const fieldErrors = {};
     switch (fieldName) {
@@ -122,7 +122,6 @@ const SignUp = () => {
       default:
         break;
     }
-    console.log(fieldErrors);
     setErrors({ ...errors, ...fieldErrors });
   };
   return (
@@ -136,7 +135,7 @@ const SignUp = () => {
           추가 정보를 입력하고 <b className="fontBold">위트만의 특별한 정보</b>
           를 받아보세요.
         </p>
-        <div className="inputWrapper">
+        <div className="inputWrapper" onInput={(e) => saveJoinUserInfo(e)}>
           <label>닉네임</label>
           <div className="nickNameInput inputBox">
             <input
@@ -144,7 +143,6 @@ const SignUp = () => {
               type="text"
               placeholder="ex)홍길동이다"
               name="nickname"
-              onChange={(e) => saveJoinUserInfo(e)}
             />
             <button>중복확인</button>
             {errors.nickname && <div className="errors">{errors.nickname}</div>}
@@ -156,7 +154,6 @@ const SignUp = () => {
                 className="age"
                 type="number"
                 name="age"
-                onInput={(e) => saveJoinUserInfo(e)}
                 placeholder="ex)29"
               />
               {errors.age && <div className="errors">{errors.age}</div>}
@@ -167,7 +164,6 @@ const SignUp = () => {
                 className="male checkBoxInput"
                 type="radio"
                 name="gender"
-                onChange={(e) => saveJoinUserInfo(e)}
                 value={'male'}
               />
               <label>남</label>
@@ -175,7 +171,6 @@ const SignUp = () => {
                 className="female checkBoxInput"
                 type="radio"
                 name="gender"
-                onChange={(e) => saveJoinUserInfo(e)}
                 value={'female'}
               />
               <label>여</label>
@@ -188,7 +183,6 @@ const SignUp = () => {
               type="number"
               placeholder="ex)70"
               name="weight"
-              onInput={(e) => saveJoinUserInfo(e)}
             />
             {errors.weight && <div className="errors">{errors.weight}</div>}
           </div>
@@ -199,7 +193,6 @@ const SignUp = () => {
               type="number"
               placeholder="ex)180"
               name="height"
-              onInput={(e) => saveJoinUserInfo(e)}
             />
             {errors.height && <div className="errors">{errors.height}</div>}
           </div>
@@ -210,7 +203,6 @@ const SignUp = () => {
               type="number"
               placeholder="ex)60"
               name="goalWeight"
-              onInput={(e) => saveJoinUserInfo(e)}
             />
             {errors.goalWeight && (
               <div className="errors">{errors.goalWeight}</div>
@@ -223,7 +215,6 @@ const SignUp = () => {
               type="number"
               placeholder="ex)18"
               name="bodyFat"
-              onInput={(e) => saveJoinUserInfo(e)}
             />
             {errors.bodyFat && <div className="errors">{errors.bodyFat}</div>}
           </div>
@@ -234,7 +225,6 @@ const SignUp = () => {
               type="number"
               placeholder="ex)35"
               name="skeletalMuscleMass"
-              onInput={(e) => saveJoinUserInfo(e)}
             />
             {errors.skeletalMuscleMass && (
               <div className="errors">{errors.skeletalMuscleMass}</div>

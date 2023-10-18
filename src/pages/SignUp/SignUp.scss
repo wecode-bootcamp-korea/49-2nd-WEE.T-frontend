@@ -1,16 +1,16 @@
-input:focus {
-  outline: 1px solid #5e3dea;
-}
-
-img {
-  display: block;
-  width: 100%;
-}
-
 .SignUp {
   padding-top: 80px;
   width: 100%;
   height: auto;
+
+  input:focus {
+    outline: 1px solid #5e3dea;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
 
   .signUpInner {
     width: 600px;

@@ -8,14 +8,13 @@ const LoginNaver = () => {
 
   useEffect(() => {
     code &&
-      fetch(`http://10.58.52.220:8000/auth/naver/login?code=${code}`, {
+      fetch(`http://10.58.52.218:8000/auth/naver/login?code=${code}`, {
         method: 'GET',
       })
         .then((res) => res.json())
         .then((result) => {
           if (result.message === 'LOGIN_SUCCESS') {
-            localStorage.setItem('accessToken', result.data.accessToken);
-            localStorage.setItem('refreshToken', result.data.refreshToken);
+            localStorage.setItem('newUser', result.data.accessToken);
             if (result.data.isNew) {
               navigate('/sign-up');
             } else {
