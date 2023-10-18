@@ -84,10 +84,10 @@ const Nav = () => {
 
   return (
     <nav className="nav">
-      <div className="logo">
+      <div className="logoSection">
         <img src="images/Logo.png" onClick={goToMain} alt="메인로고사진없음" />
       </div>
-      <div className="logoTwo">
+      <div className="navList">
         <button onClick={goToSubscribe}>구독</button>
         <button onClick={goToCommunity}>커뮤니티</button>
         <button onClick={goToGuideLine}>운동법</button>
