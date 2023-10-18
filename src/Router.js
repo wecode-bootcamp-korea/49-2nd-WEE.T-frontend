@@ -4,6 +4,7 @@ import Main from './pages/Main/Main';
 import Login from './pages/Login/Login';
 import LoginKakao from './pages/Login/LoginKakao';
 import LoginNaver from './pages/Login/LoginNaver';
+import Exercise from './pages/Login/LoginNaver';
 
 const Router = () => {
   return (
