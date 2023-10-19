@@ -4,9 +4,16 @@ import './BuyList.scss';
 const BuyList = (props) => {
   const { setBuyList } = props;
   const [data, setData] = useState();
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3NzE1MDM5LCJleHAiOjE2OTc3NTgyMzl9.VJKuP01fNEGKq_1fNArKPDxOskh8FYEWKplqMWmtn7o';
 
   useEffect(() => {
-    fetch('./data/orders.json')
+    fetch('http://10.58.52.69:8000//users/orders', {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    })
       .then((res) => {
         return res.json();
       })

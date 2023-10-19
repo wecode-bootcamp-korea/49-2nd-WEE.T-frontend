@@ -14,7 +14,7 @@ const Edit = () => {
   const navigate = useNavigate();
   const token =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3NzE1MDM5LCJleHAiOjE2OTc3NTgyMzl9.VJKuP01fNEGKq_1fNArKPDxOskh8FYEWKplqMWmtn7o';
-  // const token = localStorage.getItem('token');   //로컬에서 토큰 꺼내기
+
   console.log(data);
   const isValid = useMemo(() => {
     const validations = {};
