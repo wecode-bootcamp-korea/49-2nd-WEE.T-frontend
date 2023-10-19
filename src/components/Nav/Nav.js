@@ -29,52 +29,29 @@ const Nav = () => {
 
   // 댓글알람기능 구현중,전역상태관리
   // cosnt handleAlarm = () => {
-
   // };
 
-  const goToMain = () => {
-    navigate('/main');
-  };
-
-  const goToSubscribe = () => {
+  const authenticatedNavigate = (path) => {
     if (!isLogin) {
       alert('로그인 후 이용 가능합니다.');
       navigate('/login');
       return;
     }
-    navigate('/subscribe');
+    navigate(path);
+  };
+
+  const goToMain = () => {
+    navigate('/main');
   };
 
   const goToCommunity = () => {
     navigate('/community');
   };
 
-  const goToGuideLine = () => {
-    if (!isLogin) {
-      alert('로그인 후 이용 가능합니다.');
-      navigate('/login');
-      return;
-    }
-    navigate('/');
-  };
-
-  const goToLocation = () => {
-    if (!isLogin) {
-      alert('로그인 후 이용 가능합니다.');
-      navigate('/login');
-      return;
-    }
-    navigate('/');
-  };
-
-  const goToCondition = () => {
-    if (!isLogin) {
-      alert('로그인 후 이용 가능합니다.');
-      navigate('/login');
-      return;
-    }
-    navigate('/info');
-  };
+  const goToSubscribe = () => authenticatedNavigate('/subscribe');
+  const goToCondition = () => authenticatedNavigate('/info');
+  const goToLocation = () => authenticatedNavigate('/');
+  const goToGuideLine = () => authenticatedNavigate('/');
 
   const handleLogAuto = () => {
     localStorage.removeItem('accessToken');
