@@ -4,66 +4,57 @@ footer {
   color: #ffffff;
 
   .container {
-    width: 1170px;
-    height: 30px;
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 15px;
-    padding-left: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    .row {
-      margin-right: -15px;
-      margin-left: -15px;
+    .logoDiv {
+      margin-right: 30px;
 
-      .col-md-4 {
-        position: relative;
-        float: left;
-        width: 33.33333333333333%;
-        min-height: 1px;
-        padding-right: 15px;
-        padding-left: 15px;
-
-        a {
-          .logo {
-            width: 130px;
-            height: 30px;
-          }
-
-          img {
-            border: 0;
-            vertical-align: middle;
-          }
-        }
-
-        &.text-center {
-          text-align: center;
-
-          .social-icons {
-            display: inline-block;
-
-            i {
-              width: 28px;
-              height: 28px;
-              margin: 0 5px 0 5px;
-              padding: 8px;
-              color: #fff;
-              text-align: center;
-              text-shadow: none;
-              font-size: 16px;
-              line-height: 0.75em;
-              vertical-align: -15%;
-            }
-          }
-        }
-
-        &.text-right {
-          text-align: right;
-          font-size: 16px;
-          font-weight: 300;
-          color: #ddd;
-          line-height: 1.8em;
+      a {
+        .logoImg {
+          width: 130px;
+          height: 30px;
+          border: 0;
         }
       }
     }
+
+    .infoDiv {
+      font-size: 1rem;
+      margin-right: 15%;
+
+      .addressInfo {
+        line-height: 2;
+      }
+    }
+
+    .iconDiv {
+      .icon {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 5px;
+
+        .iconImg {
+          margin-left: 10px;
+          width: 30px;
+          height: 30px;
+
+          img {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+
+  .copyright {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1.8em;
   }
 }

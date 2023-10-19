@@ -5,41 +5,40 @@ import './Footer.scss';
 const Footer = () => {
   return (
     <footer>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-4">
-            <Link to="/">
-              <img className="logo" src="/images/logo2.png" alt="로고이미지" />
-            </Link>
-          </div>
-
-          <div className="col-md-4 text-center">
-            <div className="social-icons">
-              <a href="#!">
-                <i className="fa fa-facebook fa-lg" />
-              </a>
-              <a href="#!">
-                <i className="fa fa-twitter fa-lg" />
-              </a>
-              <a href="#!">
-                <i className="fa fa-rss fa-lg" />
-              </a>
-              <a href="#!">
-                <i className="fa fa-google-plus fa-lg" />
-              </a>
-              <a href="#!">
-                <i className="fa fa-skype fa-lg" />
-              </a>
-              <a href="#!">
-                <i className="fa fa-dribbble fa-lg" />
-              </a>
+      <div className="container sectionInner">
+        <div className="logoDiv">
+          <Link to="/">
+            <img
+              className="logoImg"
+              src="/images/footer-logo.png"
+              alt="로고이미지"
+            />
+          </Link>
+        </div>
+        <div className="infoDiv">
+          <p className="addressInfo">
+            06159 서울특별시 강남구 테헤란로 427, 10층(삼성동) WEE.T 개발팀
+          </p>
+          <p className="emailInfo">
+            wecode@weet.co.kr | <span className="phoneInfo">070-4323-4050</span>
+          </p>
+        </div>
+        <div className="iconDiv">
+          <div className="icon">
+            <div className="iconImg">
+              <img src="/images/facebook-logo.png" alt="F로고" />
+            </div>
+            <div className="iconImg">
+              <img src="/images/insta-logo.png" alt="I로고" />
+            </div>
+            <div className="iconImg">
+              <img src="/images/twitter-logo.png" alt="I로고" />
             </div>
           </div>
-
-          <div className="col-md-4 text-right">
-            &copy; Copyright 2023 - WEE.T(우리들의 트레이너)
-          </div>
         </div>
+      </div>
+      <div className="copyright">
+        &copy; Copyright 2023 - WEE.T(우리들의 트레이너), All rights reserved.
       </div>
     </footer>
   );
