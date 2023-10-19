@@ -17,10 +17,12 @@ const Footer = () => {
         </div>
         <div className="infoDiv">
           <p className="addressInfo">
-            06159 서울특별시 강남구 테헤란로 427, 10층(삼성동) WEE.T 개발팀
+            06159 서울특별시 강남구 테헤란로 427, 00층(삼성동) WEE.T(우리들의
+            트레이너) 개발팀
           </p>
           <p className="emailInfo">
-            wecode@weet.co.kr | <span className="phoneInfo">070-4323-4050</span>
+            wecode_team5@weet.co.kr |{' '}
+            <span className="phoneInfo">012-345-6789, 6790</span>
           </p>
         </div>
         <div className="iconDiv">

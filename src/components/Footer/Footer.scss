@@ -10,11 +10,12 @@ footer {
 
     .logoDiv {
       margin-right: 30px;
+      width: 152px;
 
       a {
         .logoImg {
-          width: 130px;
-          height: 30px;
+          display: block;
+          height: 50px;
           border: 0;
         }
       }
