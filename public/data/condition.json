@@ -1,0 +1,18 @@
+{
+  "data": {
+    "badgeImageUrl": "./images/logo3.jpg",
+    "userProfile": "1",
+    "nickname": "황철순이다",
+    "age": 35,
+    "gender": "male",
+    "height": 175.6,
+    "weight": 78.9,
+    "skeletalMuscleMass": 40.5,
+    "bodyFat": 23.4,
+    "goalWeight": 75,
+    "goalBodyFat": 21,
+    "goalSkeletalMuscleMass": 42.3,
+    "badgeLevel": 2,
+    "isSubscribe": "1"
+  }
+}

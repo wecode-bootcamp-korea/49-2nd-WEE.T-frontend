@@ -1,7 +1,26 @@
 * {
   box-sizing: border-box;
 }
-
-li {
-  list-style: none;
+body {
+  font-family: Pretendard, 'Noto Sans KR', sans-serif;
+  font-size: 18px;
+  color: #333;
+  accent-color: #5e3dea;
+}
+button,
+input,
+label,
+input::placeholder {
+  font-family: 'Pretendard';
+}
+button {
+  cursor: pointer;
+}
+.sectionInner {
+  width: 1200px;
+  margin: auto;
+}
+.flexCenter {
+  display: flex;
+  justify-content: center;
 }
