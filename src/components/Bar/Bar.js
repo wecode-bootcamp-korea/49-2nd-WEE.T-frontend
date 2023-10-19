@@ -11,8 +11,12 @@ const Bar = (props) => {
 
   const [width, setWidth] = useState(0); //width is percentage value;
 
+  const [backgroundColor, setBackgroungColor] = useState('#5e3dea');
+
   useEffect(() => {
-    setPercentage((value / total) * 100);
+    const _percentage = (value / total) * 100;
+    if (_percentage > 100) setBackgroungColor('red');
+    setPercentage(_percentage > 100 ? 100 : _percentage);
   }, [total, value]);
 
   useEffect(() => {
@@ -45,7 +49,7 @@ const Bar = (props) => {
           className="barBoxAll"
           style={{
             width: `${width}%`,
-            backgroundColor: `${percentage > 100 ? 'red' : '#5e3dea'}`,
+            backgroundColor: `${backgroundColor}`,
           }}
         />
       </div>
