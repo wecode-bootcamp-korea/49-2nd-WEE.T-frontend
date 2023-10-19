@@ -16,8 +16,8 @@ const Router = () => {
         <Route path="/login/kakao" element={<LoginKakao />} />
         <Route path="/login/naver" element={<LoginNaver />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/footer" element={<Footer />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
