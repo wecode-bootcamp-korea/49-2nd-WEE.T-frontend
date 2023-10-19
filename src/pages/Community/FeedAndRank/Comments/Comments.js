@@ -31,7 +31,10 @@ const Comments = (feedId) => {
     <section className="comments">
       <div className="commentDiv">
         <Comment feedId={feedId} fetchCommentList={fetchCommentList} />
-        <CommentList commentData={commentData} />
+        <CommentList
+          commentData={commentData}
+          setCommentData={setCommentData}
+        />
       </div>
     </section>
   );

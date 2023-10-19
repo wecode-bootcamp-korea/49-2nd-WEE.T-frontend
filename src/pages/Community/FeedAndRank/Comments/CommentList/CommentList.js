@@ -1,7 +1,7 @@
 import React from 'react';
 import './CommentList.scss';
 
-const CommentList = ({ commentData }) => {
+const CommentList = ({ commentData, setCommentData }) => {
   const formatCreatedAt = (createdAt) => {
     const formattedDate = new Date(createdAt).toLocaleDateString('ko-KR', {
       year: 'numeric',
