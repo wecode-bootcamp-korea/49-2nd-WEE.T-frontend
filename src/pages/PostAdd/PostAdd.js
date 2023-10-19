@@ -22,7 +22,6 @@ const PostAdd = () => {
                 accept="image/*"
               />
             </div>
-            <section className="centerSection">사진미리보기구현</section>
           </form>
           <section className="buttomSection">
             <div className="challengeCheck">
