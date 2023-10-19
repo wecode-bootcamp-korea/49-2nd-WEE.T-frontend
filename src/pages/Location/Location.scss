@@ -5,8 +5,8 @@
   .locationContainer {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     width: 1200px;
-    height: 1200px;
     border: 1px solid black;
 
     .mainTitle {
@@ -26,6 +26,10 @@
         font-size: 40px;
         font-weight: 600;
       }
+    }
+    .mapContainer {
+      display: flex;
+      justify-content: center;
     }
   }
 }
