@@ -53,7 +53,7 @@ const FeedList = ({ feedList }) => {
             <div className="feedText">
               <div className="text">{feed.content}</div>
               <div className="commentDiv">
-                <div className="commentThings">댓글 1개</div>
+                <div className="commentThings">댓글 {feed.comment}개</div>
                 <div className="moreView" onClick={handleView}>
                   {moreBtn}
                 </div>
