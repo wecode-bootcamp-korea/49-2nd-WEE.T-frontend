@@ -14,7 +14,7 @@
 
   .pageText {
     text-align: center;
-    font-size: 40px;
+    font-size: 44px;
     font-weight: bold;
     margin-top: 40px;
   }
@@ -53,8 +53,10 @@
       display: flex;
 
       .NutrientCircle {
-        position: relative;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         margin-right: 18px;
         width: 100px;
         height: 100px;
@@ -63,116 +65,49 @@
         color: #fff;
 
         .nutrientText {
-          position: absolute;
-          top: 16px;
-          left: 50%;
-          transform: translateX(-50%);
           font-size: 16px;
           white-space: nowrap;
         }
         .nutrientNum {
+          font-size: 34px;
+          font-weight: bold;
+
           .fontSizeThin {
             font-size: 22px;
             font-weight: bold;
           }
-          position: absolute;
-          top: 52%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          font-size: 34px;
-          font-weight: bold;
         }
       }
     }
   }
   .dietContentWrapper {
-    .todayDietContainer {
+    .dietContainer,
+    .dietContaine {
       position: relative;
-      padding: 40px 30px 30px 30px;
+      padding: 80px 30px 30px 30px;
       width: 100%;
       border: 1px solid #ededed;
       border-radius: 16px;
       margin-top: 60px;
 
       .todayText {
+        .todayDate {
+          color: #5e3dea;
+          font-size: 18px;
+          margin-bottom: 12px;
+        }
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        top: -76px;
+        top: -86px;
         background-color: #fff;
         font-size: 30px;
         font-weight: bold;
-        margin-top: 60px;
+        margin-top: 70px;
       }
       .timeText {
         font-size: 24px;
         margin-bottom: 24px;
-      }
-      .breakfastContainer {
-        margin-bottom: 40px;
-      }
-
-      .dietBoxWrapper {
-        position: relative;
-        display: flex;
-        justify-content: center;
-
-        .dietBox {
-          width: 330px;
-          border: 1px solid #ededed;
-          border-radius: 12px;
-          overflow: hidden;
-
-          .imgBox {
-            border-bottom: 1px solid #ededed;
-            height: 50%;
-            overflow: hidden;
-          }
-          .dietInfo {
-            padding: 20px;
-
-            .infoText {
-              margin-bottom: 12px;
-            }
-
-            .nutrientName {
-              display: inline-block;
-              padding: 10px 14px;
-              border-radius: 6px;
-              background-color: #e8e3f7;
-              color: #5e3dea;
-            }
-            .foodName {
-              font-weight: bold;
-            }
-            .foodCount {
-              color: #5e3dea;
-
-              .gram {
-                color: #333;
-              }
-            }
-            .foodInfo {
-              color: #666;
-              font-weight: 300;
-              font-size: 16px;
-              line-height: 1.4;
-              word-break: keep-all;
-              margin-bottom: 0;
-            }
-
-            .foodCount {
-              .numerator {
-                font-size: 14px;
-                vertical-align: top;
-              }
-              .denominator {
-                font-size: 14px;
-                vertical-align: bottom;
-              }
-            }
-          }
-        }
       }
     }
   }
