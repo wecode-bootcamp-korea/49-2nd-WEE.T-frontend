@@ -28,10 +28,45 @@
         font-weight: 700;
       }
 
+      .prvSection {
+        display: flex;
+        align-items: center;
+        height: 200px;
+        padding: 0 10px;
+        gap: 10px;
+
+        .previewList {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 150px;
+          margin: 20px 0;
+
+          & > img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+
+        .individualDeletion {
+          border: none;
+          border-radius: 6px;
+          margin-top: 10px;
+          width: 40px;
+          height: 20px;
+          background-color: #5e3dea;
+          color: white;
+        }
+      }
+
       .topSection {
         display: flex;
         flex-direction: row;
-        height: 250px;
+        height: 35px;
+        margin-bottom: 5px;
 
         #chooseFile {
           visibility: hidden;
@@ -59,7 +94,7 @@
         .challengeCheck {
           display: flex;
           justify-content: center;
-          margin: 3px;
+          margin: 3px 0 0 0;
           border-top: 1px solid #ede5e5;
 
           input[type='checkbox'] {
@@ -87,7 +122,7 @@
           font-family: 'Pretendard';
           border: 2px solid #9f8cf4;
           border-radius: 6px;
-          padding: 0 7px;
+          padding: 5px 7px;
         }
       }
 
