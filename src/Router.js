@@ -5,12 +5,14 @@ import Login from './pages/Login/Login';
 import LoginKakao from './pages/Login/LoginKakao';
 import LoginNaver from './pages/Login/LoginNaver';
 import SignUp from './pages/SignUp/SignUp';
+import Location from './pages/Location/Location';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Location />} />
+        <Route path="/main" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/login/kakao" element={<LoginKakao />} />
         <Route path="/login/naver" element={<LoginNaver />} />

@@ -1,0 +1,12 @@
+.location {
+  display: flex;
+  justify-content: center;
+
+  .locationContainer {
+    display: flex;
+    justify-content: center;
+    width: 1200px;
+    height: 1200px;
+    border: 1px solid black;
+  }
+}
