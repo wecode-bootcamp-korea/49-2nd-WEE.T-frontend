@@ -12,9 +12,10 @@ const Edit = () => {
   const [data, setData] = useState();
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
-  // const [msg, setMsg] = useState(); //수정하기눌렀을때 담을 훅
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3NzE1MDM5LCJleHAiOjE2OTc3NTgyMzl9.VJKuP01fNEGKq_1fNArKPDxOskh8FYEWKplqMWmtn7o';
   // const token = localStorage.getItem('token');   //로컬에서 토큰 꺼내기
-
+  console.log(data);
   const isValid = useMemo(() => {
     const validations = {};
     if (data) {
@@ -53,7 +54,12 @@ const Edit = () => {
   };
 
   useEffect(() => {
-    fetch('./data/condition.json')
+    fetch('http://10.58.52.69:8000/users', {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    })
       .then((res) => {
         return res.json();
       })
@@ -104,41 +110,39 @@ const Edit = () => {
   };
 
   const userInfoSubmit = () => {
-    navigate('/');
-    // fetch('http://10.58.52.250:8000/users', {
-    //   method: 'PUT',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //     Authorization: token,
-    //   },
-    //   body: JSON.stringify({
-    //    "badgeImageUrl": data.badgeImageUrl
-    //    "userProfile": data.userProfile,
-    //    "nickname": data.nickname,
-    //    "age": data.age,
-    //    "gender": data.gender,
-    //    "height": data.height,
-    //    "weight": data.weight,
-    //    "skeletalMuscleMass":data.,
-    //    "bodyFat": data.bodyFat,
-    //    "goalWeight": data.goalWeight,
-    //    "goalBodyFat": data.goalBodyFat,
-    //    "goalSkeletalMuscleMass": data.goalSkeletalMuscleMass,
-    //    "badgeLevel": data.badgeLevel,
-    //    "isSubscribe": data.isSubscribe
-    //   }),
-    // })
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((result) => {
-    //     setMsg(result.msg);
-    //     if (msg.massege === 'MODIFIED_SUCCESS') {
-    //       setInfoPage(true);
-    //     } else if (msg.massege === 'DUPLICATED_NICKNAME') {
-    //       alert('닉네임이 중복됩니다.');
-    //     }
-    //   });
+    fetch('http://10.58.52.69:8000/users', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        badgeImageUrl: data.badgeImageUrl,
+        userProfile: data.userProfile,
+        nickname: data.nickname,
+        age: data.age,
+        gender: data.gender,
+        height: data.height,
+        weight: data.weight,
+        skeletalMuscleMass: data.skeletalMuscleMass,
+        bodyFat: data.bodyFat,
+        goalWeight: data.goalWeight,
+        goalBodyFat: data.goalBodyFat,
+        goalSkeletalMuscleMass: data.goalSkeletalMuscleMass,
+        badgeLevel: data.badgeLevel,
+        isSubscribe: data.isSubscribe,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((result) => {
+        if (result.message === 'MODIFIED_SUCCESS') {
+          navigate('/info');
+        } else if (result.message === 'DUPLICATED_NICKNAME') {
+          alert('닉네임이 중복됩니다.');
+        }
+      });
   };
   return (
     <div className="edit">
