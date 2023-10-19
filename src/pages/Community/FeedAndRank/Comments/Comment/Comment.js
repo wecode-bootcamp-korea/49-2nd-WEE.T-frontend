@@ -14,18 +14,23 @@ const Comment = ({ feedId, fetchCommentList }) => {
     fetch(`/endpoint/comments`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        // authorization: accessToken,
+        'Content-Type': 'application/json;charset=utf-8',
+        // Authorization: accessToken,
       },
       body: JSON.stringify({
         feedId,
         content: comment,
       }),
-    }).then((response) => {
-      if (response.ok) {
-        fetchCommentList();
-      }
-    });
+    })
+      .then((response) => {
+        console.log(response);
+        if (response.ok) {
+          response.json();
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      });
   };
   return (
     <form className="comment">
@@ -33,6 +38,7 @@ const Comment = ({ feedId, fetchCommentList }) => {
         className="commentInput"
         name="commentInput"
         type="text"
+        maxLength="50"
         placeholder="댓글을 입력해주세요."
         onChange={handleComment}
       />

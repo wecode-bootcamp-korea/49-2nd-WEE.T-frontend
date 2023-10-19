@@ -44,7 +44,6 @@ const Community = () => {
   }, [page]);
 
   const fetchFeedList = () => {
-    console.log(limit, page);
     fetch(`/data/communityData.json?limit=${limit || 10}&page=${page}`, {
       // http://10.58.52.172:8000/feeds?limit=${limit || 10}&page=${page}
       // /data/communityData.json?limit=${limit || 10}&page=${page}
@@ -73,7 +72,7 @@ const Community = () => {
 
   // 마지막 페이지 계산
   const lastPage = Math.ceil(totalCount / itemsPerPage);
-  console.log('>>>>>>', lastPage);
+
   // 현재 페이지
   const currentPage = parseInt(page) || 1;
 
@@ -91,7 +90,6 @@ const Community = () => {
         feedList.feeds.length < totalCount &&
         feedList.feeds.length >= page * limit
       ) {
-        console.log('scroll 위치확인');
         setPaginationParams();
       }
     };
@@ -103,8 +101,7 @@ const Community = () => {
     };
   }, [feedList, totalCount, page]);
 
-  const initialLoad =
-    !feedList || (feedList.feeds && feedList.feeds.length === 0);
+  const initialLoad = feedList.feeds && feedList.feeds.length === 0;
 
   if (!initialLoad) {
     // 처음 로딩 시 10개의 데이터만 표시
