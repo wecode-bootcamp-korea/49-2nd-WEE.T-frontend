@@ -8,17 +8,17 @@ const LoginNaver = () => {
 
   useEffect(() => {
     code &&
-      fetch(`http://10.58.52.96:8000/auth/naver/login?code=${code}`, {
+      fetch(`http://3.39.73.27:8000/auth/naver/login?code=${code}`, {
         method: 'GET',
       })
         .then((res) => res.json())
         .then((result) => {
           if (result.message === 'LOGIN_SUCCESS') {
+            localStorage.setItem('newUser', result.data.accessToken);
             if (result.data.isNew) {
-              navigate('/SignUp');
+              navigate('/sign-up');
             } else {
-              localStorage.setItem(result.data.accessToken);
-              localStorage.setItem(result.data.refreshToken);
+              localStorage.setItem('accessToken', result.data.accessToken);
               navigate('/');
             }
           } else {

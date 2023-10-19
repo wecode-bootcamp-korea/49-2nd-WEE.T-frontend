@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import LoginKakao from './pages/Login/LoginKakao';
 import LoginNaver from './pages/Login/LoginNaver';
 import Exercise from './pages/Exercise/Exercise';
+import SignUp from './pages/SignUp/SignUp';
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
         <Route path="/login/kakao" element={<LoginKakao />} />
         <Route path="/login/naver" element={<LoginNaver />} />
         <Route path="/exercise" element={<Exercise />} />
+        <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );
