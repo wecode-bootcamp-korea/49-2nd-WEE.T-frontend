@@ -1,0 +1,35 @@
+{
+  "message": "READ_SUCCESS",
+  "data": {
+    "POSTS": [
+      {
+        "id": 1
+      },
+      {}
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "nickname": "wecode",
+        "content": "댓글이 길어지면 어떤 식으로 출력되는지 확인하기 위해서 길게 작성하는 중입니다. 식단과 운동법을 어디서 어떻게 추천해주는지 궁금하지 않으신가요. 궁금하지 않네요. 힘들다. 커피는 필수!!",
+        "createdAt": "2023-08-01T09:12:37.000Z",
+        "isMyComment": true
+      },
+      {
+        "id": 2,
+        "nickname": "candy",
+        "content": "댓글이 길어지면 어떤 식으로 출력되는지 확인하기 위해서 길게 작성하는 중입니다. 식단과 운동법을 어디서 어떻게 추천해주는지 궁금하지 않으신가요. 궁금하지 않네요. 힘들다. 커피는 필수!!",
+        "createdAt": "2023-08-02T09:12:37.000Z",
+        "isMyComment": false
+      },
+      {
+        "id": 3,
+        "nickname": "joker",
+        "content": "내용은 아무거나 입력하는 중 ㅋ",
+        "createdAt": "2023-08-03T09:12:37.000Z",
+        "isMyComment": false
+      }
+    ],
+    "commentCount": 12
+  }
+}
