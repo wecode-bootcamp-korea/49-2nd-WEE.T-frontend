@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { LOGIN_KAKAO_API } from '../../config';
 
 const LoginKakao = () => {
   const [searchParams] = useSearchParams();
@@ -7,7 +8,7 @@ const LoginKakao = () => {
   const navigate = useNavigate();
   useEffect(() => {
     code &&
-      fetch(`http://10.58.52.218:8000/auth/kakao/login?code=${code}`, {
+      fetch(`${LOGIN_KAKAO_API}?code=${code}`, {
         method: 'GET',
       })
         .then((res) => res.json())

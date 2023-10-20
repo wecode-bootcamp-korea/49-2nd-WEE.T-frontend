@@ -20,7 +20,7 @@ const SignUp = () => {
   const handleSignUp = () => {
     const accessToken = localStorage.getItem('newUser');
     localStorage.removeItem('newUser');
-    fetch(`http://10.58.52.218:8000/auth/signup`, {
+    fetch(`http://3.39.73.27:8000/auth/signup`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
