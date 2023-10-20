@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { LOGIN_NAVER_API } from '../../config';
 
 const LoginNaver = () => {
   const [searchParams] = useSearchParams();
@@ -8,7 +9,7 @@ const LoginNaver = () => {
 
   useEffect(() => {
     code &&
-      fetch(`http://3.39.73.27:8000/auth/naver/login?code=${code}`, {
+      fetch(`${LOGIN_NAVER_API}?code=${code}`, {
         method: 'GET',
       })
         .then((res) => res.json())
