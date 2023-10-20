@@ -36,7 +36,7 @@ const Edit = () => {
   };
 
   const goInfo = () => {
-    navigate('/');
+    navigate('/info');
   };
   const closePopup = () => {
     setPopup({ ...popup, open: false });
