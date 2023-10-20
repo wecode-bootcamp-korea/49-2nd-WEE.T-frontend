@@ -14,14 +14,14 @@ import Chatting from './Chatting/Chatting';
 const Info = () => {
   const navigate = useNavigate();
   const [data, setData] = useState();
-  const [popup, setPopup] = useState(false);
-  const [buyList, setBuyList] = useState(false);
-  const [chatting, setChatting] = useState(false);
+  const [isPopup, setIsPopup] = useState(false);
+  const [isBuyList, setIsBuyList] = useState(false);
+  const [isChatting, setIsChatting] = useState(false);
   const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3NzE1MDM5LCJleHAiOjE2OTc3NTgyMzl9.VJKuP01fNEGKq_1fNArKPDxOskh8FYEWKplqMWmtn7o';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
 
   const goBuyList = () => {
-    setBuyList(true);
+    setIsBuyList(true);
   };
 
   const goEdit = () => {
@@ -32,7 +32,7 @@ const Info = () => {
   };
 
   useEffect(() => {
-    fetch('http://10.58.52.69:8000/users', {
+    fetch('http://10.58.52.81:8000/users', {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: token,
@@ -47,10 +47,10 @@ const Info = () => {
   }, []);
 
   const goChatting = () => {
-    if (data.isSubscribe === '1') {
-      setChatting(true);
+    if (data.isSubscribe === 1) {
+      setIsChatting(true);
     } else {
-      setPopup(true);
+      setIsPopup(true);
     }
   };
   return (
@@ -92,17 +92,17 @@ const Info = () => {
           <Goal data={data} total={TOTAL} />
         </div>
       </div>
-      {popup ? (
+      {isPopup ? (
         <Popup
           title="회원님 구독전용서비스 구독하시겠어요?"
           leftBtnValue="구독하러가기"
           rightBtnValue="돌아가기"
-          rightBtnClick={() => setPopup(false)}
+          rightBtnClick={() => setIsPopup(false)}
           leftBtnClick={goSubscribe}
         />
       ) : null}
-      {buyList ? <BuyList setBuyList={setBuyList} /> : null}
-      {chatting ? <Chatting setChatting={setChatting} /> : null}
+      {isBuyList ? <BuyList setBuyList={setIsBuyList} /> : null}
+      {isChatting ? <Chatting setChatting={setIsChatting} /> : null}
     </div>
   );
 };

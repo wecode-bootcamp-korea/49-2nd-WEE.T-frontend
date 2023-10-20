@@ -3,12 +3,12 @@ import './BuyList.scss';
 
 const BuyList = (props) => {
   const { setBuyList } = props;
-  const [data, setData] = useState();
+  const [purchaseList, setPurchaseList] = useState();
   const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3NzE1MDM5LCJleHAiOjE2OTc3NTgyMzl9.VJKuP01fNEGKq_1fNArKPDxOskh8FYEWKplqMWmtn7o';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
 
   useEffect(() => {
-    fetch('http://10.58.52.69:8000//users/orders', {
+    fetch('http://10.58.52.81:8000/users/orders', {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: token,
@@ -18,7 +18,7 @@ const BuyList = (props) => {
         return res.json();
       })
       .then((result) => {
-        setData(result.data);
+        setPurchaseList(result);
       });
   }, []);
 
@@ -39,7 +39,7 @@ const BuyList = (props) => {
               <td>구독종료일</td>
               <td>결제가격</td>
             </tr>
-            {data?.map((orders) => {
+            {purchaseList?.map((orders) => {
               const {
                 orderId,
                 payment,

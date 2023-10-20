@@ -13,7 +13,7 @@ const Edit = () => {
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
   const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3NzE1MDM5LCJleHAiOjE2OTc3NTgyMzl9.VJKuP01fNEGKq_1fNArKPDxOskh8FYEWKplqMWmtn7o';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
 
   console.log(data);
   const isValid = useMemo(() => {
@@ -54,7 +54,7 @@ const Edit = () => {
   };
 
   useEffect(() => {
-    fetch('http://10.58.52.69:8000/users', {
+    fetch('http://10.58.52.81:8000/users', {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: token,
@@ -110,28 +110,13 @@ const Edit = () => {
   };
 
   const userInfoSubmit = () => {
-    fetch('http://10.58.52.69:8000/users', {
+    fetch('http://10.58.52.81:8000/users', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: token,
       },
-      body: JSON.stringify({
-        badgeImageUrl: data.badgeImageUrl,
-        userProfile: data.userProfile,
-        nickname: data.nickname,
-        age: data.age,
-        gender: data.gender,
-        height: data.height,
-        weight: data.weight,
-        skeletalMuscleMass: data.skeletalMuscleMass,
-        bodyFat: data.bodyFat,
-        goalWeight: data.goalWeight,
-        goalBodyFat: data.goalBodyFat,
-        goalSkeletalMuscleMass: data.goalSkeletalMuscleMass,
-        badgeLevel: data.badgeLevel,
-        isSubscribe: data.isSubscribe,
-      }),
+      body: JSON.stringify(data),
     })
       .then((res) => {
         return res.json();
@@ -158,9 +143,7 @@ const Edit = () => {
             <div className="labelBox" key={name}>
               <div className="label">
                 <span>{label}</span>
-                {unit === null ? null : (
-                  <span className="assistant">{unit}</span>
-                )}
+                {unit && <span className="assistant">{unit}</span>}
               </div>
               <Input
                 name={name}
@@ -201,7 +184,7 @@ const Edit = () => {
         </div>
       </div>
 
-      {popup.open ? (
+      {popup.open && (
         <Popup
           title={popup.title}
           leftBtnValue={popup.leftBtnValue}
@@ -209,7 +192,7 @@ const Edit = () => {
           leftBtnClick={popup.leftBtnClick}
           rightBtnClick={popup.rightBtnClick}
         />
-      ) : null}
+      )}
     </div>
   );
 };

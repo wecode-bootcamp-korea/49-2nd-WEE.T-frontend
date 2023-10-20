@@ -17,7 +17,6 @@ const Chatting = (props) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       setText('');
-      sandText();
     }
   };
 

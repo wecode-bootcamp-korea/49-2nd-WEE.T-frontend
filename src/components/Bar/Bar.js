@@ -41,8 +41,8 @@ const Bar = (props) => {
   return (
     <div className="bar">
       <div className="look">
-        <span className="a">{label}</span>
-        <span className="b">{`${value} ${unit}`}</span>
+        <span className="barLabel">{label}</span>
+        <span className="valueAndUnit">{`${value} ${unit}`}</span>
       </div>
       <div className="barBox">
         <div
