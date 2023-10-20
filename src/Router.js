@@ -6,6 +6,7 @@ import Login from './pages/Login/Login';
 import LoginKakao from './pages/Login/LoginKakao';
 import LoginNaver from './pages/Login/LoginNaver';
 import SignUp from './pages/SignUp/SignUp';
+import Footer from './components/Footer/Footer';
 
 const Router = () => {
   return (
@@ -18,6 +19,7 @@ const Router = () => {
         <Route path="/login/naver" element={<LoginNaver />} />
         <Route path="/sign-up" element={<SignUp />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
