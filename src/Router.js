@@ -7,6 +7,7 @@ import Community from './pages/Community/Community';
 import Login from './pages/Login/Login';
 import LoginKakao from './pages/Login/LoginKakao';
 import LoginNaver from './pages/Login/LoginNaver';
+import Exercise from './pages/Exercise/Exercise';
 import SignUp from './pages/SignUp/SignUp';
 import Footer from './components/Footer/Footer';
 import Order from './pages/Order/Order';
@@ -22,6 +23,7 @@ const Router = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/login/kakao" element={<LoginKakao />} />
         <Route path="/login/naver" element={<LoginNaver />} />
+        <Route path="/exercise" element={<Exercise />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/order" element={<Order />} />
       </Routes>
