@@ -4,7 +4,7 @@ import './Footer.scss';
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="footer">
       <div className="container sectionInner">
         <div className="logoDiv">
           <Link to="/">
