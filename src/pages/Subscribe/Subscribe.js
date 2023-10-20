@@ -56,7 +56,7 @@ const Subscribe = () => {
       const orderSubscribeId = selectedCheckbox.subscribeId;
       navigate('/order', { state: { subscribeId: orderSubscribeId } });
     } else {
-      console.log('구독하실 개월 수를 선택해주세요.');
+      alert('구독하실 개월 수를 선택해주세요.');
     }
   };
 
@@ -80,7 +80,7 @@ const Subscribe = () => {
         <div className="sectionInner">
           <form className="subscribeContent">
             <ul className="flexCenter">
-              {subscribeData.data.map((option) => (
+              {subscribeData?.data.map((option) => (
                 <li key={option.subscribeId}>
                   <div className="paymentWrap">
                     <div className="checkInputDiv">
@@ -121,7 +121,7 @@ const Subscribe = () => {
               <button
                 className="orderBtn"
                 type="button"
-                onClick={handleOrderButton(selectedCheckbox)}
+                onClick={() => handleOrderButton(selectedCheckbox)}
               >
                 결제하기
               </button>
