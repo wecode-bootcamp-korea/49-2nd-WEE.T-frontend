@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/Main/Main';
+import Nav from './components/Nav/Nav';
 import Community from './pages/Community/Community';
 import Login from './pages/Login/Login';
 import LoginKakao from './pages/Login/LoginKakao';
@@ -11,6 +12,7 @@ import Footer from './components/Footer/Footer';
 const Router = () => {
   return (
     <BrowserRouter>
+      <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/community" element={<Community />} />
