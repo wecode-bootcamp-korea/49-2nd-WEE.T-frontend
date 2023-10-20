@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PostAdd.scss';
 
 const PostAdd = () => {
   const [images, setImages] = useState([]);
   const [previewImages, setPreviewImages] = useState([]);
+  const navigate = useNavigate();
 
   const handleImageChange = (e) => {
     const selectedImages = e.target.files;
@@ -37,7 +39,29 @@ const PostAdd = () => {
     setPreviewImages(newPreviewImages);
   };
 
-  const handleCancel = () => {};
+  const handleCancel = () => {
+    navigate('/community');
+  };
+
+  const handlePost = () => {
+    fetch('postadd API', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: 'accessToken',
+      },
+      body: JSON.stringify({
+        imageUrl: '[]',
+        content: '',
+        challenge: '',
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {});
+
+    navigate('/community');
+  };
+
   return (
     <div className="mainContainer">
       <div className="feedContainer">
@@ -83,7 +107,7 @@ const PostAdd = () => {
             </div>
             <div className="buttonArea">
               <button onClick={handleCancel}>취소</button>
-              <button>게시</button>
+              <button onClick={handlePost}>게시</button>
             </div>
           </section>
         </div>
