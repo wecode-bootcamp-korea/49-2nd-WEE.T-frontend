@@ -42,6 +42,7 @@ const Input = (props) => {
   return (
     <>
       <input
+        onWheel={(e) => e.target.blur()}
         className={`input ${size}`}
         placeholder={placeholder}
         type={type}
