@@ -4,21 +4,31 @@ import './BuyList.scss';
 const BuyList = (props) => {
   const { setBuyList } = props;
   const [purchaseList, setPurchaseList] = useState();
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
+  // const token =
+  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
+
+  // useEffect(() => {
+  //   fetch('http://10.58.52.81:8000/users/orders', {
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((result) => {
+  //       setPurchaseList(result);
+  //     });
+  // }, []);
 
   useEffect(() => {
-    fetch('http://10.58.52.81:8000/users/orders', {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token,
-      },
-    })
+    fetch('./data/orders.json')
       .then((res) => {
         return res.json();
       })
       .then((result) => {
-        setPurchaseList(result);
+        setPurchaseList(result.data);
       });
   }, []);
 
