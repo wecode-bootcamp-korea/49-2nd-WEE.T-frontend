@@ -2,16 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import './Exercise.scss';
 import DietContainer from '../../components/DietContainer/DietContainer';
+import { DIET_API } from '../../config';
 
 const Exercise = () => {
   const [dietData, setDietData] = useState();
   const breakfastIcon = '/images/icon-sun.png';
   const lunchIcon = '/images/icon-lunch-sun.png';
   const dinnerIcon = '/images/icon-moon.png';
+  // const accessToken = localStorage.getItem(accessToken);
 
   useEffect(() => {
     fetch('/data/exercise.json', {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('accessToken'),
+      },
     })
       .then((res) => res.json())
       .then((result) => {
@@ -29,7 +35,7 @@ const Exercise = () => {
     <div className="Exercise">
       <section className="sectionInner">
         <h2 className="pageLogo">
-          <img src="/images/icon-exercise.png" alt="운동법 아이콘" />
+          <img src="/images/icon-nuts.png" alt="운동법 아이콘" />
         </h2>
         <h1 className="pageText">위트 맞춤 추천 식단</h1>
         <p className="subText">
@@ -72,7 +78,7 @@ const Exercise = () => {
         <div className="dietContentWrapper">
           <div className="todayDietContainer dietContainer">
             <h1 className="todayText">
-              <p className="todayDate">2023.10.18</p>
+              <p className="todayDate">{dietData.today.date}</p>
               &nbsp; &nbsp; {dietData.nickname}님 오늘의 식단&nbsp; &nbsp;
             </h1>
             <DietContainer
@@ -93,8 +99,8 @@ const Exercise = () => {
           </div>
           <div className="todayDietContainer dietContaine">
             <h1 className="todayText">
-              <p className="todayDate">2023.10.19</p>
-              &nbsp; &nbsp; 김세연님 내일 식단&nbsp; &nbsp;
+              <p className="todayDate">{dietData.tomorrow.date}</p>
+              &nbsp; &nbsp; {dietData.nickname}님 내일 식단&nbsp; &nbsp;
             </h1>
 
             <DietContainer
