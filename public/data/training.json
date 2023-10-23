@@ -1,0 +1,125 @@
+{
+  "message": "READ_SUCCESS",
+  "data": {
+    "targetWeight": 42,
+    "weight": 66,
+    "currentWeight": 56,
+    "running": 30,
+    "nickname": "루피는깜찍해",
+    "shoulder": [
+      {
+        "image": "/images/dog.jpg",
+        "name": "어깨 조지기",
+        "count": 15,
+        "set": 3,
+        "link": "https://www.youtube.com/embed/F60RVDh7iis"
+      },
+      {
+        "image": "/images/dog.jpg",
+        "name": "나 어깨운동 이름 몰라요",
+        "count": 15,
+        "set": 3,
+        "link": "https://www.youtube.com/embed/F60RVDh7iis"
+      },
+      {
+        "image": "/images/dog.jpg",
+        "name": "어깨 파열",
+        "count": 15,
+        "set": 3,
+        "link": "https://www.youtube.com/embed/F60RVDh7iis"
+      }
+    ],
+    "back": [
+      {
+        "image": "",
+        "name": "",
+        "count": 10,
+        "set": 3,
+        "link": " "
+      },
+      {
+        "image": "",
+        "name": "",
+        "count": 10,
+        "set": 3,
+        "link": " "
+      },
+      {
+        "image": "",
+        "name": "",
+        "count": 10,
+        "set": 3,
+        "link": " "
+      }
+    ],
+    "lowerBody": [
+      {
+        "image": "",
+        "name": "",
+        "count": 8,
+        "set": 5,
+        "link": " "
+      },
+      {
+        "image": "",
+        "name": "",
+        "count": 8,
+        "set": 5,
+        "link": " "
+      },
+      {
+        "image": "",
+        "name": "",
+        "count": 8,
+        "set": 5,
+        "link": " "
+      }
+    ],
+    "chest": [
+      {
+        "image": "",
+        "name": "",
+        "count": 10,
+        "set": 4,
+        "link": " "
+      },
+      {
+        "image": "",
+        "name": "",
+        "count": 8,
+        "set": 5,
+        "link": " "
+      },
+      {
+        "image": "",
+        "name": "",
+        "count": 8,
+        "set": 5,
+        "link": " "
+      }
+    ],
+    "arm": [
+      {
+        "image": "",
+        "name": "",
+        "count": 12,
+        "set": 5,
+        "link": " "
+      },
+      {
+        "image": "",
+        "name": "",
+        "count": 15,
+        "set": 5,
+        "link": " "
+      },
+      {
+        "image": "",
+        "name": "",
+        "count": 10,
+        "set": 4,
+        "link": " "
+      }
+    ]
+  }
+}
