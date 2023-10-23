@@ -58,7 +58,7 @@ const Training = () => {
         <div className="userTrainingInfo">
           <div className="userNotice">
             <p className="badge">
-              <img src="/images/icon-diet.png" alt="체중계 아이콘" />
+              <img src="/images/icon-fat.png" alt="체중계 아이콘" />
             </p>
             <span className="userNickname">{trainingData.nickname}</span>님
             목표체중까지&nbsp;&nbsp;
