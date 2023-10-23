@@ -102,7 +102,9 @@ const Info = () => {
         />
       ) : null}
       {isBuyList ? <BuyList setBuyList={setIsBuyList} /> : null}
-      {isChatting ? <Chatting setChatting={setIsChatting} /> : null}
+      {isChatting ? (
+        <Chatting nickname={data.nickname} setChatting={setIsChatting} />
+      ) : null}
     </div>
   );
 };
