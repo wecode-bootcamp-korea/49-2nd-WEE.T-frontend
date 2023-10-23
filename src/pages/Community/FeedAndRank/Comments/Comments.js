@@ -13,6 +13,7 @@ const Comments = (feedId) => {
 
   const fetchCommentList = () => {
     fetch(`/data/commentData.json`, {
+      // /data/commentData.json
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -35,17 +35,13 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
           feedId,
           content: commentEdit,
         }),
-      })
-        .then((response) => {
-          console.log(response);
-          if (response.ok) {
-            fetchCommentList();
-            return response.json();
-          }
-        })
-        .then((data) => {
-          console.log(data);
-        });
+      }).then((response) => {
+        console.log(response);
+        if (response.ok) {
+          fetchCommentList();
+          alert('댓글이 수정되었습니다.');
+        }
+      });
     } else {
       alert('댓글을 작성해주세요.');
     }
@@ -63,21 +59,17 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
         'Content-Type': 'application/json;charset=utf-8',
         // Authorization: accessToken,
       },
-      body: JSON.stringify({
-        feedId,
-        content: commentEdit,
-      }),
-    })
-      .then((response) => {
-        console.log(response);
-        if (response.ok) {
-          fetchCommentList();
-          return response.json();
-        }
-      })
-      .then((data) => {
-        console.log(data);
-      });
+      // body: JSON.stringify({
+      //   feedId,
+      //   content: commentEdit,
+      // }),
+    }).then((response) => {
+      console.log(response);
+      if (response.ok) {
+        fetchCommentList();
+        alert('댓글이 삭제되었습니다.');
+      }
+    });
     // } else {
     //   alert('로그인 후 댓글 삭제가 가능합니다.');
     //   navigate('/login');

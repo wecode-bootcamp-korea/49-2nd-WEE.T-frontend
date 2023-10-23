@@ -29,7 +29,7 @@ const Comment = ({ feedId, fetchCommentList }) => {
       })
         .then((response) => {
           console.log(response);
-          console.log('새 댓글을 등록합니다.');
+          alert('새 댓글을 등록합니다.');
           if (response.ok) {
             fetchCommentList();
             response.json();
