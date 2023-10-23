@@ -1,0 +1,23 @@
+//정보수정 클릭시 기입하는 인풋창
+.input {
+  border: 1px solid #5e3dea;
+  border-radius: 6px;
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &.default {
+    width: 400px;
+    height: 50px;
+    font-size: 18px;
+    padding: 10px 10px;
+    text-align: center;
+  }
+}
+
+.validation {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+}

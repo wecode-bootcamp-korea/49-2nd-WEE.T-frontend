@@ -1,0 +1,12 @@
+.current {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+
+  .ing {
+    font-size: 35px;
+    font-weight: 600;
+  }
+}

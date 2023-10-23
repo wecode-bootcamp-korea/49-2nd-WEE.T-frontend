@@ -24,10 +24,15 @@ const DietContainer = ({ dietData, mealTime, iconImg }) => {
                 <span className="gram">&nbsp;&nbsp;[{result.gram}g]</span>
               </p>
               <p className="foodCount infoText">
-                {result.count.number}&nbsp;
-                <span className="numerator">{result.count.numerator}</span>
-                &#47;
-                <span className="denominator">{result.count.denominator}</span>
+                {result.count.integer === 0 ? '' : result.count.integer}&nbsp;
+                <span className="numerator">
+                  {result.count.numerator === 0 ? '' : result.count.numerator}
+                </span>
+                <span className="denominator">
+                  {result.count.denominator === 0
+                    ? ''
+                    : '/' + result.count.denominator}
+                </span>
                 개
               </p>
               <p className="foodInfo infoText">{result.information}</p>
