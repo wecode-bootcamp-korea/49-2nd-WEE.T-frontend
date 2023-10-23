@@ -15,6 +15,7 @@ import Location from './pages/Location/Location';
 import Footer from './components/Footer/Footer';
 import Order from './pages/Order/Order';
 import ChattingBtn from './components/ChattingBtn/ChattingBtn';
+import Training from './pages/Training/Training';
 
 const Router = () => {
   return (
@@ -34,6 +35,7 @@ const Router = () => {
         <Route path="/exercise" element={<Exercise />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/training" element={<Training />} />
       </Routes>
       <Footer />
     </BrowserRouter>

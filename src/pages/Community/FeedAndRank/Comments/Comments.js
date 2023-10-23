@@ -4,7 +4,7 @@ import CommentList from './CommentList/CommentList';
 import './Comments.scss';
 
 const Comments = (feedId) => {
-  // const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('accessToken');
   const [commentData, setCommentData] = useState([]);
 
   useEffect(() => {
@@ -30,7 +30,9 @@ const Comments = (feedId) => {
   return (
     <section className="comments">
       <div className="commentDiv">
-        <Comment feedId={feedId} fetchCommentList={fetchCommentList} />
+        {accessToken ? (
+          <Comment feedId={feedId} fetchCommentList={fetchCommentList} />
+        ) : null}
         <CommentList
           feedId={feedId}
           fetchCommentList={fetchCommentList}
