@@ -1,0 +1,35 @@
+.order {
+  padding: 120px 0;
+
+  .subscribeInfo {
+    .subscribeTitle {
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .subscribeDiv {
+      display: flex;
+      align-items: center;
+      gap: 100px;
+
+      .subscribeImgAndMonth {
+        .subImg {
+          display: block;
+          width: 100px;
+        }
+      }
+
+      .subTable {
+        width: 100%;
+
+        tr {
+          td {
+            padding: 20px;
+            border: 1px solid black;
+          }
+        }
+      }
+    }
+  }
+}
