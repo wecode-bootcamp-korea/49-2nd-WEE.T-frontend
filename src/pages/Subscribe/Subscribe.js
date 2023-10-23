@@ -2,23 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
 import './Subscribe.scss';
-import { is } from 'immutable';
 
 const Subscribe = () => {
-  const [subscribeData, setSubscribeData] = useState();
+  const [subscribeData, setSubscribeData] = useState({});
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const navigate = useNavigate();
   // const accessToken = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    // 토큰이 있다면 사용자 정보를 가져오는 함수 호출
     // if (accessToken) {
     getUserSubscribeData();
     // }
   }, []);
 
   const getUserSubscribeData = () => {
-    fetch('http://10.58.52.67:8000/subscribe', {
+    fetch('/data/subscribeData.json', {
+      // http://10.58.52.67:8000/subscribe
+
       headers: {
         'Content-Type': 'application/json',
         // Authorization: accessToken,
@@ -66,7 +66,7 @@ const Subscribe = () => {
   //   return <Redirect to="/login" />;
   // }
 
-  const isEmpty = subscribeData.length === 0;
+  const isEmpty = Object.keys(subscribeData).length === 0;
 
   if (isEmpty) return null;
 
@@ -85,7 +85,7 @@ const Subscribe = () => {
         <div className="sectionInner">
           <form className="subscribeContent">
             <ul className="flexCenter">
-              {subscribeData?.data.map((option) => (
+              {subscribeData.data?.map((option) => (
                 <li key={option.subscribeId}>
                   <div className="paymentWrap">
                     <div className="checkInputDiv">
