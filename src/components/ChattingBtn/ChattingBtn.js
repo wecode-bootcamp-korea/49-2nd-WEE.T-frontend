@@ -9,9 +9,8 @@ const ChattingBtn = () => {
   const [isPopup, setIsPopup] = useState({});
   const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
+
   const token = localStorage.getItem('token');
-  // const token =
-  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
 
   const goChatting = () => {
     // 로그인 안한 경우
@@ -65,10 +64,10 @@ const ChattingBtn = () => {
 
     fetch('/data/condition.json', {
       // fetch('http://10.58.52.69:8000/users', {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token,
-      },
+      // headers: {
+      //   'Content-Type': 'application/json;charset=utf-8',
+      //   Authorization: token,
+      // },
     })
       .then((res) => res.json())
       .then((result) => {
