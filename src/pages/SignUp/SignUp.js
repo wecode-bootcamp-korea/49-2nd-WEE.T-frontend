@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.scss';
+import { LOGIN_AWS_API } from '../../config';
 
 const SignUp = () => {
   const [userInfo, setUserInfo] = useState({
     nickname: '',
     height: 0,
     weight: 0,
-    seletalMuscleMass: 0,
+    skeletalMuscleMass: 0,
     goalWeight: 0,
     bodyFat: 0,
     birthDate: '',
@@ -20,7 +21,7 @@ const SignUp = () => {
   const handleSignUp = () => {
     const accessToken = localStorage.getItem('newUser');
     localStorage.removeItem('newUser');
-    fetch(`http://3.39.73.27:8000/auth/signup`, {
+    fetch(`${LOGIN_AWS_API}/auth/signup`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -33,8 +34,42 @@ const SignUp = () => {
         if (result.message === 'MODIFIED_SUCCESS') {
           localStorage.setItem('accessToken', localStorage.getItem('newUser'));
           navigate('/');
+        } else if (userInfo.nickname.length > 8) {
+          alert('닉네임은 8자 이내로 입력해 주세요.');
+        } else if (userInfo.height > 300) {
+          alert('신장은 300이하로 입력해 주세요.');
+        } else if (userInfo.age > 120) {
+          alert('120이상은 입력할 수 없습니다.');
+        } else if (userInfo.skeletalMuscleMass > 100) {
+          alert('골격근량은 100이하로 작성해 주세요.');
+        } else if (userInfo.goalWeight > 500) {
+          alert('목표 체중은 500이하로 작성해 주세요.');
+        } else if (userInfo.weight > 500) {
+          alert('체중은 500이하로 작성해 주세요.');
+        } else if (userInfo.bodyFat > 100) {
+          alert('체지방률은 100이하로 작성해주세요.');
         } else {
           alert('오류입니다. 관리자에게 문의하세요.');
+        }
+      });
+  };
+
+  const handleDoubleCheck = () => {
+    const accessToken = localStorage.getItem('newUser');
+    fetch(`${LOGIN_AWS_API}/users/nickname`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: accessToken,
+      },
+      body: JSON.stringify({ nickname: userInfo.nickname }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.message === 'AVAILABLE_NICKNAME') {
+          alert('사용 가능한 닉네임 입니다.');
+        } else {
+          alert('중복된 닉네임 입니다.');
         }
       });
   };
@@ -88,7 +123,7 @@ const SignUp = () => {
           fieldErrors.height = '';
         }
         break;
-      case 'seletalMuscleMass':
+      case 'skeletalMuscleMass':
         if (1 > value) {
           fieldErrors.skeletalMuscleMass = '골격근량을 입력하세요.';
         } else if (value > 100)
@@ -150,7 +185,7 @@ const SignUp = () => {
               placeholder="ex)홍길동이다"
               name="nickname"
             />
-            <button>중복확인</button>
+            <button onClick={handleDoubleCheck}>중복확인</button>
             {errors.nickname && <div className="errors">{errors.nickname}</div>}
           </div>
           <div className="genderAndageBox">
@@ -225,7 +260,7 @@ const SignUp = () => {
             {errors.bodyFat && <div className="errors">{errors.bodyFat}</div>}
           </div>
           <div className="inputBox">
-            <label>골격근량 (%)</label>
+            <label>골격근량 (kg)</label>
             <input
               className="skeletalMuscle"
               type="number"

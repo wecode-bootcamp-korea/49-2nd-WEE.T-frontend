@@ -11,8 +11,10 @@ import LoginKakao from './pages/Login/LoginKakao';
 import LoginNaver from './pages/Login/LoginNaver';
 import Exercise from './pages/Exercise/Exercise';
 import SignUp from './pages/SignUp/SignUp';
+import Location from './pages/Location/Location';
 import Footer from './components/Footer/Footer';
 import Order from './pages/Order/Order';
+import Training from './pages/Training/Training';
 
 const Router = () => {
   return (
@@ -20,6 +22,7 @@ const Router = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/location" element={<Location />} />
         <Route path="/edit" element={<Edit />} />
         <Route path="/info" element={<Info />} />
         <Route path="/subscribe" element={<Subscribe />} />
@@ -30,6 +33,7 @@ const Router = () => {
         <Route path="/exercise" element={<Exercise />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/training" element={<Training />} />
       </Routes>
       <Footer />
     </BrowserRouter>

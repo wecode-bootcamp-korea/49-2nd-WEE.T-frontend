@@ -12,8 +12,8 @@ const Edit = () => {
   const [data, setData] = useState();
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
+  // const token =
+  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
 
   const isValid = useMemo(() => {
     const validations = {};
@@ -52,13 +52,23 @@ const Edit = () => {
     });
   };
 
+  // useEffect(() => {
+  //   fetch('http://10.58.52.81:8000/users', {
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((result) => {
+  //       setData(result.data);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    fetch('http://10.58.52.81:8000/users', {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token,
-      },
-    })
+    fetch('./data/condition.json')
       .then((res) => {
         return res.json();
       })
@@ -109,24 +119,24 @@ const Edit = () => {
   };
 
   const userInfoSubmit = () => {
-    fetch('http://10.58.52.81:8000/users', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token,
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((result) => {
-        if (result.message === 'MODIFIED_SUCCESS') {
-          navigate('/info');
-        } else if (result.message === 'DUPLICATED_NICKNAME') {
-          alert('닉네임이 중복됩니다.');
-        }
-      });
+    // fetch('http://10.58.52.81:8000/users', {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Content-Type': 'application/json;charset=utf-8',
+    //     Authorization: token,
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((result) => {
+    //     if (result.message === 'MODIFIED_SUCCESS') {
+    //       navigate('/info');
+    //     } else if (result.message === 'DUPLICATED_NICKNAME') {
+    //       alert('닉네임이 중복됩니다.');
+    //     }
+    //   });
   };
   return (
     <div className="edit">
