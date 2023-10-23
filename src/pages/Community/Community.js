@@ -41,14 +41,13 @@ const Community = () => {
 
   const fetchFeedList = () => {
     fetch(`/data/communityData.json?limit=${limit}&page=${page}`, {
-      // http://10.58.52.236:8000/feeds?limit=${limit || 10}&page=${page}
-      // /data/communityData.json?limit=${limit || 10}&page=${page}
+      // http://10.58.52.236:8000/feeds?limit=${limit}&page=${page}
+      // /data/communityData.json?limit=${limit}&page=${page}
       method: 'GET',
       headers: HEADER,
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         const feedData = data.data;
         const newFeedData = feedData.feeds;
         setTotalCount(feedData.feedCount);
@@ -64,7 +63,6 @@ const Community = () => {
   const initialLoad = feedList.feeds && feedList.feeds.length === 0;
 
   if (!initialLoad) {
-    // 처음 로딩 시 10개의 데이터만 표시
     return (
       <div id="content" className="community">
         <div className="container sectionInner">
