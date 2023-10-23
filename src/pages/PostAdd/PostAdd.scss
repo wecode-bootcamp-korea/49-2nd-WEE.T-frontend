@@ -142,6 +142,11 @@
           color: #ffff;
           letter-spacing: 5px;
         }
+
+        button:hover {
+          background-color: #002ead;
+          transition: 0.7s;
+        }
       }
     }
   }

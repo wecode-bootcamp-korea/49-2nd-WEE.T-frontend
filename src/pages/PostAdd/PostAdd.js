@@ -3,12 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import './PostAdd.scss';
 
 const PostAdd = () => {
+  const navigate = useNavigate();
   const [images, setImages] = useState([]);
   const [previewImages, setPreviewImages] = useState([]);
-  const navigate = useNavigate();
+  const [isChecked, setIsChecked] = useState(0);
+  const [postContent, setPostContent] = useState({
+    imageUrl: [],
+    content: '',
+    challenge: '',
+  });
 
   const handleImageChange = (e) => {
     const selectedImages = e.target.files;
+    if (selectedImages.length === 0) {
+      alert('이미지를 선택하세요');
+      return;
+    }
     const newImages = [...images];
     const newPreviewImages = [...previewImages];
     const maxImages = 3;
@@ -26,6 +36,8 @@ const PostAdd = () => {
 
     setImages(newImages);
     setPreviewImages(newPreviewImages);
+
+    console.log(newImages);
   };
 
   const handleRemoveImage = (index) => {
@@ -39,29 +51,54 @@ const PostAdd = () => {
     setPreviewImages(newPreviewImages);
   };
 
+  const handleChecked = () => {
+    setIsChecked(isChecked === 0 ? 1 : 0);
+    setPostContent({
+      ...postContent,
+      challenge: isChecked === 0 ? 1 : 0,
+    });
+    console.log(postContent);
+  };
+
+  const handleText = (e) => {
+    const { name, value } = e.target;
+    setPostContent({
+      ...postContent,
+      [name]: value,
+    });
+    console.log(postContent);
+  };
+
   const handleCancel = () => {
     navigate('/community');
   };
 
   const handlePost = () => {
-    fetch('postadd API', {
+    fetch('http://10.58.52.247:8000/feeds', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: 'accessToken',
+        'Content-Type': 'multipart/form-data',
+        //'application/json;charset=utf-8'
+        //Authorization: "accessToken",
+        // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTcwNzMxNzAsImV4cCI6MTY5NzExNjM3MH0.f-YMfUS7Qrlh4d69kXzZxqUEI4lCLanQAWqQeYcoI3U',
       },
       body: JSON.stringify({
-        imageUrl: '[]',
-        content: '',
-        challenge: '',
+        imageUrl: image,
+        content: postContent.content,
+        challenge: postContent.challenge,
       }),
     })
       .then((res) => res.json())
-      .then((data) => {});
-
-    navigate('/community');
+      .then((result) => {
+        console.log(result);
+        if (result.message === 'INSERT_SUCCESS') {
+          alert('피드등록 완료!.');
+          navigate('/community');
+        }
+      });
   };
 
+  // console.log(previewImages);
   return (
     <div className="mainContainer">
       <div className="feedContainer">
@@ -91,7 +128,7 @@ const PostAdd = () => {
                 type="file"
                 id="chooseFile"
                 multiple
-                name="chooseFile"
+                name="imageUrl"
                 accept="image/*"
                 onChange={handleImageChange}
               />
@@ -99,15 +136,20 @@ const PostAdd = () => {
           </form>
           <section className="buttomSection">
             <div className="challengeCheck">
-              <input type="checkbox" />
+              <input onChange={handleChecked} type="checkbox" />
               <span>챌린지참여</span>
             </div>
             <div className="textSection">
-              <textarea placeholder="피드를 작성해주세요." maxLength={100} />
+              <textarea
+                onChange={handleText}
+                placeholder="피드를 작성해주세요."
+                maxLength={100}
+                name="content"
+              />
             </div>
             <div className="buttonArea">
               <button onClick={handleCancel}>취소</button>
-              <button onClick={handlePost}>게시</button>
+              <button onClick={handlePost}>작성</button>
             </div>
           </section>
         </div>
