@@ -7,11 +7,11 @@ const Training = () => {
   const [trainingData, setTrainingData] = useState({});
   const [currentWeight, setCurrentWeight] = useState();
   const [targetWeight, setTargetWeight] = useState();
-  const shoulderIcon = '/images/dog.jpg';
-  const backIcon = '/images/dog.jpg';
-  const lowerBodyIcon = '/images/dog.jpg';
-  const chestIcon = '/images/dog.jpg';
-  const armIcon = '/images/dog.jpg';
+  const shoulderIcon = '/images/icon-shoulder.png';
+  const backIcon = '/images/icon-back.png';
+  const lowerBodyIcon = '/images/icon-lower.png';
+  const chestIcon = '/images/icon-chest.png';
+  const armIcon = '/images/icon-arm.png';
 
   function calculateCompletionRate(currentWeight, targetWeight) {
     if (currentWeight <= targetWeight) {
@@ -66,13 +66,13 @@ const Training = () => {
             &nbsp;남았습니다.
           </div>
           <div className="userWeightBarWrapper">
-            <span className="weight">{trainingData.weight}kg</span>
+            <span className="weight">시작 {trainingData.weight}kg</span>
             <div className="targetWeightBar">
               <p className="currentBar" style={{ width: `${completionRate}%` }}>
-                {currentWeight}kg
+                현재 {currentWeight}kg
               </p>
             </div>
-            <span className="target">{trainingData.targetWeight}kg</span>
+            <span className="target">목표 {trainingData.targetWeight}kg</span>
           </div>
         </div>
 
@@ -80,8 +80,8 @@ const Training = () => {
           <div className="trainingContainer">
             <h1 className="todayText">
               <p className="todayDate">2023.10.18</p>
-              &nbsp; &nbsp; {trainingData.nickname}님 오늘의 추천 트레이닝
-              &nbsp; &nbsp;
+              &nbsp; &nbsp; {trainingData.nickname}님 오늘의 트레이닝 &nbsp;
+              &nbsp;
             </h1>
             <TrainingContainer
               trainingData={trainingData.shoulder}
