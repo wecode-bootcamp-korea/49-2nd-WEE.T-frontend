@@ -1,8 +1,9 @@
 .rank {
   position: relative;
   width: 33.33333333333333%;
-  padding-left: 20px;
-  padding-right: 15px;
+  height: fit-content;
+  padding: 0 15px 15px 20px;
+  margin-left: 20px;
   float: left;
 
   .titleDiv {
@@ -13,6 +14,7 @@
     border-bottom: 2px solid #5e3dea;
 
     .logoImg {
+      display: block;
       width: 60px;
     }
 
@@ -25,17 +27,16 @@
   .rankDiv {
     margin-top: 38px;
 
-    ol {
+    .rankList {
       display: flex;
       flex-direction: column;
       align-items: center;
       list-style: none;
 
-      li {
+      .rankMap {
         display: flex;
-        // justify-content: space-around;
         align-items: center;
-        width: 100%;
+        height: 70px;
         padding: 20px;
         margin-bottom: 10px;
         border: 1px solid #ddd;
@@ -44,12 +45,13 @@
 
         .userBadge {
           display: flex;
-          justify-content: space-between;
           align-items: center;
           gap: 10px;
 
           .badgeImg {
-            width: 20px;
+            display: block;
+            width: 30px;
+            height: 30px;
             margin-left: 20px;
             border-radius: 100px;
           }
