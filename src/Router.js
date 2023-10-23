@@ -20,9 +20,8 @@ const Router = () => {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/" element={<Location />} />
-        <Route path="/main" element={<Main />} />
         <Route path="/" element={<Main />} />
+        <Route path="/location" element={<Location />} />
         <Route path="/edit" element={<Edit />} />
         <Route path="/info" element={<Info />} />
         <Route path="/subscribe" element={<Subscribe />} />
