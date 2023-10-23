@@ -80,7 +80,8 @@ const Training = () => {
           <div className="trainingContainer">
             <h1 className="todayText">
               <p className="todayDate">2023.10.18</p>
-              &nbsp; &nbsp; 세연님 오늘의 추천 트레이닝 &nbsp; &nbsp;
+              &nbsp; &nbsp; {trainingData.nickname}님 오늘의 추천 트레이닝
+              &nbsp; &nbsp;
             </h1>
             <TrainingContainer
               trainingData={trainingData.shoulder}
