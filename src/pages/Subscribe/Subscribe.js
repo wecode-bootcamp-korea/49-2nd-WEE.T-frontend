@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Subscribe.scss';
 
 const Subscribe = () => {
-  const [subscribeData, setSubscribeData] = useState();
+  const [subscribeData, setSubscribeData] = useState({});
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const navigate = useNavigate();
   // const accessToken = localStorage.getItem('accessToken');
@@ -16,7 +16,9 @@ const Subscribe = () => {
   }, []);
 
   const getUserSubscribeData = () => {
-    fetch('http://10.58.52.67:8000/subscribe', {
+    fetch('/data/subscribeData.json', {
+      // http://10.58.52.67:8000/subscribe
+
       headers: {
         'Content-Type': 'application/json',
         // Authorization: accessToken,
