@@ -72,7 +72,7 @@ const Info = () => {
         </div>
 
         <div className="option">
-          <Button value="트레이너 채팅상담" onClick={goChatting} />
+          <Button onClick={goChatting}>트레이너 채팅상담</Button>
           <div className="optionBox">
             <span className="myEdit" onClick={goBuyList}>
               구매내역
@@ -104,9 +104,9 @@ const Info = () => {
       </div>
       {isPopup ? (
         <Popup
-          title="회원님 구독전용서비스 구독하시겠어요?"
+          title="구독전용서비스 입니다."
           leftBtnValue="구독하러가기"
-          rightBtnValue="돌아가기"
+          rightBtnValue="닫기"
           rightBtnClick={() => setIsPopup(false)}
           leftBtnClick={goSubscribe}
         />

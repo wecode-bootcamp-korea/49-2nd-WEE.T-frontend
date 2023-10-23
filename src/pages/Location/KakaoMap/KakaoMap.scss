@@ -1,6 +1,36 @@
-#map {
+.kakaoMap {
   border-radius: 20px;
   border: 2px solid black;
   width: 1000px;
   height: 500px;
+  overflow: hidden;
+  .menu {
+    padding: 10px 10px;
+    .searchInput {
+      width: 200px;
+      border-radius: 6px;
+      height: 30px;
+    }
+
+    .searchButton {
+      background-color: #5e3dea;
+      color: wheat;
+      border-radius: 6px;
+      border: none;
+      width: 60px;
+      height: 30px;
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  .map {
+    height: 100%;
+  }
+
+  .menu {
+    position: absolute;
+    z-index: 2;
+  }
 }

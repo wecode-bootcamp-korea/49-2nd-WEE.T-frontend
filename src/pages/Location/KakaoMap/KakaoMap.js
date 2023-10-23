@@ -1,22 +1,80 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import './KakaoMap.scss';
 
 const { kakao } = window;
 
 const KakaoMap = () => {
+  const inputRef = useRef(null);
+  const [info, setInfo] = useState();
+  const [markers, setMarkers] = useState([]);
+  const [map, setMap] = useState();
+  const [searchKeyword, setSearchKeyword] = useState('');
+
+  console.log(markers);
+
   useEffect(() => {
-    const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-    let options = {
-      //지도를 생성할 때 필요한 기본 옵션
+    if (!map) return;
+    const ps = new kakao.maps.services.Places();
 
-      center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-      level: 3, //지도의 레벨(확대, 축소 정도)
-    };
-    let map = new kakao.maps.Map(container, options);
-    //지도 생성 및 객체 리턴
-  }, []);
+    ps.keywordSearch(searchKeyword, (data, status, _pagination) => {
+      if (status === kakao.maps.services.Status.OK) {
+        const bounds = new kakao.maps.LatLngBounds();
+        let markers = [];
 
-  return <div id="map" />;
+        for (let i = 0; i < data.length; i++) {
+          markers.push({
+            position: {
+              lat: data[i].y,
+              lng: data[i].x,
+            },
+            content: data[i].place_name,
+          });
+
+          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+        }
+        setMarkers(markers);
+
+        map.setBounds(bounds);
+      }
+    });
+  }, [map, searchKeyword]);
+
+  return (
+    <div className="kakaoMap">
+      <div className="menu">
+        <input ref={inputRef} className="searchInput" />
+        <button
+          className="searchButton"
+          onClick={() => setSearchKeyword(inputRef.current?.value || '')}
+        >
+          검색
+        </button>
+        <ul />
+      </div>
+      <Map
+        className="map"
+        center={{
+          lat: 37.566826,
+          lng: 126.9786567,
+        }}
+        level={3}
+        onCreate={setMap}
+      >
+        {markers.map((marker) => (
+          <MapMarker
+            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
+            position={marker.position}
+            onClick={() => setInfo(marker)}
+          >
+            {info && info.content === marker.content && (
+              <div style={{ color: '#000' }}>{marker.content}</div>
+            )}
+          </MapMarker>
+        ))}
+      </Map>
+    </div>
+  );
 };
 
 export default KakaoMap;

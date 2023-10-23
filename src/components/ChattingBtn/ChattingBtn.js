@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import './ChattingBtn.scss';
+import { useNavigate } from 'react-router-dom';
 import Chatting from '../../pages/MyPage/Info/Chatting/Chatting';
 import Popup from '../Popup/Popup';
-import { useNavigate } from 'react-router-dom';
+import './ChattingBtn.scss';
 
 const ChattingBtn = () => {
   const [isChatting, setIsChatting] = useState(false);
   const [isPopup, setIsPopup] = useState({});
-  const [data, setData] = useState();
+  const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
   // const token =
   //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
 
   const goChatting = () => {
-    if (data === undefined) {
+    // 로그인 안한 경우
+    if (!token) {
       setIsPopup({
         open: true,
         title: '로그인후 이용해주세요.',
@@ -22,18 +24,26 @@ const ChattingBtn = () => {
         leftBtnClick: goLogin,
         rightBtnClick: closePopup,
       });
-    } else if (data.isSubscribe === 1) {
-      setIsChatting(true);
-    } else if (data.isSubscribe === 0) {
+
+      return;
+    }
+
+    // 로그인 했지만, 구독 안한 경우
+    if (userInfo.isSubscribe === 0) {
       setIsPopup({
         open: true,
-        title: '회원님 구독전용서비스 구독하시겠어요?',
+        title: '구독전용서비스 입니다.',
         leftBtnValue: '구독하러가기',
         rightBtnValue: '닫기',
         leftBtnClick: goSubscribe,
         rightBtnClick: closePopup,
       });
+
+      return;
     }
+
+    // 구독까지 한 경우
+    setIsChatting(true);
   };
 
   const closePopup = () => {
@@ -41,39 +51,30 @@ const ChattingBtn = () => {
   };
 
   const goSubscribe = () => {
-    navigate('/subscribe');
     setIsPopup({ ...isPopup, open: false });
+    navigate('/subscribe');
   };
 
   const goLogin = () => {
-    navigate('/login');
     setIsPopup({ ...isPopup, open: false });
+    navigate('/login');
   };
 
   useEffect(() => {
-    fetch('./data/condition.json')
-      .then((res) => {
-        return res.json();
-      })
-      .then((result) => {
-        setData(result.data);
-      });
-  }, []);
+    if (!token) return;
 
-  // useEffect(() => {
-  //   fetch('http://10.58.52.69:8000/users', {
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       Authorization: token,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((result) => {
-  //       setData(result.data);
-  //     });
-  // }, []);
+    fetch('/data/condition.json', {
+      // fetch('http://10.58.52.69:8000/users', {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        setUserInfo(result.data);
+      });
+  }, [token]);
 
   return (
     <div className="chattingBtn">
@@ -81,9 +82,9 @@ const ChattingBtn = () => {
         1:1 <br /> 트레이너
         <br /> 만나기
       </button>
-      {isChatting ? (
-        <Chatting nickname={data.nickname} setChatting={setIsChatting} />
-      ) : null}
+      {isChatting && (
+        <Chatting nickname={userInfo.nickname} setChatting={setIsChatting} />
+      )}
       {isPopup.open && (
         <Popup
           title={isPopup.title}
