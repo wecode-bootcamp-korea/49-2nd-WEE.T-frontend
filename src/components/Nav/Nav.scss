@@ -1,62 +1,64 @@
 .nav {
   display: flex;
-  justify-content: space-between;
   position: sticky;
+  justify-content: center;
   top: 0;
   z-index: 1000;
-  padding-right: 70px;
-  padding-left: 40px;
-  margin-right: auto;
-  margin-left: auto;
   width: 100%;
   background-color: #ffffff;
 
-  .logoSection {
-    img {
-      width: 140px;
-      height: 100%;
-      cursor: pointer;
-    }
-  }
-  .navList {
+  .navinner {
     display: flex;
-    height: 70px;
-    gap: 25px;
-    background-color: #ffffff;
+    justify-content: space-between;
+    width: 1200px;
 
-    button {
-      border: 0;
-      background-color: #ffffff;
-      color: #333;
-      font-size: 14px;
+    .logoSection {
+      img {
+        width: 140px;
+        height: 100%;
+        cursor: pointer;
+      }
     }
-
-    img {
-      display: inline-block;
-      margin: auto;
-      width: 15px;
-      height: 15px;
-      cursor: pointer;
-    }
-
-    .btnLogAuto {
-      border: 0;
+    .navList {
+      display: flex;
+      height: 70px;
+      gap: 25px;
       background-color: #ffffff;
-      font-family: 'Pretendard';
-      font-size: 14px;
-      color: #333;
-      cursor: pointer;
-    }
 
-    .btnSignUp {
-      border: 0;
-      margin: auto;
-      text-decoration-line: none;
-      font-family: 'Pretendard';
-      font-size: 14px;
-      color: #333;
-      background-color: #ffffff;
-      cursor: pointer;
+      button {
+        border: 0;
+        background-color: #ffffff;
+        color: #333;
+        font-size: 14px;
+      }
+
+      img {
+        display: inline-block;
+        margin: auto;
+        width: 120px;
+        height: 15px;
+        cursor: pointer;
+      }
+
+      .btnLogAuto {
+        border: 0;
+        background-color: #ffffff;
+        font-family: 'Pretendard';
+        font-size: 14px;
+        color: #333;
+        cursor: pointer;
+      }
+
+      .btnSignUp {
+        border: 0;
+        margin: auto;
+        text-decoration-line: none;
+        font-family: 'Pretendard';
+        font-size: 14px;
+        color: #333;
+        background-color: #ffffff;
+        cursor: pointer;
+      }
     }
   }
 }

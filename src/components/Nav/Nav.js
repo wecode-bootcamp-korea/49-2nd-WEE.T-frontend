@@ -41,7 +41,7 @@ const Nav = () => {
   };
 
   const goToMain = () => {
-    navigate('/main');
+    navigate('/');
   };
 
   const goToCommunity = () => {
@@ -50,7 +50,7 @@ const Nav = () => {
 
   const goToSubscribe = () => authenticatedNavigate('/subscribe');
   const goToCondition = () => authenticatedNavigate('/info');
-  const goToLocation = () => authenticatedNavigate('/');
+  const goToLocation = () => authenticatedNavigate('/location');
   const goToGuideLine = () => authenticatedNavigate('/');
 
   const handleLogAuto = () => {
@@ -61,31 +61,37 @@ const Nav = () => {
 
   return (
     <nav className="nav">
-      <div className="logoSection">
-        <img src="images/Logo.png" onClick={goToMain} alt="메인로고사진없음" />
-      </div>
-      <div className="navList">
-        <button onClick={goToSubscribe}>구독</button>
-        <button onClick={goToCommunity}>커뮤니티</button>
-        <button onClick={goToGuideLine}>운동법</button>
-        <button onClick={goToLocation}>위치</button>
-        {isLogin && <button onClick={goToCondition}>상태페이지</button>}
-        {isLogin && <img src={badgeImageUrl} alt="챌린지이미지" />}
-        {isLogin ? (
-          <button className="btnLogAuto" onClick={handleLogAuto}>
-            {nickname}/로그아웃
-          </button>
-        ) : (
-          <Link className="btnSignUp" to="/login">
-            로그인
-          </Link>
-        )}
-        {/* <img
+      <div className="navinner">
+        <div className="logoSection">
+          <img
+            src="images/Logo.png"
+            onClick={goToMain}
+            alt="메인로고사진없음"
+          />
+        </div>
+        <div className="navList">
+          <button onClick={goToSubscribe}>구독</button>
+          <button onClick={goToCommunity}>커뮤니티</button>
+          <button onClick={goToGuideLine}>운동법</button>
+          <button onClick={goToLocation}>위치</button>
+          {isLogin && <button onClick={goToCondition}>상태페이지</button>}
+          {isLogin && <img src={badgeImageUrl} alt="챌린지이미지" />}
+          {isLogin ? (
+            <button className="btnLogAuto" onClick={handleLogAuto}>
+              {nickname}/로그아웃
+            </button>
+          ) : (
+            <Link className="btnSignUp" to="/login">
+              로그인
+            </Link>
+          )}
+          {/* <img
           src="images/chatImage.png"
           alt="알림이미지"
           onClick={handleAlarm}
         />{' '}
         피드 댓글 알람기능 구현중 */}
+        </div>
       </div>
     </nav>
   );
