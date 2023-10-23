@@ -1,0 +1,61 @@
+.footer {
+  padding: 80px 0 80px 0;
+  background: #222324;
+  color: #ffffff;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logoDiv {
+      margin-right: 30px;
+      width: 152px;
+
+      a {
+        .logoImg {
+          display: block;
+          height: 50px;
+          border: 0;
+        }
+      }
+    }
+
+    .infoDiv {
+      font-size: 1rem;
+      margin-right: 15%;
+
+      .addressInfo {
+        line-height: 2;
+      }
+    }
+
+    .iconDiv {
+      .icon {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 5px;
+
+        .iconImg {
+          margin-left: 10px;
+          width: 30px;
+          height: 30px;
+
+          img {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+
+  .copyright {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1.8em;
+  }
+}
