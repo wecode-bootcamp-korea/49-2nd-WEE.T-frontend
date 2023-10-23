@@ -4,7 +4,7 @@ import './Rank.scss';
 const Rank = (props) => {
   const { data } = props;
   return (
-    <div className="rank">
+    <div className="rankInfo">
       <div className="userRank">
         <h1>나의 뱃지 등급</h1>
       </div>
