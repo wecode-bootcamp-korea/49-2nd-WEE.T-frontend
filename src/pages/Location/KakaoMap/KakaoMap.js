@@ -11,8 +11,6 @@ const KakaoMap = () => {
   const [map, setMap] = useState();
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  console.log(markers);
-
   useEffect(() => {
     if (!map) return;
     const ps = new kakao.maps.services.Places();
