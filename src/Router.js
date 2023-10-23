@@ -11,6 +11,7 @@ import LoginKakao from './pages/Login/LoginKakao';
 import LoginNaver from './pages/Login/LoginNaver';
 import Exercise from './pages/Exercise/Exercise';
 import SignUp from './pages/SignUp/SignUp';
+import Location from './pages/Location/Location';
 import Footer from './components/Footer/Footer';
 import Order from './pages/Order/Order';
 
@@ -19,6 +20,8 @@ const Router = () => {
     <BrowserRouter>
       <Nav />
       <Routes>
+        <Route path="/" element={<Location />} />
+        <Route path="/main" element={<Main />} />
         <Route path="/" element={<Main />} />
         <Route path="/edit" element={<Edit />} />
         <Route path="/info" element={<Info />} />
