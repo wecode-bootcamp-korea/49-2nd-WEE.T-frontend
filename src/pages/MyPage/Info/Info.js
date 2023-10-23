@@ -17,8 +17,8 @@ const Info = () => {
   const [isPopup, setIsPopup] = useState(false);
   const [isBuyList, setIsBuyList] = useState(false);
   const [isChatting, setIsChatting] = useState(false);
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
+  // const token =
+  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
 
   const goBuyList = () => {
     setIsBuyList(true);
@@ -31,13 +31,23 @@ const Info = () => {
     navigate('/subscribe');
   };
 
+  // useEffect(() => {
+  //   fetch('http://10.58.52.81:8000/users', {
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((result) => {
+  //       setData(result.data);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    fetch('http://10.58.52.81:8000/users', {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token,
-      },
-    })
+    fetch('./data/condition.json')
       .then((res) => {
         return res.json();
       })
