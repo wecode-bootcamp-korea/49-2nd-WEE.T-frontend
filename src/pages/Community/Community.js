@@ -7,10 +7,12 @@ const Community = () => {
   const [feedList, setFeedList] = useState({});
   const [searchParams, setSearchParams] = useSearchParams();
   const [totalCount, setTotalCount] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // const accessToken = localStorage.getItem('accessToken');
-  const page = parseInt(searchParams.get('page')) || 1;
-  const limit = searchParams.get('limit') || 10;
+  const TOKEN = localStorage.getItem('accessToken');
+  const HEADER = TOKEN
+    ? { 'Content-Type': 'application/json', Authorization: TOKEN }
+    : { 'Content-Type': 'application/json' };
 
   const setPaginationParams = () => {
     const newSearchParams = new URLSearchParams(searchParams);
@@ -19,38 +21,30 @@ const Community = () => {
     setSearchParams(newSearchParams);
   };
 
+  const page = parseInt(searchParams.get('page')) || 1;
+  const limit = searchParams.get('limit') || 10;
+
   useEffect(() => {
+    if (!isMounted) {
+      setIsMounted(true);
+    }
+
+    searchParams.delete('page');
+    searchParams.delete('limit');
+    setSearchParams(searchParams);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
     fetchFeedList();
-    // if (accessToken) {// 로그인 했을 때
-    //   fetchFeedList();
-    // } else { // 로그인하지 않은 상태에서는 토큰값 제외
-    //   fetch(`/feeds?limit=${limit || 10}&page=${page}`, {
-    //     method: 'GET',
-    //   })
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       console.log(data);
-    //       const feedData = data.data;
-    //       const newFeedData = feedData.feeds;
-    //       setTotalCount(feedData.totalCount);
-    //       setFeedList((prevFeedList) => {
-    //         return {
-    //           ...prevFeedList,
-    //           feeds: [...(prevFeedList.feeds || []), ...newFeedData],
-    //         };
-    //       });
-    //     });
-    // }
-  }, [page]);
+  }, [page, isMounted]);
 
   const fetchFeedList = () => {
-    fetch(`http://10.58.52.236:8000/feeds?limit=${limit || 10}&page=${page}`, {
+    fetch(`/data/communityData.json?limit=${limit}&page=${page}`, {
       // http://10.58.52.236:8000/feeds?limit=${limit || 10}&page=${page}
       // /data/communityData.json?limit=${limit || 10}&page=${page}
       method: 'GET',
-      headers: {
-        // Authorization: accessToken,
-      },
+      headers: HEADER,
     })
       .then((res) => res.json())
       .then((data) => {
@@ -67,40 +61,6 @@ const Community = () => {
       });
   };
 
-  // 한 페이지에 표시되는 게시물 수
-  const itemsPerPage = 10;
-
-  // 마지막 페이지 계산
-  const lastPage = Math.ceil(totalCount / itemsPerPage);
-
-  // 현재 페이지
-  const currentPage = parseInt(page) || 1;
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-
-      // 현재 페이지가 마지막 페이지보다 크면 동작 중지
-      if (currentPage >= lastPage) {
-        return;
-      }
-
-      if (
-        window.innerHeight + scrollY >= document.body.offsetHeight &&
-        feedList.feeds.length < totalCount &&
-        feedList.feeds.length >= page * limit
-      ) {
-        setPaginationParams();
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [feedList, totalCount, page]);
-
   const initialLoad = feedList.feeds && feedList.feeds.length === 0;
 
   if (!initialLoad) {
@@ -109,7 +69,13 @@ const Community = () => {
       <div id="content" className="community">
         <div className="container sectionInner">
           <section className="challengeBanner">challenge banner 위치</section>
-          <FeedAndRank feedList={feedList} totalCount={totalCount} />
+          <FeedAndRank
+            feedList={feedList}
+            totalCount={totalCount}
+            page={page}
+            limit={limit}
+            setPaginationParams={setPaginationParams}
+          />
         </div>
       </div>
     );
