@@ -1,0 +1,154 @@
+.chatting {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  .chattingContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 800px;
+    border: 1px solid #5e3dea;
+    border-radius: 20px;
+    background-color: white;
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 580px;
+      height: 100px;
+
+      .logo {
+        width: 100px;
+        height: 100px;
+        aspect-ratio: 1/1;
+      }
+
+      h1 {
+        font-size: 30px;
+        font-weight: 600;
+        text-align: center;
+      }
+    }
+
+    .chattingBox {
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      width: 580px;
+      height: 500px;
+      overflow: scroll;
+      border: 1px solid #5e3dea;
+      border-radius: 20px;
+      overflow: scroll;
+
+      .contextItemContainer {
+        display: flex;
+        align-items: center;
+        padding: 20px 20px;
+        width: 100%;
+      }
+
+      .admin {
+        width: 50px;
+        height: 50px;
+        aspect-ratio: 1/1;
+        border: 1px solid #5e3dea;
+        border-radius: 100%;
+      }
+
+      .division {
+        font-size: 40px;
+      }
+
+      .contextTimeBox {
+        display: flex;
+        align-items: flex-end;
+        margin-left: 10px;
+        gap: 5px;
+
+        .contextItem {
+          width: 350px;
+          color: white;
+          border: 1px solid #5e3dea;
+          border-radius: 15px;
+          background-color: #5e3dea;
+          padding: 20px 20px;
+        }
+
+        .time {
+          font-size: 12px;
+        }
+      }
+    }
+    .sendChatContainer {
+      position: relative;
+      width: 580px;
+      height: 100px;
+
+      i {
+        position: absolute;
+        font-size: 60px;
+        color: #5e3dea;
+        top: 50%;
+        right: 0%;
+        transform: translate(-30%, -50%);
+        right: 0;
+
+        &:hover {
+          background-color: rgba(216, 211, 211, 0.692);
+          color: #5e3dea;
+          opacity: 0.8;
+          cursor: pointer;
+          border-radius: 10px;
+        }
+      }
+    }
+
+    .sendChat {
+      border: 1px solid #5e3dea;
+      font-size: 20px;
+      border-radius: 20px;
+      width: 580px;
+      height: 100px;
+      padding: 20px 100px 20px 20px;
+      resize: none;
+
+      &::placeholder {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+    }
+
+    .buttonContainer {
+      margin: 20px 0px;
+
+      .closeBtn {
+        width: 250px;
+        height: 50px;
+        border-radius: 6px;
+        border: none;
+        background-color: #5e3dea;
+        color: white;
+        font-size: 18px;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
