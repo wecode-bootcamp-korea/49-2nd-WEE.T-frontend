@@ -188,8 +188,8 @@ const Edit = () => {
           />
         </div>
         <div className="buttonSelect">
-          <Button value="수정하기" onClick={InfoEdit} />
-          <Button value="취소하기" onClick={editDelete} />
+          <Button onClick={InfoEdit}>수정하기</Button>
+          <Button onClick={editDelete}>취소하기</Button>
         </div>
       </div>
 
