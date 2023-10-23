@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './PostAdd.scss';
 
-const PostAdd = () => {
+const PostAdd = ({ isEdit }) => {
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
   const [previewImages, setPreviewImages] = useState([]);
@@ -19,9 +19,12 @@ const PostAdd = () => {
       alert('이미지를 선택하세요');
       return;
     }
+
     const newImages = [...images];
     const newPreviewImages = [...previewImages];
     const maxImages = 3;
+
+    // formData로 해야 함.
 
     for (let i = 0; i < selectedImages.length; i++) {
       if (newImages.length < maxImages) {
@@ -39,6 +42,8 @@ const PostAdd = () => {
 
     console.log(newImages);
   };
+
+  console.log(previewImages);
 
   const handleRemoveImage = (index) => {
     const newImages = [...images];
@@ -83,7 +88,7 @@ const PostAdd = () => {
         // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTcwNzMxNzAsImV4cCI6MTY5NzExNjM3MH0.f-YMfUS7Qrlh4d69kXzZxqUEI4lCLanQAWqQeYcoI3U',
       },
       body: JSON.stringify({
-        imageUrl: image,
+        imageUrl: previewImages,
         content: postContent.content,
         challenge: postContent.challenge,
       }),
@@ -97,6 +102,15 @@ const PostAdd = () => {
         }
       });
   };
+
+  // useEffect(() => {
+  //   if (isEdit) {
+  //     alert('post data get!');
+  //     // fetch('수정하기 위한 post get')
+  //     //   .then((res) => res.json())
+  //     //   .then((result) => setPostContent(result));
+  //   }
+  // }, []);
 
   // console.log(previewImages);
   return (
@@ -149,7 +163,7 @@ const PostAdd = () => {
             </div>
             <div className="buttonArea">
               <button onClick={handleCancel}>취소</button>
-              <button onClick={handlePost}>작성</button>
+              <button onClick={handlePost}>{isEdit ? '수정' : '작성'}</button>
             </div>
           </section>
         </div>
