@@ -1,0 +1,40 @@
+.bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+
+  .look {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .barLabel {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .valueAndUnit {
+      font-size: 18px;
+      color: black;
+    }
+  }
+
+  .barBox {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 12px;
+    .barBoxAll {
+      position: absolute;
+      top: -1px;
+      height: 10px;
+      background-color: #5e3dea;
+      border: 1px solid black;
+      border-radius: 12px;
+    }
+  }
+}

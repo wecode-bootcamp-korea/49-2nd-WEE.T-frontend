@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { LOGIN_AWS_API } from '../../config';
 
 const LoginKakao = () => {
   const [searchParams] = useSearchParams();
@@ -7,17 +8,17 @@ const LoginKakao = () => {
   const navigate = useNavigate();
   useEffect(() => {
     code &&
-      fetch(`http://10.58.52.184:8000/auth/kakao/login?code=${code}`, {
+      fetch(`${LOGIN_AWS_API}/auth/kakao/login?code=${code}`, {
         method: 'GET',
       })
         .then((res) => res.json())
         .then((result) => {
           if (result.message === 'LOGIN_SUCCESS') {
+            localStorage.setItem('newUser', result.data.accessToken);
             if (result.data.isNew) {
-              navigate('/SignUp');
+              navigate('/sign-up');
             } else {
-              localStorage.setItem(result.data.accessToken);
-              localStorage.setItem(result.data.refreshToken);
+              localStorage.setItem('accessToken', result.data.accessToken);
               navigate('/');
             }
           } else {

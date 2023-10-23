@@ -1,0 +1,86 @@
+.info {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 120px 0px;
+
+  .title {
+    font-size: 40px;
+    font-weight: 600;
+  }
+
+  .option {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+
+    .myEdit {
+      font-size: 14px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: aliceblue;
+        color: #5e3dea;
+        opacity: 0.8;
+      }
+    }
+    .line {
+      border: 1px solid #a3a2a249;
+      width: 1px;
+      height: 20px;
+    }
+    .optionBox {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+
+  .infoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 1200px;
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      aspect-ratio: 1/1;
+    }
+
+    .myNickName {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      width: 600px;
+      height: 100px;
+    }
+
+    .abilityBox {
+      display: flex;
+      width: 100%;
+      gap: 60px;
+
+      .abilityBoxSecond {
+        width: 100%;
+        border-bottom: 1px solid #5e3dea;
+      }
+    }
+  }
+
+  .goalContainer {
+    display: flex;
+    gap: 60px;
+    width: 1200px;
+    margin: 40px 0px;
+
+    .goalBox {
+      width: 100%;
+    }
+  }
+}
