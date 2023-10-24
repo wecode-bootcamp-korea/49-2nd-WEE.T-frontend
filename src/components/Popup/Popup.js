@@ -14,8 +14,8 @@ const Popup = (props) => {
           <p>{title}</p>
         </div>
         <div className="selectContainer">
-          <Button value={leftBtnValue} onClick={leftBtnClick} />
-          <Button value={rightBtnValue} onClick={rightBtnClick} />
+          <Button onClick={leftBtnClick}>{leftBtnValue}</Button>
+          <Button onClick={rightBtnClick}>{rightBtnValue}</Button>
         </div>
       </div>
     </div>
