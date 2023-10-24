@@ -6,6 +6,8 @@ const BuyList = (props) => {
   const [purchaseList, setPurchaseList] = useState();
   const [purchaseDate, setPurchaseDate] = useState(sortingList[0].value);
 
+  console.log(purchaseList);
+
   // const token = localStorage.getItem('token');
   // useEffect(() => {
   //   fetch(`http://10.58.52.193:8000/users/orders?before=${purchaseDate}`, {
@@ -46,7 +48,7 @@ const BuyList = (props) => {
 
         <div className="selectBox">
           <select className="select" onChange={select}>
-            {sortingList?.deta.map((list) => {
+            {sortingList?.map((list) => {
               return (
                 <option key={list.id} value={list.value}>
                   {list.name}
