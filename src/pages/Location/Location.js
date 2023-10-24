@@ -1,6 +1,6 @@
 import React from 'react';
-import './Location.scss';
 import KakaoMap from './KakaoMap/KakaoMap';
+import './Location.scss';
 
 const Location = () => {
   return (

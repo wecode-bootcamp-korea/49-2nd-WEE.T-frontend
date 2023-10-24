@@ -12,8 +12,8 @@ const Edit = () => {
   const [data, setData] = useState();
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
-  // const token =
-  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
+
+  const token = localStorage.getItem('token');
 
   const isValid = useMemo(() => {
     const validations = {};
@@ -68,10 +68,14 @@ const Edit = () => {
   // }, []);
 
   useEffect(() => {
-    fetch('./data/condition.json')
-      .then((res) => {
-        return res.json();
-      })
+    fetch('/data/condition.json', {
+      // fetch('http://10.58.52.69:8000/users', {
+      // headers: {
+      //   'Content-Type': 'application/json;charset=utf-8',
+      //   Authorization: token,
+      // },
+    })
+      .then((res) => res.json())
       .then((result) => {
         setData(result.data);
       });
@@ -188,8 +192,8 @@ const Edit = () => {
           />
         </div>
         <div className="buttonSelect">
-          <Button value="수정하기" onClick={InfoEdit} />
-          <Button value="취소하기" onClick={editDelete} />
+          <Button onClick={InfoEdit}>수정하기</Button>
+          <Button onClick={editDelete}>취소하기</Button>
         </div>
       </div>
 
