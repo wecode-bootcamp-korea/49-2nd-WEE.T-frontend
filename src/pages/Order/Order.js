@@ -4,7 +4,23 @@ import './Order.scss';
 
 const Order = () => {
   const location = useLocation();
-  console.log(location.state);
+  const subscribeId = location.state.subscribeId;
+  console.log(subscribeId);
+
+  const fetchOrder = () => {
+    fetch(`EndPoint/subscription`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // "Authorization": TOKEN
+      },
+      body: JSON.stringify({
+        subscribeId,
+      }),
+    }).then((res) => {
+      console.log(res);
+    });
+  };
 
   return (
     <div className="order">
