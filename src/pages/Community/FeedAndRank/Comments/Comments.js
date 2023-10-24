@@ -4,7 +4,7 @@ import CommentList from './CommentList/CommentList';
 import './Comments.scss';
 
 const Comments = (feedId) => {
-  const accessToken = localStorage.getItem('accessToken');
+  const token = localStorage.getItem('accessToken');
   const [commentData, setCommentData] = useState([]);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Comments = (feedId) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        // Authorization: accessToken,
+        // Authorization: token,
       },
     })
       .then((res) => res.json())
@@ -31,7 +31,7 @@ const Comments = (feedId) => {
   return (
     <section className="comments">
       <div className="commentDiv">
-        {accessToken ? (
+        {token ? (
           <Comment feedId={feedId} fetchCommentList={fetchCommentList} />
         ) : null}
         <CommentList

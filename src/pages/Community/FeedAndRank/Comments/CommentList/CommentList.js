@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './CommentList.scss';
 
 const CommentList = ({ feedId, fetchCommentList, commentData }) => {
-  // const accessToken = localStorage.getItem('accessToken');
+  // const token = localStorage.getItem('accessToken');
   const [commentEdit, setCommentEdit] = useState('');
   const [editingCommentId, setEditingCommentId] = useState(null);
   const isCheckEditComment = commentEdit.length >= 1;
@@ -23,13 +23,13 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
   };
 
   const handleCommentEditSave = (id) => {
-    // if (accessToken) {
+    // if (token) {
     if (isCheckEditComment) {
       fetch(`/endpoint/comments/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          // Authorization: accessToken,
+          // Authorization: token,
         },
         body: JSON.stringify({
           feedId,
@@ -52,12 +52,12 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
   };
 
   const handleCommentDelete = (id) => {
-    // if (accessToken) {
+    // if (token) {
     fetch(`/endpoint/comments/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        // Authorization: accessToken,
+        // Authorization: token,
       },
       // body: JSON.stringify({
       //   feedId,
@@ -82,11 +82,7 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
         {commentData?.map((data) => (
           <li className="commentOlList" key={data.id}>
             <div className="userInfo">
-              <img
-                src="/images/dog.jpg"
-                alt="챌린지뱃지"
-                className="userBadgeImg"
-              />
+              <img src={data.badge} alt="챌린지뱃지" className="userBadgeImg" />
               <div className="userNickname">{data.nickname}</div>
             </div>
             {editingCommentId === data.id ? (

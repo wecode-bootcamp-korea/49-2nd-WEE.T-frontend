@@ -40,14 +40,12 @@
           gap: 8px;
 
           .badge {
-            width: 36px;
-            height: 36px;
             justify-content: center;
             flex-shrink: 0;
 
             img {
-              width: 36px;
-              height: 36px;
+              display: block;
+              width: 33px;
               border-radius: 100px;
               border: 0.5px solid #ddd;
             }
