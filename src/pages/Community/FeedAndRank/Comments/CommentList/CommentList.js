@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './CommentList.scss';
 
 const CommentList = ({ feedId, fetchCommentList, commentData }) => {
-  // const token = localStorage.getItem('accessToken');
+  // const TOKEN = localStorage.getItem('accessToken');
   const [commentEdit, setCommentEdit] = useState('');
   const [editingCommentId, setEditingCommentId] = useState(null);
   const isCheckEditComment = commentEdit.length >= 1;
@@ -23,13 +23,13 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
   };
 
   const handleCommentEditSave = (id) => {
-    // if (token) {
+    // if (TOKEN) {
     if (isCheckEditComment) {
       fetch(`/endpoint/comments/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          // Authorization: token,
+          // Authorization: TOKEN,
         },
         body: JSON.stringify({
           feedId,
@@ -52,12 +52,12 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
   };
 
   const handleCommentDelete = (id) => {
-    // if (token) {
+    // if (TOKEN) {
     fetch(`/endpoint/comments/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        // Authorization: token,
+        // Authorization: TOKEN,
       },
       // body: JSON.stringify({
       //   feedId,
