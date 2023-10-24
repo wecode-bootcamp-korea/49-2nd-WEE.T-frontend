@@ -39,9 +39,6 @@ const Nav = () => {
           setUserData(result.data);
         });
   }, [accessToken]);
-  // 댓글알람기능 구현중,전역상태관리
-  // cosnt handleAlarm = () => {
-  // };
 
   const handleLogAuto = () => {
     fetch(`${LOGIN_AWS_API}/auth/logout`, {
@@ -146,12 +143,7 @@ const Nav = () => {
               로그인
             </Link>
           )}
-          {/* <img
-src="images/chatImage.png"
-alt="알림이미지"
-onClick={handleAlarm}
-/>{' '}
-피드 댓글 알람기능 구현중 */}
+
           {popup.open && (
             <Popup
               title={popup.title}
