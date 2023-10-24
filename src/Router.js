@@ -32,7 +32,7 @@ const Router = () => {
         <Route path="/login/kakao" element={<LoginKakao />} />
         <Route path="/login/naver" element={<LoginNaver />} />
         <Route path="/post-add" element={<PostAdd />} />
-        <Route path="/post-edit" element={<PostAdd isEdit />} />
+        <Route path="/post-edit/:id" element={<PostAdd isEdit />} />
         <Route path="/exercise" element={<Exercise />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/order" element={<Order />} />
