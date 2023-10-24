@@ -8,6 +8,7 @@
   width: 100%;
   background-color: unset;
   transition: all 0.4s;
+  color: #fff;
 
   .navinner {
     display: flex;
@@ -35,10 +36,14 @@
 
       button {
         border: 0;
-        color: #333;
         font-size: 16px;
         margin-left: 26px;
         background-color: unset;
+        color: #fff;
+      }
+
+      button.black {
+        color: #333;
       }
 
       img {
@@ -51,7 +56,6 @@
         border: 0;
         font-family: 'Pretendard';
         font-size: 14px;
-        color: #333;
         cursor: pointer;
         margin-left: 0;
 
@@ -67,7 +71,6 @@
         text-decoration-line: none;
         font-family: 'Pretendard';
         font-size: 14px;
-        color: #333;
         cursor: pointer;
       }
     }
