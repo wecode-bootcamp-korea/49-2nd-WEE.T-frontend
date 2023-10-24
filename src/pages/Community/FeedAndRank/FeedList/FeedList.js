@@ -106,7 +106,7 @@ const FeedList = ({
                 </div>
                 <div className="nickname">{feed.userNickname}</div>
               </div>
-              {feed.isMyPost ? (
+              {TOKEN && feed.isMyPost ? (
                 <div className="btnBox">
                   <button
                     type="button"
