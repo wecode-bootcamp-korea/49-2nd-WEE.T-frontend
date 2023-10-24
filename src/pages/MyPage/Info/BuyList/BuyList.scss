@@ -31,7 +31,6 @@
       justify-content: center;
       gap: 10px;
       width: 1000px;
-      height: 100px;
     }
 
     h1 {
@@ -53,6 +52,22 @@
           opacity: 0.8;
         }
       }
+    }
+  }
+  .selectBox {
+    display: flex;
+    justify-content: flex-end;
+    width: 900px;
+    .select {
+      width: 100px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1px solid #5e3dea;
+      margin: 10px 0px;
+    }
+    .option {
+      background-color: aqua;
+      color: aquamarine;
     }
   }
 
