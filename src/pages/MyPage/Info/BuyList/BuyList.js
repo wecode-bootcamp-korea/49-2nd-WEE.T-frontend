@@ -4,14 +4,14 @@ import './BuyList.scss';
 const BuyList = (props) => {
   const { setBuyList } = props;
   const [purchaseList, setPurchaseList] = useState();
-  // const token =
-  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
+  const [purchaseDate, setPurchaseDate] = useState(sortingList[0].value);
 
+  // const token = localStorage.getItem('token');
   // useEffect(() => {
-  //   fetch('http://10.58.52.81:8000/users/orders', {
+  //   fetch(`http://10.58.52.193:8000/users/orders?before=${purchaseDate}`, {
   //     headers: {
   //       'Content-Type': 'application/json;charset=utf-8',
-  //       Authorization: token,
+  //       // Authorization: token,
   //     },
   //   })
   //     .then((res) => {
@@ -20,7 +20,7 @@ const BuyList = (props) => {
   //     .then((result) => {
   //       setPurchaseList(result);
   //     });
-  // }, []);
+  // }, [purchaseDate]);
 
   useEffect(() => {
     fetch('./data/orders.json')
@@ -32,6 +32,10 @@ const BuyList = (props) => {
       });
   }, []);
 
+  const select = (e) => {
+    setPurchaseDate(e.target.value);
+  };
+
   return (
     <div className="buyList">
       <div className="buyListContainer">
@@ -39,6 +43,19 @@ const BuyList = (props) => {
           <img className="logo" src="./images/logo3.jpg" alt="로고" />
           <h1> 구매내역조회 </h1>
         </div>
+
+        <div className="selectBox">
+          <select className="select" onChange={select}>
+            {sortingList?.deta.map((list) => {
+              return (
+                <option key={list.id} value={list.value}>
+                  {list.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+
         <div className="buyListBox">
           <table className="table">
             <tr className="header">
@@ -88,3 +105,26 @@ const BuyList = (props) => {
 };
 
 export default BuyList;
+
+const sortingList = [
+  {
+    id: 0,
+    name: '전체 내역',
+    value: '',
+  },
+  {
+    id: 1,
+    name: '1개월 내역',
+    value: '1',
+  },
+  {
+    id: 2,
+    name: '6개월 내역',
+    value: '6',
+  },
+  {
+    id: 3,
+    name: '12개월 내역',
+    value: '12',
+  },
+];

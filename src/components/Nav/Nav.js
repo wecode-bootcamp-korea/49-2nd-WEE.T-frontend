@@ -8,24 +8,19 @@ const Nav = () => {
   const isLogin = !!localStorage.getItem('accessToken');
   const [userData, setUserData] = useState();
   const accessToken = localStorage.getItem('accessToken');
+  const [scrollTop, setScrollTop] = useState(0);
 
-  // const getUserInfoData = () => {
-  //   fetch(`${LOGIN_AWS_API}/auth/kakao/login?code=${code}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       Authorization: accessToken,
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((result) => {
-  //       setUserData(result);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   getUserInfoData();
-  // }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollTop = window.scrollY;
+      setScrollTop(currentScrollTop);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     accessToken &&
@@ -88,11 +83,13 @@ const Nav = () => {
   const goToExercise = () => authenticatedNavigate('/exercise');
 
   return (
-    <nav className="nav">
+    <nav
+      className={`${scrollTop >= 0 && scrollTop <= 30 ? 'nav' : 'nav white'}`}
+    >
       <div className="navinner">
         <div className="logoSection">
           <img
-            src="/images/logo2.png"
+            src="/images/logo-bg.png"
             onClick={goToMain}
             alt="메인로고사진없음"
           />
@@ -105,12 +102,7 @@ const Nav = () => {
           <button onClick={goToLocation}>내주변운동맛집</button>
           {isLogin && <button onClick={goToCondition}>상태페이지</button>}
           <div className="userGrade">
-            {isLogin && (
-              <img
-                src={userData && userData.badgeImageUrl}
-                alt="유저 등급 이미지"
-              />
-            )}
+            {isLogin && <img src={userData && userData.badgeImageUrl} alt="" />}
           </div>
           {isLogin ? (
             <button className="btnLogAuto" onClick={handleLogAuto}>
