@@ -81,6 +81,7 @@ const Nav = () => {
   const goToGuideLine = () => authenticatedNavigate('/');
   const goToTraining = () => authenticatedNavigate('/training');
   const goToExercise = () => authenticatedNavigate('/exercise');
+  const goToLogin = () => authenticatedNavigate('/login');
 
   return (
     <nav
@@ -137,9 +138,12 @@ const Nav = () => {
               / 로그아웃
             </button>
           ) : (
-            <Link className="btnSignUp" to="/login">
+            <button
+              className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+              onClick={goToLogin}
+            >
               로그인
-            </Link>
+            </button>
           )}
           {/* <img
           src="images/chatImage.png"
