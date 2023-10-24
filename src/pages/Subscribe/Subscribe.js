@@ -74,10 +74,15 @@ const Subscribe = () => {
     <div className="subscribe">
       <section>
         <div className="sectionInner flexCenter">
-          <h2>Subscribe</h2>
+          <h2>
+            <span className="checkIcon">
+              <img src="/images/icon-check.png" alt="" />
+            </span>
+            위트 구독하기
+          </h2>
           <p>
-            WEE.T를 구독하시고 트레이너의 맞춤 관리를 경험해보세요. 구독 중이신
-            경우, 구독기간이 연장됩니다.
+            WEE.T를 구독하시고 <b>트레이너의 맞춤 관리</b>를 경험해보세요. 구독
+            중이신 경우, <b>구독기간이 연장</b>됩니다.
           </p>
         </div>
       </section>
