@@ -26,18 +26,11 @@ const Comment = ({ feedId, fetchCommentList }) => {
           feedId,
           content: comment,
         }),
-      })
-        .then((response) => {
-          console.log(response);
-          alert('새 댓글을 등록합니다.');
-          if (response.ok) {
-            fetchCommentList();
-            response.json();
-          }
-        })
-        .then((data) => {
-          console.log(data);
-        });
+      }).then((response) => {
+        if (response.ok) {
+          fetchCommentList();
+        }
+      });
     } else {
       alert('글을 작성해주세요.');
     }

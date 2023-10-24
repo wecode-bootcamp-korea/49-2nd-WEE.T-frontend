@@ -28,11 +28,10 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
       fetch(`/endpoint/comments/${id}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json;charset=utf-8',
+          'Content-Type': 'application/json;',
           // Authorization: TOKEN,
         },
         body: JSON.stringify({
-          feedId,
           content: commentEdit,
         }),
       }).then((response) => {
@@ -56,7 +55,7 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
     fetch(`/endpoint/comments/${id}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json;charset=utf-8',
+        'Content-Type': 'application/json;',
         // Authorization: TOKEN,
       },
       // body: JSON.stringify({

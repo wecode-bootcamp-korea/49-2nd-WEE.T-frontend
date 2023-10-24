@@ -5,9 +5,6 @@ import './Comments.scss';
 
 const Comments = (feedId) => {
   const TOKEN = localStorage.getItem('accessToken');
-  const HEADER = TOKEN
-    ? { 'Content-Type': 'application/json', Authorization: TOKEN }
-    : { 'Content-Type': 'application/json' };
   const [commentData, setCommentData] = useState([]);
 
   useEffect(() => {
@@ -15,11 +12,14 @@ const Comments = (feedId) => {
   }, []);
 
   const fetchCommentList = () => {
-    fetch(`/data/commentData.json/${feedId}`, {
-      // /data/commentData.json/${feedId}
+    fetch(`/data/commentData.json`, {
+      // /data/commentData.json
       // endpoint/comments/${feedId}
       method: 'GET',
-      headers: HEADER,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(TOKEN && { Authorization: TOKEN }),
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -36,9 +36,9 @@ const Comments = (feedId) => {
   return (
     <section className="comments">
       <div className="commentDiv">
-        {TOKEN ? (
+        {TOKEN && (
           <Comment feedId={feedId} fetchCommentList={fetchCommentList} />
-        ) : null}
+        )}
         <CommentList
           feedId={feedId}
           fetchCommentList={fetchCommentList}

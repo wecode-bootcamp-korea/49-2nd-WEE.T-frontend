@@ -74,9 +74,7 @@ const FeedList = ({
   }, [feedList, totalCount, page]);
 
   const handleEditFeed = (feedId) => {
-    navigate('/post-edit', {
-      state: feedId,
-    });
+    navigate(`/post-edit/${feedId}`);
   };
 
   const handleDeleteFeed = (feedId) => {
@@ -133,7 +131,7 @@ const FeedList = ({
                 <div className="moreView" onClick={handleView}>
                   {moreBtn}
                 </div>
-                {isView ? <Comments feedId={feed.id} /> : null}
+                {isView && <Comments feedId={feed.id} />}
               </div>
               <div className="writeDate">
                 {formatCreatedAt(feed.created_at)}
