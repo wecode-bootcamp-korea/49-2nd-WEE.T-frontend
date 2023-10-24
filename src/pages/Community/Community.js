@@ -73,6 +73,7 @@ const Community = () => {
             page={page}
             limit={limit}
             setPaginationParams={setPaginationParams}
+            fetchFeedList={fetchFeedList}
           />
         </div>
       </div>

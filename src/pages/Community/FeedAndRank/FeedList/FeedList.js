@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import FeedImages from './FeedImages/FeedImages';
 import Comments from '../Comments/Comments';
 import './FeedList.scss';
@@ -9,10 +10,13 @@ const FeedList = ({
   page,
   limit,
   setPaginationParams,
+  fetchFeedList,
 }) => {
   const [moreBtn, setMoreBtn] = useState('댓글 더보기 ▼');
   const [isView, setIsView] = useState(false);
   const listRef = useRef(null);
+  const navigate = useNavigate();
+  const TOKEN = localStorage.getItem('accessToken');
 
   const handleView = () => {
     if (moreBtn === '댓글 더보기 ▼') {
@@ -69,6 +73,27 @@ const FeedList = ({
     };
   }, [feedList, totalCount, page]);
 
+  const handleEditFeed = (feedId) => {
+    navigate('/post-edit', {
+      state: feedId,
+    });
+  };
+
+  const handleDeleteFeed = (feedId) => {
+    fetch(`endpoint/feeds/${feedId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;',
+        Authorization: TOKEN,
+      },
+    }).then((response) => {
+      if (response.ok) {
+        fetchFeedList();
+        alert('게시물이 삭제되었습니다.');
+      }
+    });
+  };
+
   return (
     <ul ref={listRef} className="feedList">
       {feedList.feeds?.map((feed) => (
@@ -83,10 +108,18 @@ const FeedList = ({
               </div>
               {feed.isMyPost ? (
                 <div className="btnBox">
-                  <button type="button" className="changeBtn subBtn">
+                  <button
+                    type="button"
+                    className="changeBtn subBtn"
+                    onClick={() => handleEditFeed(feed.feedId)}
+                  >
                     수정
                   </button>
-                  <button type="button" className="deleteBtn subBtn">
+                  <button
+                    type="button"
+                    className="deleteBtn subBtn"
+                    onClick={() => handleDeleteFeed(feed.feedId)}
+                  >
                     삭제
                   </button>
                 </div>
