@@ -2,17 +2,17 @@
   "data": {
     "feedRanking": [
       {
-        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badge": "../images/badge-5.png",
         "nickname": "wecode",
         "feed_count": 41
       },
       {
-        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badge": "../images/badge-4.png",
         "nickname": "candy",
         "feed_count": 30
       },
       {
-        "badge": "https://cdn2.iconfinder.com/data/icons/shopping-11/512/Badge-1024.png",
+        "badge": "../images/badge-3.png",
         "nickname": "joker",
         "feed_count": 28
       }
