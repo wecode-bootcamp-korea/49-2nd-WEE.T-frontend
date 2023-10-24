@@ -7,7 +7,7 @@ function Counter({ initialValue, targetValue, unit }) {
   useEffect(() => {
     if (count < targetValue) {
       const interval = setInterval(() => {
-        setCount(count + 10);
+        setCount(count + 2);
       }, 1);
 
       return () => {
