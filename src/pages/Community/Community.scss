@@ -9,7 +9,14 @@
     background-size: cover;
 
     .challengeBanner {
-      // 배너 위치
+      border-radius: 12px;
+      overflow: hidden;
+
+      .challengeImg {
+        display: block;
+        width: 100%;
+        object-fit: cover;
+      }
     }
   }
 }

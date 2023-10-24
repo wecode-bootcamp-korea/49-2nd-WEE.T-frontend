@@ -66,7 +66,13 @@ const Community = () => {
     return (
       <div id="content" className="community">
         <div className="container sectionInner">
-          <section className="challengeBanner">challenge banner 위치</section>
+          <section className="challengeBanner">
+            <img
+              className="challengeImg"
+              src="/images/c-banner.png"
+              alt="챌린지배너"
+            />
+          </section>
           <FeedAndRank
             feedList={feedList}
             totalCount={totalCount}
