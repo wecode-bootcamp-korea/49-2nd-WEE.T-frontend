@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './Comment.scss';
 
 const Comment = ({ feedId, fetchCommentList }) => {
-  // const accessToken = localStorage.getItem('accessToken');
+  // const TOKEN = localStorage.getItem('accessToken');
   // const navigate = useNavigate();
 
   const [comment, setComment] = useState('');
@@ -14,13 +14,13 @@ const Comment = ({ feedId, fetchCommentList }) => {
   };
 
   const handleCommentPost = () => {
-    // if (accessToken) {
+    // if (TOKEN) {
     if (isCheckComment) {
       fetch(`/endpoint/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          // Authorization: accessToken,
+          // Authorization: TOKEN,
         },
         body: JSON.stringify({
           feedId,

@@ -19,12 +19,12 @@ const Feed = ({ getFeed, data }) => {
     return formattedDate;
   };
 
-  const handleEditFeed = (feedId) => {
-    navigate(`/post-edit/${feedId}`);
+  const handleEditFeed = (id) => {
+    navigate(`/post-edit/${id}`);
   };
 
-  const handleDeleteFeed = (feedId) => {
-    fetch(`endpoint/feeds/${feedId}`, {
+  const handleDeleteFeed = (id) => {
+    fetch(`endpoint/feeds/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;',
