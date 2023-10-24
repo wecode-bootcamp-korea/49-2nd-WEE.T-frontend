@@ -95,11 +95,36 @@ const Nav = () => {
           />
         </div>
         <div className="navList">
-          <button onClick={goToSubscribe}>구독하기</button>
-          <button onClick={goToCommunity}>커뮤니티</button>
-          <button onClick={goToTraining}>맞춤트레이닝</button>
-          <button onClick={goToExercise}>맞춤식단</button>
-          <button onClick={goToLocation}>내주변운동맛집</button>
+          <button
+            className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+            onClick={goToSubscribe}
+          >
+            구독하기
+          </button>
+          <button
+            className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+            onClick={goToCommunity}
+          >
+            커뮤니티
+          </button>
+          <button
+            className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+            onClick={goToTraining}
+          >
+            맞춤트레이닝
+          </button>
+          <button
+            className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+            onClick={goToExercise}
+          >
+            맞춤식단
+          </button>
+          <button
+            className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+            onClick={goToLocation}
+          >
+            내주변운동맛집
+          </button>
           {isLogin && <button onClick={goToCondition}>상태페이지</button>}
           <div className="userGrade">
             {isLogin && <img src={userData && userData.badgeImageUrl} alt="" />}
