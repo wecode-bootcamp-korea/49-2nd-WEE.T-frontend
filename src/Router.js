@@ -16,12 +16,14 @@ import Footer from './components/Footer/Footer';
 import Order from './pages/Order/Order';
 import ChattingBtn from './components/ChattingBtn/ChattingBtn';
 import Training from './pages/Training/Training';
+import ScrollToTop from './components/ScrollTop/ScrollTop';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Nav />
       <ChattingBtn />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/location" element={<Location />} />

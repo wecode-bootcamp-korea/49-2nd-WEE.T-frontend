@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Nav.scss';
 import { LOGIN_AWS_API } from '../../config';
+import Popup from '../Popup/Popup';
 
 const Nav = () => {
   const navigate = useNavigate();
   const isLogin = !!localStorage.getItem('accessToken');
-  const [userData, setUserData] = useState();
   const accessToken = localStorage.getItem('accessToken');
+  const [userData, setUserData] = useState();
   const [scrollTop, setScrollTop] = useState(0);
+  const [popup, setPopup] = useState({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +19,7 @@ const Nav = () => {
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -37,9 +40,6 @@ const Nav = () => {
         });
   }, [accessToken]);
 
-  // 댓글알람기능 구현중,전역상태관리
-  // cosnt handleAlarm = () => {
-  // };
   const handleLogAuto = () => {
     fetch(`${LOGIN_AWS_API}/auth/logout`, {
       method: 'GET',
@@ -60,11 +60,27 @@ const Nav = () => {
 
   const authenticatedNavigate = (path) => {
     if (!isLogin) {
-      alert('로그인 후 이용 가능합니다.');
-      navigate('/login');
+      setPopup({
+        open: true,
+        title: '로그인후 이용가능합니다.',
+        leftBtnValue: '로그인 하러가기',
+        rightBtnValue: '닫기',
+        leftBtnClick: goLogin,
+        rightBtnClick: closePopup,
+      });
       return;
     }
     navigate(path);
+  };
+
+  const goLogin = () => {
+    navigate('/login');
+    closePopup();
+    scrollToTop();
+  };
+
+  const closePopup = () => {
+    setPopup({ ...popup, open: false });
   };
 
   const goToMain = () => {
@@ -74,10 +90,19 @@ const Nav = () => {
   const goToCommunity = () => {
     navigate('/community');
   };
+  const goToLocation = () => {
+    navigate('/location');
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   const goToSubscribe = () => authenticatedNavigate('/subscribe');
   const goToCondition = () => authenticatedNavigate('/info');
-  const goToLocation = () => authenticatedNavigate('/location');
   const goToGuideLine = () => authenticatedNavigate('/');
   const goToTraining = () => authenticatedNavigate('/training');
   const goToExercise = () => authenticatedNavigate('/exercise');
@@ -94,6 +119,7 @@ const Nav = () => {
             alt="메인로고사진없음"
           />
         </div>
+
         <div className="navList">
           <button
             className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
@@ -126,6 +152,7 @@ const Nav = () => {
             내주변운동맛집
           </button>
           {isLogin && <button onClick={goToCondition}>상태페이지</button>}
+
           <div className="userGrade">
             {isLogin && <img src={userData && userData.badgeImageUrl} alt="" />}
           </div>
@@ -141,12 +168,16 @@ const Nav = () => {
               로그인
             </Link>
           )}
-          {/* <img
-          src="images/chatImage.png"
-          alt="알림이미지"
-          onClick={handleAlarm}
-        />{' '}
-        피드 댓글 알람기능 구현중 */}
+
+          {popup.open && (
+            <Popup
+              title={popup.title}
+              leftBtnValue={popup.leftBtnValue}
+              rightBtnValue={popup.rightBtnValue}
+              leftBtnClick={popup.leftBtnClick}
+              rightBtnClick={popup.rightBtnClick}
+            />
+          )}
         </div>
       </div>
     </nav>

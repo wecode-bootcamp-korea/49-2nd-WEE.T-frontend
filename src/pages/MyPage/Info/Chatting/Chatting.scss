@@ -106,6 +106,10 @@
       width: 580px;
       height: 100px;
 
+      textarea::placeholder {
+        font-size: 15px;
+      }
+
       i {
         position: absolute;
         font-size: 60px;
