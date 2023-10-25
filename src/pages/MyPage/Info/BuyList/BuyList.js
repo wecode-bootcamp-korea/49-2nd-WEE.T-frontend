@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import './BuyList.scss';
-import { BUYLIST_API } from '../../../../config';
+import { BASE_AWS_API } from '../../../../config';
 
 const BuyList = (props) => {
   const { setBuyList } = props;
   const [purchaseList, setPurchaseList] = useState();
   const [purchaseDate, setPurchaseDate] = useState(sortingList[0].value);
 
-  console.log(purchaseList);
-
-  // const token = localStorage.getItem('token');
-  // useEffect(() => {
-  //   fetch(`${BUYLIST_API}?before=${purchaseDate}`, {
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       // Authorization: token,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((result) => {
-  //       setPurchaseList(result);
-  //     });
-  // }, [purchaseDate]);
+  const token = localStorage.getItem('token');
+  useEffect(() => {
+    fetch(`${BASE_AWS_API}?before=${purchaseDate}`, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((result) => {
+        setPurchaseList(result);
+      });
+  }, [purchaseDate]);
 
   useEffect(() => {
     fetch('./data/orders.json')

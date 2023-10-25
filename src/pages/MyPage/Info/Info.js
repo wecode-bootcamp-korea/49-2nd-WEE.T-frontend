@@ -6,7 +6,7 @@ import Current from './Current/Current';
 import Goal from './Goal/Goal';
 import Rank from './Rank/Rank';
 import { TOTAL } from '../../../data/total';
-import { INFO_API } from '../../../config';
+import { BASE_AWS_API } from '../../../config';
 import { useNavigate } from 'react-router-dom';
 import Popup from '../../../components/Popup/Popup';
 import BuyList from './BuyList/BuyList';
@@ -19,7 +19,7 @@ const Info = () => {
   const [isBuyList, setIsBuyList] = useState(false);
   const [isChatting, setIsChatting] = useState(false);
 
-  // const token = localStorage.getItem('accessToken');
+  const token = localStorage.getItem('accessToken');
 
   const goBuyList = () => {
     setIsBuyList(true);
@@ -33,12 +33,12 @@ const Info = () => {
   };
 
   useEffect(() => {
-    fetch('/data/condition.json', {
-      // fetch(`${INFO_API}/users`, {
-      // headers: {
-      //   'Content-Type': 'application/json;charset=utf-8',
-      //   Authorization: token,
-      // },
+    // fetch('/data/condition.json', {
+    fetch(`${BASE_AWS_API}/users`, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
     })
       .then((res) => res.json())
       .then((result) => {
