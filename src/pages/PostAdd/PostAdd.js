@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { BASE_AWS_AP } from '../../config';
+import { BASE_AWS_API } from '../../config';
 import './PostAdd.scss';
 
 const PostAdd = ({ isEdit }) => {
@@ -64,7 +64,7 @@ const PostAdd = ({ isEdit }) => {
     });
 
     formDataArray.map((formData) => {
-      fetch(`${BASE_AWS_AP}/feeds${isEdit ? `/${id}` : ''}`, {
+      fetch(`${BASE_AWS_API}/feeds${isEdit ? `/${id}` : ''}`, {
         method: isEdit ? 'PUT' : 'POST',
         headers: {
           Authorization: accessToken,
@@ -82,7 +82,7 @@ const PostAdd = ({ isEdit }) => {
 
   useEffect(() => {
     if (!isEdit || !id) return;
-    fetch('${BASE_AWS_AP}/feeds')
+    fetch('${BASE_AWS_API}/feeds')
       .then((res) => res.json())
       .then(({ data }) => {
         const feedData = data.feeds.find((feed) => feed.id === id);
