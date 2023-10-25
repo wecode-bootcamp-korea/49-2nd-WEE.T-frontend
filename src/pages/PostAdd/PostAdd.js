@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { BASE_AWS_AP } from '../../config';
 import './PostAdd.scss';
 
 const PostAdd = ({ isEdit }) => {
@@ -63,7 +64,7 @@ const PostAdd = ({ isEdit }) => {
     });
 
     formDataArray.map((formData) => {
-      fetch(`http://10.58.52.111:8000/feeds${isEdit ? `/${id}` : ''}`, {
+      fetch(`${BASE_AWS_AP}/feeds${isEdit ? `/${id}` : ''}`, {
         method: isEdit ? 'PUT' : 'POST',
         headers: {
           Authorization: accessToken,
@@ -81,8 +82,7 @@ const PostAdd = ({ isEdit }) => {
 
   useEffect(() => {
     if (!isEdit || !id) return;
-
-    fetch('/feeds') // 특정Id값을 조회해서 get요청으로 불러오는 API X, 피드조회 API명세서를 이용해야함.
+    fetch('${BASE_AWS_AP}/feeds')
       .then((res) => res.json())
       .then(({ data }) => {
         const feedData = data.feeds.find((feed) => feed.id === id);
