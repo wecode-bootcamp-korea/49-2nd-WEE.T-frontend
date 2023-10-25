@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { LOGIN_AWS_API } from '../../config';
+import { BASE_AWS_API } from '../../config';
 
 const LoginNaver = () => {
   const [searchParams] = useSearchParams();
@@ -9,7 +9,7 @@ const LoginNaver = () => {
 
   useEffect(() => {
     code &&
-      fetch(`${LOGIN_AWS_API}/auth/naver/login?code=${code}`, {
+      fetch(`${BASE_AWS_API}/auth/naver/login?code=${code}`, {
         method: 'GET',
       })
         .then((res) => res.json())

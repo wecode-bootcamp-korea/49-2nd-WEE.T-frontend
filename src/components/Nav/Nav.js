@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Nav.scss';
-import { LOGIN_AWS_API } from '../../config';
+import { BASE_AWS_API } from '../../config';
 import Popup from '../Popup/Popup';
 
 const Nav = () => {
@@ -27,7 +27,7 @@ const Nav = () => {
 
   useEffect(() => {
     accessToken &&
-      fetch(`${LOGIN_AWS_API}/users/grades`, {
+      fetch(`${BASE_AWS_API}/users/grades`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -41,7 +41,7 @@ const Nav = () => {
   }, [accessToken]);
 
   const handleLogAuto = () => {
-    fetch(`${LOGIN_AWS_API}/auth/logout`, {
+    fetch(`${BASE_AWS_API}/auth/logout`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
