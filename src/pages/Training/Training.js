@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import './Training.scss';
 import TrainingContainer from '../../components/TrainingContainer/TrainingContainer';
-import { TRAINING_API } from '../../config';
+import { BASE_AWS_API } from '../../config';
 
 const Training = () => {
   const [trainingData, setTrainingData] = useState({});
@@ -26,12 +26,11 @@ const Training = () => {
   const remainingWeight = currentWeight - targetWeight;
 
   useEffect(() => {
-    fetch(`${TRAINING_API}`, {
+    fetch(`${BASE_AWS_API}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaXNOZXciOnRydWUsImlhdCI6MTY5ODEyMzQ4OSwiZXhwIjoxNjk4MTY2Njg5fQ.XBWszkm3GIob-9ZcPMp8Z7iohXFSbkYk1PS5IopXyWk',
+        Authorization: localStorage.getItem('accessToken'),
       },
     })
       .then((res) => res.json())
