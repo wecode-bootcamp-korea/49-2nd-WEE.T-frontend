@@ -69,7 +69,19 @@ const Subscribe = () => {
   const goPayment = () => {
     if (selectedCheckbox && selectedCheckbox.subscribeId) {
       const orderSubscribeId = selectedCheckbox.subscribeId;
-      navigate('/order', { state: { subscribeId: orderSubscribeId } });
+      const orderSubscribeMonth = selectedCheckbox.month;
+      const orderSubscribePrice = selectedCheckbox.price;
+      localStorage.setItem('subscribeId', orderSubscribeId);
+      localStorage.setItem('month', orderSubscribeMonth);
+      localStorage.setItem('price', orderSubscribePrice);
+
+      navigate('/order', {
+        state: {
+          subscribeId: orderSubscribeId,
+          month: orderSubscribeMonth,
+          price: orderSubscribePrice,
+        },
+      });
     } else {
       console.error('선택한 체크박스 또는 subscribeId가 정의되지 않았습니다.');
     }
