@@ -49,7 +49,7 @@ const Community = () => {
       .then((res) => res.json())
       .then((data) => {
         const feedData = data.data;
-        const newFeedData = feedData.feeds;
+        const newFeedData = feedData.getFeedList;
         setTotalCount(feedData.feedCount);
         setFeedList((prevFeedList) => {
           return {
