@@ -1,62 +1,84 @@
 .nav {
   display: flex;
-  justify-content: space-between;
-  position: sticky;
+  position: fixed;
+  justify-content: center;
   top: 0;
+  left: 0;
   z-index: 1000;
-  padding-right: 70px;
-  padding-left: 40px;
-  margin-right: auto;
-  margin-left: auto;
+
   width: 100%;
-  background-color: #ffffff;
+  background-color: unset;
+  transition: all 0.4s;
 
-  .logoSection {
-    img {
-      width: 140px;
-      height: 100%;
-      cursor: pointer;
-    }
-  }
-  .navList {
+  .navinner {
     display: flex;
-    height: 70px;
-    gap: 25px;
-    background-color: #ffffff;
+    justify-content: space-between;
+    width: 1200px;
+    align-items: center;
 
-    button {
-      border: 0;
-      background-color: #ffffff;
-      color: #333;
-      font-size: 14px;
+    .logoSection {
+      width: 120px;
+      img {
+        display: block;
+        width: 100%;
+        cursor: pointer;
+      }
     }
+    .navList {
+      display: flex;
+      height: 70px;
+      align-items: center;
 
-    img {
-      display: inline-block;
-      margin: auto;
-      width: 15px;
-      height: 15px;
-      cursor: pointer;
-    }
+      .userGrade {
+        width: 20px;
+        margin-left: 25px;
+      }
 
-    .btnLogAuto {
-      border: 0;
-      background-color: #ffffff;
-      font-family: 'Pretendard';
-      font-size: 14px;
-      color: #333;
-      cursor: pointer;
-    }
+      button {
+        border: 0;
+        color: #333;
+        font-size: 16px;
+        margin-left: 26px;
+        background-color: unset;
 
-    .btnSignUp {
-      border: 0;
-      margin: auto;
-      text-decoration-line: none;
-      font-family: 'Pretendard';
-      font-size: 14px;
-      color: #333;
-      background-color: #ffffff;
-      cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .btnLogAuto {
+        border: 0;
+        font-family: 'Pretendard';
+        font-size: 14px;
+        color: #333;
+        cursor: pointer;
+        margin-left: 0;
+
+        .userNickname {
+          color: #5e3dea;
+          font-weight: bold;
+        }
+      }
+
+      .btnSignUp {
+        border: 0;
+        margin: auto;
+        text-decoration-line: none;
+        font-family: 'Pretendard';
+        font-size: 14px;
+        color: #333;
+        cursor: pointer;
+      }
     }
   }
+}
+.nav.white {
+  background-color: #fff;
+  transition: all 0.4s;
 }

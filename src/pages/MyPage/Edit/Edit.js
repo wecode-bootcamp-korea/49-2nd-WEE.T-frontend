@@ -6,14 +6,15 @@ import Button from '../../../components/Button/Button';
 import { GENDER } from '../../../data/gender';
 import { PROFILE_LIST } from '../../../data/profileData';
 import { useNavigate } from 'react-router-dom';
+import { INFO_API } from '../../../config';
 import Popup from '../../../components/Popup/Popup';
 
 const Edit = () => {
   const [data, setData] = useState();
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
-  // const token =
-  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlzTmV3IjpmYWxzZSwiaWF0IjoxNjk3Nzc3Nzc3LCJleHAiOjE2OTc4MjA5Nzd9.rkf5DlI9qSyPDhVkEkcxoiCA8s0Ycnop6gzstQmNj6w';
+
+  const token = localStorage.getItem('accessToken');
 
   const isValid = useMemo(() => {
     const validations = {};
@@ -52,26 +53,15 @@ const Edit = () => {
     });
   };
 
-  // useEffect(() => {
-  //   fetch('http://10.58.52.81:8000/users', {
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       Authorization: token,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((result) => {
-  //       setData(result.data);
-  //     });
-  // }, []);
-
   useEffect(() => {
-    fetch('./data/condition.json')
-      .then((res) => {
-        return res.json();
-      })
+    fetch('/data/condition.json', {
+      // fetch(`${INFO_API}/users`, {
+      // headers: {
+      //   'Content-Type': 'application/json;charset=utf-8',
+      //   Authorization: token,
+      // },
+    })
+      .then((res) => res.json())
       .then((result) => {
         setData(result.data);
       });
@@ -119,7 +109,7 @@ const Edit = () => {
   };
 
   const userInfoSubmit = () => {
-    // fetch('http://10.58.52.81:8000/users', {
+    // fetch(`${INFO_API}/users`, {
     //   method: 'PUT',
     //   headers: {
     //     'Content-Type': 'application/json;charset=utf-8',
@@ -188,8 +178,8 @@ const Edit = () => {
           />
         </div>
         <div className="buttonSelect">
-          <Button value="수정하기" onClick={InfoEdit} />
-          <Button value="취소하기" onClick={editDelete} />
+          <Button onClick={InfoEdit}>수정하기</Button>
+          <Button onClick={editDelete}>취소하기</Button>
         </div>
       </div>
 

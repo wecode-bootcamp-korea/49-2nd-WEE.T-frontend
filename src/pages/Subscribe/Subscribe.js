@@ -1,27 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
+import Popup from '../../components/Popup/Popup';
 import './Subscribe.scss';
-import { is } from 'immutable';
 
 const Subscribe = () => {
-  const [subscribeData, setSubscribeData] = useState();
+  const [subscribeData, setSubscribeData] = useState({});
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
+  const [popup, setPopup] = useState({});
   const navigate = useNavigate();
-  // const accessToken = localStorage.getItem('accessToken');
+  // const TOKEN = localStorage.getItem('accessToken');
+
+  // 결제 페이지로 데이터 전달하기
+  const goPayment = () => {
+    const orderSubscribeId = selectedCheckbox.subscribeId;
+    navigate('/order', { state: { subscribeId: orderSubscribeId } });
+  };
+
+  const closePopup = () => {
+    setPopup({ ...popup, open: false });
+  };
 
   useEffect(() => {
-    // 토큰이 있다면 사용자 정보를 가져오는 함수 호출
     // if (accessToken) {
     getUserSubscribeData();
     // }
   }, []);
 
   const getUserSubscribeData = () => {
-    fetch('http://10.58.52.67:8000/subscribe', {
+    fetch('/data/subscribeData.json', {
+      // http://10.58.52.67:8000/subscribe
+
       headers: {
         'Content-Type': 'application/json',
-        // Authorization: accessToken,
+        // Authorization: TOKEN,
       },
     })
       .then((response) => {
@@ -44,29 +56,26 @@ const Subscribe = () => {
   const handleOrderButton = (selectedCheckbox) => {
     if (selectedCheckbox) {
       if (subscribeData.status === 1) {
-        const isExtend = window.confirm(
-          '이미 구독한 상태입니다. 계속 진행하시면 구독 기간이 연장됩니다. 계속하시겠습니까?',
-        );
-
-        if (!isExtend) {
-          return;
-        }
+        setPopup({
+          open: true,
+          title: '이미 구독한 상태입니다.',
+          leftBtnValue: '구독연장하기',
+          rightBtnValue: '닫기',
+          leftBtnClick: goPayment,
+          rightBtnClick: closePopup,
+        });
       }
-
-      // 결제 페이지로 데이터 전달하기
-      const orderSubscribeId = selectedCheckbox.subscribeId;
-      navigate('/order', { state: { subscribeId: orderSubscribeId } });
     } else {
       alert('구독하실 개월 수를 선택해주세요.');
     }
   };
 
   // 사용자가 로그인하지 않았다면 로그인 페이지로 리다이렉션
-  // if (!accessToken) {
+  // if (!TOKEN) {
   //   return <Redirect to="/login" />;
   // }
 
-  const isEmpty = subscribeData.length === 0;
+  const isEmpty = Object.keys(subscribeData).length === 0;
 
   if (isEmpty) return null;
 
@@ -74,10 +83,15 @@ const Subscribe = () => {
     <div className="subscribe">
       <section>
         <div className="sectionInner flexCenter">
-          <h2>Subscribe</h2>
+          <h2>
+            <span className="checkIcon">
+              <img src="/images/icon-check.png" alt="" />
+            </span>
+            위트 구독하기
+          </h2>
           <p>
-            WEE.T를 구독하시고 트레이너의 맞춤 관리를 경험해보세요. 구독 중이신
-            경우, 구독기간이 연장됩니다.
+            WEE.T를 구독하시고 <b>트레이너의 맞춤 관리</b>를 경험해보세요. 구독
+            중이신 경우, <b>구독기간이 연장</b>됩니다.
           </p>
         </div>
       </section>
@@ -85,7 +99,7 @@ const Subscribe = () => {
         <div className="sectionInner">
           <form className="subscribeContent">
             <ul className="flexCenter">
-              {subscribeData?.data.map((option) => (
+              {subscribeData.data?.map((option) => (
                 <li key={option.subscribeId}>
                   <div className="paymentWrap">
                     <div className="checkInputDiv">
@@ -134,6 +148,15 @@ const Subscribe = () => {
           </form>
         </div>
       </section>
+      {popup.open && (
+        <Popup
+          title={popup.title}
+          leftBtnValue={popup.leftBtnValue}
+          rightBtnValue={popup.rightBtnValue}
+          leftBtnClick={popup.leftBtnClick}
+          rightBtnClick={popup.rightBtnClick}
+        />
+      )}
     </div>
   );
 };

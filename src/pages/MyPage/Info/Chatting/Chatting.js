@@ -138,7 +138,7 @@ const Chatting = (props) => {
             type="text"
             className="sendChat"
             value={message}
-            placeholder="WEE.T 구독회원님 반갑습니다. 메세지를 입력하세요."
+            placeholder="WEE.T 구독회원님 반갑습니다. &#13;&#10; 메세지를 입력하세요."
             onChange={changeMessage}
             onKeyPress={onSubmitSearch}
           />

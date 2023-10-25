@@ -2,23 +2,26 @@ import React, { useState, useEffect } from 'react';
 import './Rank.scss';
 
 const Rank = () => {
-  const [rankList, setRankList] = useState();
+  const [rankList, setRankList] = useState([]);
 
   useEffect(() => {
     fetchRankTop10();
   }, []);
 
   const fetchRankTop10 = () => {
-    fetch(`endpoint`, {
+    fetch(`/data/feedRank.json`, {
       //http://10.58.52.172:8000/feeds/rank
       method: 'GET',
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setRankList(data.data.feedRanking);
       });
   };
+
+  if (rankList.length === 0) {
+    return null;
+  }
 
   return (
     <div className="rank">
@@ -29,7 +32,7 @@ const Rank = () => {
       <div className="rankDiv">
         <ol className="rankList">
           {rankList?.map((list, index) => (
-            <li key={index}>
+            <li className="rankMap" key={index}>
               <div className="ranking">{index + 1}등</div>
               <div className="userBadge">
                 <img src={list.badge} alt="챌린지뱃지" className="badgeImg" />

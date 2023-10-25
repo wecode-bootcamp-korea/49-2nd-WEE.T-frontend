@@ -1,4 +1,11 @@
 .subscribe {
+  padding: 120px 0;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
   section {
     .sectionInner {
       flex-direction: column;
@@ -6,18 +13,32 @@
       text-align: center;
 
       h2 {
-        padding: 50px;
+        display: flex;
+        justify-content: center;
+        padding: 50px 0 20px 0;
         font-size: 30px;
+        font-weight: bold;
+
+        .checkIcon {
+          display: block;
+          width: 30px;
+          margin-right: 12px;
+        }
       }
 
       p {
-        font-size: 14px;
+        b {
+          font-weight: bold;
+        }
+
+        font-size: 18px;
+        color: #5e3dea;
       }
     }
   }
 
   .secondSection {
-    padding: 50px;
+    padding: 30px 50px 50px 50px;
 
     .sectionInner {
       .subscribeContent {
