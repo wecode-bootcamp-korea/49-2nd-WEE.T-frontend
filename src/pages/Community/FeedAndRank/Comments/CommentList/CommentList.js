@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CommentList.scss';
 
 const CommentList = ({ feedId, fetchCommentList, commentData }) => {
-  // const accessToken = localStorage.getItem('accessToken');
+  const TOKEN = localStorage.getItem('accessToken');
+  const navigate = useNavigate();
+
   const [commentEdit, setCommentEdit] = useState('');
   const [editingCommentId, setEditingCommentId] = useState(null);
   const isCheckEditComment = commentEdit.length >= 1;
@@ -23,65 +26,56 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
   };
 
   const handleCommentEditSave = (id) => {
-    // if (accessToken) {
-    if (isCheckEditComment) {
+    if (TOKEN) {
+      if (isCheckEditComment) {
+        fetch(`/endpoint/comments/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json;',
+            Authorization: TOKEN,
+          },
+          body: JSON.stringify({
+            content: commentEdit,
+          }),
+        }).then((response) => {
+          console.log(response);
+          if (response.ok) {
+            fetchCommentList();
+            alert('댓글이 수정되었습니다.');
+          }
+        });
+      } else {
+        alert('댓글을 작성해주세요.');
+      }
+    } else {
+      alert('로그인 후 댓글 작성이 가능합니다.');
+      navigate('/login');
+    }
+  };
+
+  const handleCommentDelete = (id) => {
+    if (TOKEN) {
       fetch(`/endpoint/comments/${id}`, {
-        method: 'PUT',
+        method: 'DELETE',
         headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          // Authorization: accessToken,
+          'Content-Type': 'application/json;',
+          Authorization: TOKEN,
         },
         body: JSON.stringify({
           feedId,
           content: commentEdit,
         }),
-      })
-        .then((response) => {
-          console.log(response);
-          if (response.ok) {
-            fetchCommentList();
-            return response.json();
-          }
-        })
-        .then((data) => {
-          console.log(data);
-        });
-    } else {
-      alert('댓글을 작성해주세요.');
-    }
-    // } else {
-    //   alert('로그인 후 댓글 작성이 가능합니다.');
-    //   navigate('/login');
-    // }
-  };
-
-  const handleCommentDelete = (id) => {
-    // if (accessToken) {
-    fetch(`/endpoint/comments/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        // Authorization: accessToken,
-      },
-      body: JSON.stringify({
-        feedId,
-        content: commentEdit,
-      }),
-    })
-      .then((response) => {
+      }).then((response) => {
         console.log(response);
         if (response.ok) {
           fetchCommentList();
-          return response.json();
+          alert('댓글이 삭제되었습니다.');
         }
-      })
-      .then((data) => {
-        console.log(data);
       });
-    // } else {
-    //   alert('로그인 후 댓글 삭제가 가능합니다.');
-    //   navigate('/login');
-    // }
+    } else {
+      alert('로그인 후 댓글 삭제가 가능합니다.');
+      navigate('/login');
+    }
   };
 
   return (
@@ -90,11 +84,7 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
         {commentData?.map((data) => (
           <li className="commentOlList" key={data.id}>
             <div className="userInfo">
-              <img
-                src="/images/dog.jpg"
-                alt="챌린지뱃지"
-                className="userBadgeImg"
-              />
+              <img src={data.badge} alt="챌린지뱃지" className="userBadgeImg" />
               <div className="userNickname">{data.nickname}</div>
             </div>
             {editingCommentId === data.id ? (

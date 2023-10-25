@@ -10,9 +10,6 @@ const Community = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   const TOKEN = localStorage.getItem('accessToken');
-  const HEADER = TOKEN
-    ? { 'Content-Type': 'application/json', Authorization: TOKEN }
-    : { 'Content-Type': 'application/json' };
 
   const setPaginationParams = () => {
     const newSearchParams = new URLSearchParams(searchParams);
@@ -44,7 +41,10 @@ const Community = () => {
       // http://10.58.52.236:8000/feeds?limit=${limit}&page=${page}
       // /data/communityData.json?limit=${limit}&page=${page}
       method: 'GET',
-      headers: HEADER,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(TOKEN && { Authorization: TOKEN }),
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -66,13 +66,20 @@ const Community = () => {
     return (
       <div id="content" className="community">
         <div className="container sectionInner">
-          <section className="challengeBanner">challenge banner 위치</section>
+          <section className="challengeBanner">
+            <img
+              className="challengeImg"
+              src="/images/c-banner.png"
+              alt="챌린지배너"
+            />
+          </section>
           <FeedAndRank
             feedList={feedList}
             totalCount={totalCount}
             page={page}
             limit={limit}
             setPaginationParams={setPaginationParams}
+            fetchFeedList={fetchFeedList}
           />
         </div>
       </div>

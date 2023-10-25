@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Rank.scss';
 
 const Rank = () => {
-  const [rankList, setRankList] = useState();
+  const [rankList, setRankList] = useState([]);
 
   useEffect(() => {
     fetchRankTop10();
@@ -18,6 +18,10 @@ const Rank = () => {
         setRankList(data.data.feedRanking);
       });
   };
+
+  if (rankList.length === 0) {
+    return null;
+  }
 
   return (
     <div className="rank">

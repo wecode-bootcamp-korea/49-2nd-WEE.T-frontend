@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Comment.scss';
 
 const Comment = ({ feedId, fetchCommentList }) => {
-  // const accessToken = localStorage.getItem('accessToken');
-  // const navigate = useNavigate();
+  const TOKEN = localStorage.getItem('accessToken');
+  const navigate = useNavigate();
 
   const [comment, setComment] = useState('');
   const isCheckComment = comment.length >= 1;
@@ -14,37 +14,31 @@ const Comment = ({ feedId, fetchCommentList }) => {
   };
 
   const handleCommentPost = () => {
-    // if (accessToken) {
-    if (isCheckComment) {
-      fetch(`/endpoint/comments`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          // Authorization: accessToken,
-        },
-        body: JSON.stringify({
-          feedId,
-          content: comment,
-        }),
-      })
-        .then((response) => {
-          console.log(response);
-          console.log('새 댓글을 등록합니다.');
+    if (TOKEN) {
+      if (isCheckComment) {
+        fetch(`http://10.58.52.207:8000/comments`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: TOKEN,
+          },
+          body: JSON.stringify({
+            feedId: feedId.feedId,
+            content: comment,
+          }),
+        }).then((response) => {
+          console.log('>>>>', response);
           if (response.ok) {
             fetchCommentList();
-            response.json();
           }
-        })
-        .then((data) => {
-          console.log(data);
         });
+      } else {
+        alert('글을 작성해주세요.');
+      }
     } else {
-      alert('글을 작성해주세요.');
+      alert('로그인 후 글 작성이 가능합니다.');
+      navigate('/login');
     }
-    // } else {
-    //   alert('로그인 후 글 작성이 가능합니다.');
-    //   navigate('/login');
-    // }
   };
 
   return (
