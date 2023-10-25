@@ -149,7 +149,7 @@ const Nav = () => {
             className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
             onClick={goToLocation}
           >
-            정보검색
+            주변위치검색
           </button>
           {isLogin && <button onClick={goToCondition}>상태페이지</button>}
 
