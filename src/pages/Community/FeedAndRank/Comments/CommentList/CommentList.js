@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CommentList.scss';
 
-const CommentList = ({ feedId, fetchCommentList, commentData }) => {
+const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
   const TOKEN = localStorage.getItem('accessToken');
   const navigate = useNavigate();
 
@@ -18,6 +18,9 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
     });
     return formattedDate;
   };
+
+  console.log(feedIdData);
+  const { feedId } = feedIdData;
 
   const handleCommentEdit = (id) => {
     const commentToEdit = commentData.find((comment) => comment.id === id);
@@ -139,7 +142,7 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
                   )}
                 </div>
               ) : null}
-              <div className="writeData">{formatCreatedAt(data.createdAt)}</div>
+              <div className="writeData">{formatCreatedAt(data.createAt)}</div>
             </div>
           </li>
         ))}

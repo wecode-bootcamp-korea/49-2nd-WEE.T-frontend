@@ -3,18 +3,20 @@ import Comment from './Comment/Comment';
 import CommentList from './CommentList/CommentList';
 import './Comments.scss';
 
-const Comments = (feedId) => {
-  const TOKEN = localStorage.getItem('accessToken');
-  // const TOKEN =
-  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTc2OTgyMzgsImV4cCI6MTY5Nzc0MTQzOH0.lTEsMsiqQa8MQBmbeWPzDSlvzbDCc9HsX5eQ5-vhJxU';
+const Comments = (feedIdData) => {
+  // const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTgyMTU1MjgsImV4cCI6MTY5ODI1ODcyOH0.PKIwSNMdR0ssGOGZWC2h17jAjd2UiC-PaSfableVDpA';
   const [commentData, setCommentData] = useState([]);
 
   useEffect(() => {
     fetchCommentList();
   }, []);
 
+  const { feedId } = feedIdData;
+
   const fetchCommentList = () => {
-    fetch(`/data/commentData.json`, {
+    fetch(`http://localhost:8000/comments?feedId=${feedId}`, {
       // /data/commentData.json
       // endpoint/comments/${feedId}
       method: 'GET',
@@ -23,12 +25,18 @@ const Comments = (feedId) => {
         ...(TOKEN && { Authorization: TOKEN }),
       },
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        console.log(data.data.comments);
-        setCommentData(data.data.comments);
-      });
+      .then((response) => {
+        if (!response.ok) {
+          throw Error('[GET] 댓글 데이터 통신 실패');
+        }
+        return response.json();
+      })
+      .then((result) => {
+        console.log(result);
+        console.log(result.data);
+        setCommentData(result.data);
+      })
+      .catch((Error) => console.log(Error));
   };
 
   if (commentData.length === 0) {
@@ -39,10 +47,13 @@ const Comments = (feedId) => {
     <section className="comments">
       <div className="commentDiv">
         {TOKEN && (
-          <Comment feedId={feedId} fetchCommentList={fetchCommentList} />
+          <Comment
+            feedIdData={feedIdData}
+            fetchCommentList={fetchCommentList}
+          />
         )}
         <CommentList
-          feedId={feedId}
+          feedIdData={feedIdData}
           fetchCommentList={fetchCommentList}
           commentData={commentData}
         />
