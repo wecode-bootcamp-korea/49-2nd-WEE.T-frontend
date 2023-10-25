@@ -32,10 +32,7 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.message === 'MODIFIED_SUCCESS') {
-          localStorage.setItem(
-            'accessToken',
-            localStorage.getItem('accessToken'),
-          );
+          localStorage.setItem('accessToken', accessToken);
           navigate('/');
         } else if (userInfo.nickname.length > 8) {
           alert('닉네임은 8자 이내로 입력해 주세요.');
