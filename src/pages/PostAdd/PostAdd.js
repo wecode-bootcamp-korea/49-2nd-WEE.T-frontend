@@ -50,32 +50,37 @@ const PostAdd = ({ isEdit }) => {
   const handleCancel = () => {
     navigate('/community');
   };
-  const accessToken = localStorage.getItem('accessToken');
+  // const accessToken = localStorage.getItem('accessToken');
 
   const handlePost = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('imageUrl', image);
-    formData.append('content', text);
-    !isEdit && formData.append('challenge', isChecked);
+    const formDataArray = image.map((file) => {
+      const formData = new FormData();
+      formData.append('imageUrl', file);
+      formData.append('content', text);
+      !isEdit && formData.append('challenge', isChecked);
+      return formData;
+    });
 
-    fetch(`http://10.58.52.247:8000/feeds${isEdit ? `/${id}` : ''}`, {
-      method: isEdit ? 'PUT' : 'POST',
-      headers: {
-        // 'Content-Type': 'multipart/form-data',
-        Authorization: accessToken,
-        // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTcwNzMxNzAsImV4cCI6MTY5NzExNjM3MH0.f-YMfUS7Qrlh4d69kXzZxqUEI4lCLanQAWqQeYcoI3U',
-      },
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.message === 'INSERT_SUCCESS') {
-          alert('피드등록 완료!.');
-          navigate('/community');
-        }
-      });
+    formDataArray.map((formData) => {
+      fetch(`http://10.58.52.111:8000/feeds${isEdit ? `/${id}` : ''}`, {
+        method: isEdit ? 'PUT' : 'POST',
+        headers: {
+          //accessToken,
+          Authorization:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTgxMzA5MjksImV4cCI6MTY5ODE3NDEyOX0.5nEOk1lntil4lbE1zRjVs9TUCay_F1PNcctof1w9zfs',
+        },
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.message === 'INSERT_SUCCESS') {
+            // alert('피드등록 완료!.');
+            navigate('/community');
+          }
+        });
+    });
   };
 
   // useEffect(() => {
