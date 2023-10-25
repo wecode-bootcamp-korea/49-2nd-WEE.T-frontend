@@ -21,7 +21,7 @@ const BuyList = (props) => {
       .then((result) => {
         setPurchaseList(result);
       });
-  }, [purchaseDate]);
+  }, [purchaseDate, token]);
 
   useEffect(() => {
     fetch('./data/orders.json')

@@ -65,7 +65,7 @@ const Edit = () => {
       .then((result) => {
         setData(result.data);
       });
-  }, []);
+  }, [token]);
 
   const InfoEdit = () => {
     const values = Object.values(data);

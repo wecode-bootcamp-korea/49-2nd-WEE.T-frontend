@@ -44,7 +44,7 @@ const Info = () => {
       .then((result) => {
         setData(result.data);
       });
-  }, []);
+  }, [token]);
 
   const goChatting = () => {
     if (data.isSubscribe === 1) {
