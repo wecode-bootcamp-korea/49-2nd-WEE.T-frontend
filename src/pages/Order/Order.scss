@@ -1,103 +1,73 @@
-.orderMain {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+.order {
+  padding: 120px 0;
 
-  .orderMainContainer {
-    display: flex;
-    justify-content: center;
-    padding-top: 120px;
-    padding-bottom: 120px;
-    width: 1200px;
+  .subscribeInfo {
+    .subscribeTitle {
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
 
-    .orderEntireSection {
+    .subscribeDiv {
       display: flex;
-      justify-content: center;
-      flex-direction: column;
-      width: 500px;
-      height: 700px;
-      border: 1px solid #ededed;
-      border-radius: 6px;
+      align-items: center;
+      padding: 30px 30px 70px 30px;
+      border-bottom: 1px solid #ccc;
+      gap: 70px;
 
-      .topSection {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 40px;
-        font-size: 25px;
-        font-weight: bold;
-        background-color: white;
+      .subscribeImgAndMonth {
+        .subImg {
+          display: block;
+          width: 100px;
+        }
       }
 
-      .middleSection {
-        display: flex;
-        justify-content: center;
-        background-color: yellow;
-        height: 400px;
-      }
+      .subTable {
+        width: 100%;
+        text-align: center;
 
-      .buttomSection {
-        height: 250px;
-
-        .PaymentType {
-          height: 100px;
-          background-color: bisque;
-
-          P {
-            display: flex;
-            justify-content: center;
-            padding: 5px 0px 20px 0px;
-            font-family: 'Pretendard';
-            font-size: 24px;
-            font-weight: bold;
-          }
-          .typeBtn {
-            display: flex;
-            justify-content: center;
-            gap: 90px;
-
-            button {
-              display: inline-block;
-              justify-content: center;
-              align-items: center;
-              border: none;
-              border-radius: 6px;
-              background-color: #5e3dea;
-              color: #ffff;
-              width: 130px;
-              height: 40px;
-              box-shadow:
-                0.8rem 0.5rem 1.4rem #bec5d0,
-                -0.3rem -0.4rem 0.8rem #fbfbfb;
-            }
+        tr {
+          td {
+            padding: 20px;
+            border: 1px solid black;
           }
         }
+      }
+    }
+  }
 
-        .finalBtn {
+  .paymentMethod {
+    margin-top: 70px;
+
+    .methodTitle {
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .selectMethod {
+      display: flex;
+      padding: 30px 30px;
+
+      .buttonDiv {
+        padding: 4px;
+        flex: 1;
+
+        button {
           display: flex;
-          justify-content: center;
           align-items: center;
-          height: 150px;
+          justify-content: center;
+          width: 100%;
+          height: 56px;
+          padding: 11px 22px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 15px;
+          font-weight: 400;
+          background-color: white;
 
-          button {
-            display: inline-block;
-            justify-content: center;
-            align-items: center;
-            border: none;
-            border-radius: 6px;
-            background-color: #5e3dea;
-            color: #ffff;
-            width: 130px;
-            height: 40px;
-            box-shadow:
-              0.8rem 0.5rem 1.4rem #bec5d0,
-              -0.3rem -0.4rem 0.8rem #fbfbfb;
-          }
-
-          button:hover {
-            background-color: #002ead;
-            transition: 0.7s;
+          img {
+            max-width: 160px;
           }
         }
       }
