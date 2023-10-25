@@ -3,33 +3,53 @@ import { useNavigate } from 'react-router-dom';
 import './Main.scss';
 import Counter from '../../components/Counter/Counter';
 import { LOGIN_AWS_API } from '../../config';
+import Popup from '../../components/Popup/Popup';
 
 const Main = () => {
   const [statisticsData, setStatisticsData] = useState({});
+  const [popup, setPopup] = useState({});
   const navigate = useNavigate();
   const token = localStorage.getItem('accessToken');
 
+  const closePopup = () => {
+    setPopup({ ...popup, open: false });
+  };
+
   const goToCommunity = () => {
-    if (token) {
-      navigate('/community');
-    } else {
-      alert('로그인이 필요합니다.');
-    }
+    navigate('/community');
+  };
+
+  const goLogin = () => {
+    navigate('login');
   };
 
   const goToExercise = () => {
-    if (token) {
-      navigate('/exercise');
+    if (!token) {
+      setPopup({
+        open: true,
+        title: '로그인후 이용가능 합니다.',
+        leftBtnValue: '로그인하러 가기',
+        rightBtnValue: '닫기',
+        leftBtnClick: goLogin,
+        rightBtnClick: closePopup,
+      });
     } else {
-      alert('로그인이 필요합니다.');
+      navigate('exercise');
     }
   };
 
   const goToSubscribe = () => {
-    if (token) {
-      navigate('/subscribe');
+    if (!token) {
+      setPopup({
+        open: true,
+        title: '로그인후 이용가능 합니다.',
+        leftBtnValue: '로그인하러 가기',
+        rightBtnValue: '닫기',
+        leftBtnClick: goLogin,
+        rightBtnClick: closePopup,
+      });
     } else {
-      alert('로그인이 필요합니다.');
+      navigate('subscribe');
     }
   };
 
@@ -126,7 +146,7 @@ const Main = () => {
               <Counter
                 initialValue={0}
                 targetValue={statisticsData.userCount}
-                unit={'명'}
+                unit="명"
               />
             </div>
             <div className="feedCount countBox">
@@ -134,7 +154,7 @@ const Main = () => {
               <Counter
                 initialValue={0}
                 targetValue={statisticsData.feedCount}
-                unit={'개'}
+                unit="개"
               />
             </div>
             <div className="subscriberCount countBox">
@@ -142,12 +162,21 @@ const Main = () => {
               <Counter
                 initialValue={0}
                 targetValue={statisticsData.subscriberCount}
-                unit={'명'}
+                unit="명"
               />
             </div>
           </div>
         </div>
       </div>
+      {popup.open && (
+        <Popup
+          title={popup.title}
+          leftBtnValue={popup.leftBtnValue}
+          rightBtnValue={popup.rightBtnValue}
+          leftBtnClick={popup.leftBtnClick}
+          rightBtnClick={popup.rightBtnClick}
+        />
+      )}
     </div>
   );
 };
