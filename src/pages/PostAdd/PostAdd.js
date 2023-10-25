@@ -29,6 +29,7 @@ const PostAdd = ({ isEdit }) => {
     }
     setImage(newImages); //setImage 함수가 실행, 복사된 newImages 의 배열을 사용, 이미지 상태업데이트.
     setPreviewImage(newPreviewImages); //setPreviewImage 함수가 실행, newPreviewImages 배열을 사용, previewImage 상태업데이트
+    console.log(newImages);
   };
 
   const handleRemoveImage = (index) => {
@@ -49,8 +50,11 @@ const PostAdd = ({ isEdit }) => {
   const handleCancel = () => {
     navigate('/community');
   };
+  const accessToken = localStorage.getItem('accessToken');
 
-  const handlePost = () => {
+  const handlePost = (e) => {
+    e.preventDefault();
+
     const formData = new FormData();
     formData.append('imageUrl', image);
     formData.append('content', text);
@@ -59,8 +63,8 @@ const PostAdd = ({ isEdit }) => {
     fetch(`http://10.58.52.247:8000/feeds${isEdit ? `/${id}` : ''}`, {
       method: isEdit ? 'PUT' : 'POST',
       headers: {
-        'Content-Type': 'multipart/form-data',
-        //Authorization: "accessToken",
+        // 'Content-Type': 'multipart/form-data',
+        Authorization: accessToken,
         // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTcwNzMxNzAsImV4cCI6MTY5NzExNjM3MH0.f-YMfUS7Qrlh4d69kXzZxqUEI4lCLanQAWqQeYcoI3U',
       },
       body: formData,
@@ -74,20 +78,20 @@ const PostAdd = ({ isEdit }) => {
       });
   };
 
-  useEffect(() => {
-    if (!isEdit || !id) return;
+  // useEffect(() => {
+  //   if (!isEdit || !id) return;
 
-    fetch('/feeds') // 특정Id값을 조회해서 get요청으로 불러오는 API X, 피드조회 API명세서를 이용해야함.
-      .then((res) => res.json())
-      .then(({ data }) => {
-        const feedData = data.feeds.find((feed) => feed.id === id);
-        const { imgUrl, content, challenge } = feedData;
+  //   fetch('/feeds') // 특정Id값을 조회해서 get요청으로 불러오는 API X, 피드조회 API명세서를 이용해야함.
+  //     .then((res) => res.json())
+  //     .then(({ data }) => {
+  //       const feedData = data.feeds.find((feed) => feed.id === id);
+  //       const { imgUrl, content, challenge } = feedData;
 
-        setImage(imgUrl.map(({ url }) => url));
-        setText(content);
-        setIsChecked(Number(challenge));
-      });
-  }, [isEdit, id]);
+  //       setImage(imgUrl.map(({ url }) => url));
+  //       setText(content);
+  //       setIsChecked(Number(challenge));
+  //     });
+  // }, [isEdit, id]);
 
   return (
     <div className="mainContainer">
@@ -109,8 +113,8 @@ const PostAdd = ({ isEdit }) => {
           </div>
           <form
             className="topSection"
-            method="post"
-            enctype="multipart/form-data"
+            encType="multipart/form-data"
+            onSubmit={handlePost}
           >
             <div className="fileBox">
               <label for="chooseFile">💪 UPLOAD 3 PHOTOS! 🏋️‍♀️</label>
@@ -122,31 +126,31 @@ const PostAdd = ({ isEdit }) => {
                 onChange={handleImageChange}
               />
             </div>
+            <section className="buttomSection">
+              <div className="challengeCheck">
+                <input
+                  onChange={handleChecked}
+                  type="checkbox"
+                  checked={Boolean(isChecked)}
+                />
+                <span>챌린지참여</span>
+              </div>
+              <div className="textSection">
+                <textarea
+                  onChange={handleText}
+                  placeholder="피드를 작성해주세요."
+                  maxLength={100}
+                  value={text}
+                />
+              </div>
+              <div className="buttonArea">
+                <button onClick={handleCancel}>취소</button>
+                <button type="submit" onClick={handlePost}>
+                  {isEdit ? '수정' : '작성'}
+                </button>
+              </div>
+            </section>
           </form>
-          <section className="buttomSection">
-            <div className="challengeCheck">
-              <input
-                onChange={handleChecked}
-                type="checkbox"
-                checked={Boolean(isChecked)}
-              />
-              <span>챌린지참여</span>
-            </div>
-            <div className="textSection">
-              <textarea
-                onChange={handleText}
-                placeholder="피드를 작성해주세요."
-                maxLength={100}
-                value={text}
-              />
-            </div>
-            <div className="buttonArea">
-              <button onClick={handleCancel}>취소</button>
-              <button type="submit" onClick={handlePost}>
-                {isEdit ? '수정' : '작성'}
-              </button>
-            </div>
-          </section>
         </div>
       </div>
     </div>
