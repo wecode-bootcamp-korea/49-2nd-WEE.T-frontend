@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Comment.scss';
 
 const Comment = ({ feedId, fetchCommentList }) => {
-  // const TOKEN = localStorage.getItem('accessToken');
-  const TOKEN =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTc2OTgyMzgsImV4cCI6MTY5Nzc0MTQzOH0.lTEsMsiqQa8MQBmbeWPzDSlvzbDCc9HsX5eQ5-vhJxU';
+  const TOKEN = localStorage.getItem('accessToken');
   const navigate = useNavigate();
 
   const [comment, setComment] = useState('');

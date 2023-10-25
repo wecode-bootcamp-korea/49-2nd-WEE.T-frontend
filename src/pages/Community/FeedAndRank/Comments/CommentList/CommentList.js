@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CommentList.scss';
 
 const CommentList = ({ feedId, fetchCommentList, commentData }) => {
-  // const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = localStorage.getItem('accessToken');
+  const navigate = useNavigate();
+
   const [commentEdit, setCommentEdit] = useState('');
   const [editingCommentId, setEditingCommentId] = useState(null);
   const isCheckEditComment = commentEdit.length >= 1;
@@ -23,56 +26,56 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
   };
 
   const handleCommentEditSave = (id) => {
-    // if (TOKEN) {
-    if (isCheckEditComment) {
+    if (TOKEN) {
+      if (isCheckEditComment) {
+        fetch(`/endpoint/comments/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json;',
+            Authorization: TOKEN,
+          },
+          body: JSON.stringify({
+            content: commentEdit,
+          }),
+        }).then((response) => {
+          console.log(response);
+          if (response.ok) {
+            fetchCommentList();
+            alert('댓글이 수정되었습니다.');
+          }
+        });
+      } else {
+        alert('댓글을 작성해주세요.');
+      }
+    } else {
+      alert('로그인 후 댓글 작성이 가능합니다.');
+      navigate('/login');
+    }
+  };
+
+  const handleCommentDelete = (id) => {
+    if (TOKEN) {
       fetch(`/endpoint/comments/${id}`, {
-        method: 'PUT',
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json;',
-          // Authorization: TOKEN,
+          Authorization: TOKEN,
         },
         body: JSON.stringify({
+          feedId,
           content: commentEdit,
         }),
       }).then((response) => {
         console.log(response);
         if (response.ok) {
           fetchCommentList();
-          alert('댓글이 수정되었습니다.');
+          alert('댓글이 삭제되었습니다.');
         }
       });
     } else {
-      alert('댓글을 작성해주세요.');
+      alert('로그인 후 댓글 삭제가 가능합니다.');
+      navigate('/login');
     }
-    // } else {
-    //   alert('로그인 후 댓글 작성이 가능합니다.');
-    //   navigate('/login');
-    // }
-  };
-
-  const handleCommentDelete = (id) => {
-    // if (TOKEN) {
-    fetch(`/endpoint/comments/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json;',
-        // Authorization: TOKEN,
-      },
-      // body: JSON.stringify({
-      //   feedId,
-      //   content: commentEdit,
-      // }),
-    }).then((response) => {
-      console.log(response);
-      if (response.ok) {
-        fetchCommentList();
-        alert('댓글이 삭제되었습니다.');
-      }
-    });
-    // } else {
-    //   alert('로그인 후 댓글 삭제가 가능합니다.');
-    //   navigate('/login');
-    // }
   };
 
   return (
