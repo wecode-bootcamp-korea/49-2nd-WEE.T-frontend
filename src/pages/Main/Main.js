@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Main.scss';
 import Counter from '../../components/Counter/Counter';
-import { LOGIN_AWS_API } from '../../config';
+import { BASE_AWS_API } from '../../config';
 import Popup from '../../components/Popup/Popup';
 
 const Main = () => {
@@ -54,7 +54,7 @@ const Main = () => {
   };
 
   useEffect(() => {
-    fetch(`${LOGIN_AWS_API}/statistics`, {
+    fetch(`${BASE_AWS_API}/statistics`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

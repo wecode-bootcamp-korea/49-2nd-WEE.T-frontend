@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { LOGIN_AWS_API } from '../../config';
+import { BASE_AWS_API } from '../../config';
 
 const LoginKakao = () => {
   const [searchParams] = useSearchParams();
@@ -8,7 +8,7 @@ const LoginKakao = () => {
   const navigate = useNavigate();
   useEffect(() => {
     code &&
-      fetch(`${LOGIN_AWS_API}/auth/kakao/login?code=${code}`, {
+      fetch(`${BASE_AWS_API}/auth/kakao/login?code=${code}`, {
         method: 'GET',
       })
         .then((res) => res.json())
