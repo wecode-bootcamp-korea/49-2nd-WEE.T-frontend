@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BASE_AWS_API } from '../../../../../config';
 import './CommentList.scss';
 
-const CommentList = ({ feedId, fetchCommentList, commentData }) => {
+const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
   const TOKEN = localStorage.getItem('accessToken');
   const navigate = useNavigate();
 
@@ -19,6 +20,9 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
     return formattedDate;
   };
 
+  console.log(feedIdData);
+  const { feedId } = feedIdData;
+
   const handleCommentEdit = (id) => {
     const commentToEdit = commentData.find((comment) => comment.id === id);
     setCommentEdit(commentToEdit.content);
@@ -28,7 +32,7 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
   const handleCommentEditSave = (id) => {
     if (TOKEN) {
       if (isCheckEditComment) {
-        fetch(`/endpoint/comments/${id}`, {
+        fetch(`${BASE_AWS_API}/comments/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;',
@@ -55,7 +59,7 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
 
   const handleCommentDelete = (id) => {
     if (TOKEN) {
-      fetch(`/endpoint/comments/${id}`, {
+      fetch(`${BASE_AWS_API}/comments/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json;',
@@ -139,7 +143,7 @@ const CommentList = ({ feedId, fetchCommentList, commentData }) => {
                   )}
                 </div>
               ) : null}
-              <div className="writeData">{formatCreatedAt(data.createdAt)}</div>
+              <div className="writeData">{formatCreatedAt(data.createAt)}</div>
             </div>
           </li>
         ))}

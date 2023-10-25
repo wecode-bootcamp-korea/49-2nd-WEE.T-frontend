@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BASE_AWS_API } from '../../../../../config';
 import './Comment.scss';
 
-const Comment = ({ feedId, fetchCommentList }) => {
+const Comment = ({ feedIdData, fetchCommentList }) => {
   const TOKEN = localStorage.getItem('accessToken');
+  // const TOKEN =
+  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTgyMTU1MjgsImV4cCI6MTY5ODI1ODcyOH0.PKIwSNMdR0ssGOGZWC2h17jAjd2UiC-PaSfableVDpA';
   const navigate = useNavigate();
 
   const [comment, setComment] = useState('');
@@ -16,18 +19,17 @@ const Comment = ({ feedId, fetchCommentList }) => {
   const handleCommentPost = () => {
     if (TOKEN) {
       if (isCheckComment) {
-        fetch(`http://10.58.52.207:8000/comments`, {
+        fetch(`${BASE_AWS_API}/comments`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Authorization: TOKEN,
           },
           body: JSON.stringify({
-            feedId: feedId.feedId,
+            feedId: feedIdData.feedId,
             content: comment,
           }),
         }).then((response) => {
-          console.log('>>>>', response);
           if (response.ok) {
             fetchCommentList();
           }

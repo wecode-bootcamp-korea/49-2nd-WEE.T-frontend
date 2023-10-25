@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-// import { Redirect } from 'react-router-dom';
+import { useNavigate, Redirect } from 'react-router-dom';
+import { BASE_AWS_API } from '../../config';
 import Popup from '../../components/Popup/Popup';
 import './Subscribe.scss';
 
@@ -9,7 +9,7 @@ const Subscribe = () => {
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
-  // const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = localStorage.getItem('accessToken');
 
   // 결제 페이지로 데이터 전달하기
   const goPayment = () => {
@@ -22,18 +22,17 @@ const Subscribe = () => {
   };
 
   useEffect(() => {
-    // if (accessToken) {
-    getUserSubscribeData();
-    // }
+    if (TOKEN) {
+      getUserSubscribeData();
+    }
   }, []);
 
   const getUserSubscribeData = () => {
-    fetch('/data/subscribeData.json', {
-      // http://10.58.52.67:8000/subscribe
-
+    fetch(`${BASE_AWS_API}/subscribe`, {
+      // fetch(`/data/subscribeData.json`, {
       headers: {
         'Content-Type': 'application/json',
-        // Authorization: TOKEN,
+        Authorization: TOKEN,
       },
     })
       .then((response) => {
@@ -71,9 +70,9 @@ const Subscribe = () => {
   };
 
   // 사용자가 로그인하지 않았다면 로그인 페이지로 리다이렉션
-  // if (!TOKEN) {
-  //   return <Redirect to="/login" />;
-  // }
+  if (!TOKEN) {
+    return <Redirect to="/login" />;
+  }
 
   const isEmpty = Object.keys(subscribeData).length === 0;
 
