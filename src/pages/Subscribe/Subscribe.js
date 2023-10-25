@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BASE_AWS_API } from '../../config';
 import Popup from '../../components/Popup/Popup';
 import './Subscribe.scss';
@@ -68,11 +68,6 @@ const Subscribe = () => {
       alert('구독하실 개월 수를 선택해주세요.');
     }
   };
-
-  // 사용자가 로그인하지 않았다면 로그인 페이지로 리다이렉션
-  if (!TOKEN) {
-    return <Redirect to="/login" />;
-  }
 
   const isEmpty = Object.keys(subscribeData).length === 0;
 
