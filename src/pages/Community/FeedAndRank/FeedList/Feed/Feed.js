@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FeedImages from '../FeedImages/FeedImages';
 import Comments from '../../Comments/Comments';
-import { LOGIN_AWS_API } from '../../../../../config';
+import { BASE_AWS_API } from '../../../../../config';
 import './Feed.scss';
 
 const Feed = ({ getFeed, data }) => {
@@ -25,7 +25,7 @@ const Feed = ({ getFeed, data }) => {
   };
 
   const handleDeleteFeed = (id) => {
-    fetch(`${LOGIN_AWS_API}/feeds/${id}`, {
+    fetch(`${BASE_AWS_API}/feeds/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;',

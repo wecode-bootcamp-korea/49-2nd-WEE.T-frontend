@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Comment from './Comment/Comment';
 import CommentList from './CommentList/CommentList';
-import { LOGIN_AWS_API } from '../../../../config';
+import { BASE_AWS_API } from '../../../../config';
 import './Comments.scss';
 
 const Comments = (feedIdData) => {
@@ -17,9 +17,8 @@ const Comments = (feedIdData) => {
   const { feedId } = feedIdData;
 
   const fetchCommentList = () => {
-    fetch(`${LOGIN_AWS_API}/comments?feedId=${feedId}`, {
-      // /data/commentData.json
-      // endpoint/comments/${feedId}
+    fetch(`${BASE_AWS_API}/comments?feedId=${feedId}`, {
+      // fetch(`/data/commentData.json`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

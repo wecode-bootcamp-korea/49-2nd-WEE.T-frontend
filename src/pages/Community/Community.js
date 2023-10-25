@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import FeedAndRank from './FeedAndRank/FeedAndRank';
-import { LOGIN_AWS_API } from '../../config';
+import { BASE_AWS_API } from '../../config';
 import './Community.scss';
 
 const Community = () => {
@@ -38,9 +38,8 @@ const Community = () => {
   }, [page, isMounted]);
 
   const fetchFeedList = () => {
-    fetch(`${LOGIN_AWS_API}/feeds?limit=${limit}&page=${page}`, {
-      // http://10.58.52.236:8000/feeds?limit=${limit}&page=${page}
-      // /data/communityData.json?limit=${limit}&page=${page}
+    fetch(`${BASE_AWS_API}/feeds?limit=${limit}&page=${page}`, {
+      // fetch(`/data/communityData.json?limit=${limit}&page=${page}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

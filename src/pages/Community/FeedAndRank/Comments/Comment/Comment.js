@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LOGIN_AWS_API } from '../../../../../config';
+import { BASE_AWS_API } from '../../../../../config';
 import './Comment.scss';
 
 const Comment = ({ feedIdData, fetchCommentList }) => {
@@ -19,7 +19,7 @@ const Comment = ({ feedIdData, fetchCommentList }) => {
   const handleCommentPost = () => {
     if (TOKEN) {
       if (isCheckComment) {
-        fetch(`${LOGIN_AWS_API}/comments`, {
+        fetch(`${BASE_AWS_API}/comments`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
