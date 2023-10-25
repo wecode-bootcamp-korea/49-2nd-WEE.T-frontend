@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Comment from './Comment/Comment';
 import CommentList from './CommentList/CommentList';
+import { LOGIN_AWS_API } from '../../../../config';
 import './Comments.scss';
 
 const Comments = (feedIdData) => {
-  // const TOKEN = localStorage.getItem('accessToken');
-  const TOKEN =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTgyMTU1MjgsImV4cCI6MTY5ODI1ODcyOH0.PKIwSNMdR0ssGOGZWC2h17jAjd2UiC-PaSfableVDpA';
+  const TOKEN = localStorage.getItem('accessToken');
+  // const TOKEN =
+  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTgyMTU1MjgsImV4cCI6MTY5ODI1ODcyOH0.PKIwSNMdR0ssGOGZWC2h17jAjd2UiC-PaSfableVDpA';
   const [commentData, setCommentData] = useState([]);
 
   useEffect(() => {
@@ -16,7 +17,7 @@ const Comments = (feedIdData) => {
   const { feedId } = feedIdData;
 
   const fetchCommentList = () => {
-    fetch(`http://localhost:8000/comments?feedId=${feedId}`, {
+    fetch(`${LOGIN_AWS_API}/comments?feedId=${feedId}`, {
       // /data/commentData.json
       // endpoint/comments/${feedId}
       method: 'GET',

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LOGIN_AWS_API } from '../../../../../config';
 import './Comment.scss';
 
 const Comment = ({ feedIdData, fetchCommentList }) => {
-  // const TOKEN = localStorage.getItem('accessToken');
-  const TOKEN =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTgyMTU1MjgsImV4cCI6MTY5ODI1ODcyOH0.PKIwSNMdR0ssGOGZWC2h17jAjd2UiC-PaSfableVDpA';
+  const TOKEN = localStorage.getItem('accessToken');
+  // const TOKEN =
+  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTgyMTU1MjgsImV4cCI6MTY5ODI1ODcyOH0.PKIwSNMdR0ssGOGZWC2h17jAjd2UiC-PaSfableVDpA';
   const navigate = useNavigate();
 
   const [comment, setComment] = useState('');
@@ -18,7 +19,7 @@ const Comment = ({ feedIdData, fetchCommentList }) => {
   const handleCommentPost = () => {
     if (TOKEN) {
       if (isCheckComment) {
-        fetch(`http://localhost:8000/comments`, {
+        fetch(`${LOGIN_AWS_API}/comments`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

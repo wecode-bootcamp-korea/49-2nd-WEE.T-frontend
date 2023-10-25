@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { LOGIN_AWS_API } from '../../../../config';
 import './Rank.scss';
 
 const Rank = () => {
@@ -9,8 +10,9 @@ const Rank = () => {
   }, []);
 
   const fetchRankTop10 = () => {
-    fetch(`/data/feedRank.json`, {
+    fetch(`${LOGIN_AWS_API}/feeds/rank`, {
       //http://10.58.52.172:8000/feeds/rank
+      // /data/feedRank.json
       method: 'GET',
     })
       .then((res) => res.json())

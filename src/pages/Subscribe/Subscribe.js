@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-// import { Redirect } from 'react-router-dom';
+import { useNavigate, Redirect } from 'react-router-dom';
+import { LOGIN_AWS_API } from '../../config';
 import Popup from '../../components/Popup/Popup';
 import './Subscribe.scss';
 
@@ -9,7 +9,7 @@ const Subscribe = () => {
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
-  // const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = localStorage.getItem('accessToken');
 
   // 결제 페이지로 데이터 전달하기
   const goPayment = () => {
@@ -22,14 +22,15 @@ const Subscribe = () => {
   };
 
   useEffect(() => {
-    // if (accessToken) {
+    // if (TOKEN) {
     getUserSubscribeData();
     // }
   }, []);
 
   const getUserSubscribeData = () => {
-    fetch('/data/subscribeData.json', {
+    fetch('${LOGIN_AWS_API}/subscribe', {
       // http://10.58.52.67:8000/subscribe
+      // /data/subscribeData.json
 
       headers: {
         'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LOGIN_AWS_API } from '../../../../../config';
 import './CommentList.scss';
 
 const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
@@ -31,7 +32,7 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
   const handleCommentEditSave = (id) => {
     if (TOKEN) {
       if (isCheckEditComment) {
-        fetch(`/endpoint/comments/${id}`, {
+        fetch(`${LOGIN_AWS_API}/comments/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;',
@@ -58,7 +59,7 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
 
   const handleCommentDelete = (id) => {
     if (TOKEN) {
-      fetch(`/endpoint/comments/${id}`, {
+      fetch(`${LOGIN_AWS_API}/comments/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json;',
