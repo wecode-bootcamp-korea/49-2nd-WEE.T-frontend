@@ -67,8 +67,8 @@
 
       .topSection {
         display: flex;
-        flex-direction: row;
-        height: 35px;
+        flex-direction: column;
+
         margin-bottom: 5px;
 
         #chooseFile {
