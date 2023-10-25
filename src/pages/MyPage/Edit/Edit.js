@@ -6,6 +6,7 @@ import Button from '../../../components/Button/Button';
 import { GENDER } from '../../../data/gender';
 import { PROFILE_LIST } from '../../../data/profileData';
 import { useNavigate } from 'react-router-dom';
+import { INFO_API } from '../../../config';
 import Popup from '../../../components/Popup/Popup';
 
 const Edit = () => {
@@ -13,7 +14,7 @@ const Edit = () => {
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('accessToken');
 
   const isValid = useMemo(() => {
     const validations = {};
@@ -52,24 +53,9 @@ const Edit = () => {
     });
   };
 
-  // useEffect(() => {
-  //   fetch('http://10.58.52.81:8000/users', {
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       Authorization: token,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((result) => {
-  //       setData(result.data);
-  //     });
-  // }, []);
-
   useEffect(() => {
     fetch('/data/condition.json', {
-      // fetch('http://10.58.52.69:8000/users', {
+      // fetch(`${INFO_API}/users`, {
       // headers: {
       //   'Content-Type': 'application/json;charset=utf-8',
       //   Authorization: token,
@@ -123,7 +109,7 @@ const Edit = () => {
   };
 
   const userInfoSubmit = () => {
-    // fetch('http://10.58.52.81:8000/users', {
+    // fetch(`${INFO_API}/users`, {
     //   method: 'PUT',
     //   headers: {
     //     'Content-Type': 'application/json;charset=utf-8',

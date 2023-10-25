@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './BuyList.scss';
+import { BUYLIST_API } from '../../../../config';
 
 const BuyList = (props) => {
   const { setBuyList } = props;
@@ -10,7 +11,7 @@ const BuyList = (props) => {
 
   // const token = localStorage.getItem('token');
   // useEffect(() => {
-  //   fetch(`http://10.58.52.193:8000/users/orders?before=${purchaseDate}`, {
+  //   fetch(`${BUYLIST_API}?before=${purchaseDate}`, {
   //     headers: {
   //       'Content-Type': 'application/json;charset=utf-8',
   //       // Authorization: token,
