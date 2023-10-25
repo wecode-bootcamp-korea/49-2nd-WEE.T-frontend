@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import './Training.scss';
 import TrainingContainer from '../../components/TrainingContainer/TrainingContainer';
+import { TRAINING_API } from '../../config';
 
 const Training = () => {
   const [trainingData, setTrainingData] = useState({});
@@ -25,8 +26,13 @@ const Training = () => {
   const remainingWeight = currentWeight - targetWeight;
 
   useEffect(() => {
-    fetch('/data/training.json', {
+    fetch(`${TRAINING_API}`, {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaXNOZXciOnRydWUsImlhdCI6MTY5ODEyMzQ4OSwiZXhwIjoxNjk4MTY2Njg5fQ.XBWszkm3GIob-9ZcPMp8Z7iohXFSbkYk1PS5IopXyWk',
+      },
     })
       .then((res) => res.json())
       .then((result) => {
@@ -60,13 +66,13 @@ const Training = () => {
             <p className="badge">
               <img src="/images/icon-fat.png" alt="체중계 아이콘" />
             </p>
-            <span className="userNickname">{trainingData.nickname}</span>님
+            <span className="userNickname">{trainingData.nickName}</span>님
             목표체중까지&nbsp;&nbsp;
             <span className="userCal"> {remainingWeight}kg </span>
             &nbsp;남았습니다.
           </div>
           <div className="userWeightBarWrapper">
-            <span className="weight">시작 {trainingData.weight}kg</span>
+            <span className="weight">시작 {trainingData.startWeight}kg</span>
             <div className="targetWeightBar">
               <p className="currentBar" style={{ width: `${completionRate}%` }}>
                 현재 {currentWeight}kg
@@ -80,7 +86,7 @@ const Training = () => {
           <div className="trainingContainer">
             <h1 className="todayText">
               <p className="todayDate">2023.10.18</p>
-              &nbsp; &nbsp; {trainingData.nickname}님 오늘의 트레이닝 &nbsp;
+              &nbsp; &nbsp; {trainingData.nickName}님 오늘의 트레이닝 &nbsp;
               &nbsp;
             </h1>
             <TrainingContainer

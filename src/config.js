@@ -6,4 +6,5 @@ export const DIET_API = 'http://10.58.52.68:8000/diets';
 export const LOGIN_AWS_API = 'http://3.39.73.27:8000';
 export const INFO_API = 'http://10.58.52.193:8000/users';
 export const BUYLIST_API = 'http://10.58.52.193:8000/users/orders';
+export const TRAINING_API = 'http://10.58.52.111:8000/training';
 /*export const LOGIN_AWS_API = 'http://10.58.52.68:8000';*/
