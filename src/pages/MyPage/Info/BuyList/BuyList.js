@@ -7,9 +7,10 @@ const BuyList = (props) => {
   const [purchaseList, setPurchaseList] = useState();
   const [purchaseDate, setPurchaseDate] = useState(sortingList[0].value);
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('accessToken');
+
   useEffect(() => {
-    fetch(`${BASE_AWS_API}?before=${purchaseDate}`, {
+    fetch(`${BASE_AWS_API}/users/orders?before=${purchaseDate}`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: token,
@@ -20,18 +21,19 @@ const BuyList = (props) => {
       })
       .then((result) => {
         setPurchaseList(result);
+        console.log(result);
       });
   }, [purchaseDate, token]);
 
-  useEffect(() => {
-    fetch('./data/orders.json')
-      .then((res) => {
-        return res.json();
-      })
-      .then((result) => {
-        setPurchaseList(result.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch('./data/orders.json')
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((result) => {
+  //       setPurchaseList(result.data);
+  //     });
+  // }, []);
 
   const select = (e) => {
     setPurchaseDate(e.target.value);
@@ -67,7 +69,7 @@ const BuyList = (props) => {
               <td>구독종료일</td>
               <td>결제가격</td>
             </tr>
-            {purchaseList?.map((orders) => {
+            {purchaseList?.data.map((orders) => {
               const {
                 orderId,
                 payment,
