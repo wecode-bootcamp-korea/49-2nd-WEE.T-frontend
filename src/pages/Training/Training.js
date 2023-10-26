@@ -26,7 +26,7 @@ const Training = () => {
   const remainingWeight = currentWeight - targetWeight;
 
   useEffect(() => {
-    fetch(`${BASE_AWS_API}`, {
+    fetch(`${BASE_AWS_API}/training`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
