@@ -109,13 +109,17 @@ const PostAdd = ({ isEdit }) => {
           <div className="prvSection">
             {previewImage.map((image, index) => (
               <div key={index} className="previewList">
-                <img src={image} alt="preview 이미지없음" />
-                <button
-                  className="individualDeletion"
-                  onClick={() => handleRemoveImage(index)}
-                >
-                  삭제
-                </button>
+                <div className="imgFile">
+                  <img src={image} alt="preview 이미지없음" />
+                </div>
+                <div className="deleteButton">
+                  <button
+                    className="individualDeletion"
+                    onClick={() => handleRemoveImage(index)}
+                  >
+                    삭제
+                  </button>
+                </div>
               </div>
             ))}
           </div>
