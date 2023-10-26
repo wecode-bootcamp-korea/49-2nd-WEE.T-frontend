@@ -23,8 +23,8 @@ const Subscribe = () => {
   }, []);
 
   const getUserSubscribeData = () => {
-    fetch(`${BASE_AWS_API}/subscribe`, {
-      // fetch(`/data/subscribeData.json`, {
+    // fetch(`${BASE_AWS_API}/subscribe`, {
+    fetch(`/data/subscribeData.json`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: TOKEN,
