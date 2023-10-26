@@ -17,6 +17,7 @@ const SignUp = () => {
     badge: '',
   });
   const [errors, setErrors] = useState({});
+  const [isAbledNickname, setIsAbledNickname] = useState(false);
 
   const handleSignUp = () => {
     const accessToken = localStorage.getItem('newUser');
@@ -48,6 +49,8 @@ const SignUp = () => {
           alert('체중은 500이하로 작성해 주세요.');
         } else if (userInfo.bodyFat > 100) {
           alert('체지방률은 100이하로 작성해주세요.');
+        } else if (isAbledNickname === false) {
+          alert('닉네임 중복 확인이 필요합니다.');
         } else {
           alert('오류입니다. 관리자에게 문의하세요.');
         }
@@ -68,8 +71,10 @@ const SignUp = () => {
       .then((result) => {
         if (result.message === 'AVAILABLE_NICKNAME') {
           alert('사용 가능한 닉네임 입니다.');
+          setIsAbledNickname(true);
         } else {
           alert('중복된 닉네임 입니다.');
+          setIsAbledNickname(false);
         }
       });
   };
