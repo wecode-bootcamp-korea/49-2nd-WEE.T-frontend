@@ -70,11 +70,11 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.message === 'AVAILABLE_NICKNAME') {
-          alert('사용 가능한 닉네임 입니다.');
           setIsAbledNickname(true);
+          alert('사용 가능한 닉네임 입니다.');
         } else {
-          alert('중복된 닉네임 입니다.');
           setIsAbledNickname(false);
+          alert('중복된 닉네임 입니다.');
         }
       });
   };
@@ -169,6 +169,7 @@ const SignUp = () => {
         break;
     }
     setErrors({ ...errors, ...fieldErrors });
+    console.log(isAbledNickname);
   };
   return (
     <div className="SignUp flexCenter">
@@ -193,6 +194,7 @@ const SignUp = () => {
               type="text"
               placeholder="ex)홍길동이다"
               name="nickname"
+              disabled={isAbledNickname}
             />
             <button onClick={handleDoubleCheck}>중복확인</button>
             {errors.nickname && <div className="errors">{errors.nickname}</div>}
