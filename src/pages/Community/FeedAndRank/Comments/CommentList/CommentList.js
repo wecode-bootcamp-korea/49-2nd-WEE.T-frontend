@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BASE_AWS_API } from '../../../../../config';
+// import { BASE_AWS_API } from '../../../../../config';
 import './CommentList.scss';
 
 const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
-  const TOKEN = localStorage.getItem('accessToken');
+  // const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTgyMzM3MzQsImV4cCI6MTY5ODI3NjkzNH0.lvij2fsOB81hHvYItRF3A_O8j2xNT8g7FyNxqQgdGdg';
   const navigate = useNavigate();
 
   const [commentEdit, setCommentEdit] = useState('');
@@ -32,7 +34,8 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
   const handleCommentEditSave = (id) => {
     if (TOKEN) {
       if (isCheckEditComment) {
-        fetch(`${BASE_AWS_API}/comments/${id}`, {
+        fetch(`http://localhost:8000/comments/${id}`, {
+          // fetch(`${BASE_AWS_API}/comments/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json;',
@@ -59,7 +62,7 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
 
   const handleCommentDelete = (id) => {
     if (TOKEN) {
-      fetch(`${BASE_AWS_API}/comments/${id}`, {
+      fetch(`http://localhost:8000/comments/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json;',

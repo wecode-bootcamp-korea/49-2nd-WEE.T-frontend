@@ -9,7 +9,9 @@ const Feed = ({ getFeed, data }) => {
   const navigate = useNavigate();
   const [isCommentExtended, setIsCommentExtended] = useState(false);
 
-  const TOKEN = localStorage.getItem('accessToken');
+  // const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTgyMzM3MzQsImV4cCI6MTY5ODI3NjkzNH0.lvij2fsOB81hHvYItRF3A_O8j2xNT8g7FyNxqQgdGdg';
 
   const formatCreatedAt = (created_at) => {
     const formattedDate = new Date(created_at).toLocaleDateString('ko-KR', {
