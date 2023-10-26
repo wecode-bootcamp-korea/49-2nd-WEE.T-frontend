@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BASE_AWS_API } from '../../../../../config';
 import './CommentList.scss';
 
-const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
+const CommentList = ({ getCommentList, commentData }) => {
   const TOKEN = localStorage.getItem('accessToken');
 
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
         }).then((response) => {
           if (response.ok) {
             alert('댓글이 수정되었습니다.');
-            fetchCommentList();
+            getCommentList();
             setEditingCommentId(null);
           }
         });
@@ -67,7 +67,7 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
         },
       }).then((response) => {
         if (response.ok) {
-          fetchCommentList();
+          getCommentList();
           alert('댓글이 삭제되었습니다.');
         }
       });
