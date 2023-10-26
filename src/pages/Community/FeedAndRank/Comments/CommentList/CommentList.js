@@ -22,7 +22,6 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
     return formattedDate;
   };
 
-  console.log(feedIdData);
   const { feedId } = feedIdData;
 
   const handleCommentEdit = (id) => {

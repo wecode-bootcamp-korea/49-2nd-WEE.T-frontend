@@ -15,6 +15,7 @@ const Comments = (feedIdData) => {
   }, []);
 
   const { feedId } = feedIdData;
+  console.log(feedId);
 
   const fetchCommentList = () => {
     fetch(`http://localhost:8000/comments?feedId=${feedId}`, {
