@@ -16,7 +16,6 @@ const PostAdd = ({ isEdit }) => {
     const newImages = [...image];
     const newPreviewImages = [...previewImage];
     const maxImages = 3;
-
     for (let i = 0; i < selectImageList.length; i++) {
       if (newImages.length < maxImages) {
         newImages.push(selectImageList[i]);
@@ -32,9 +31,12 @@ const PostAdd = ({ isEdit }) => {
   };
 
   const handleRemoveImage = (index) => {
+    const newImages = [...image];
+    newImages.splice(index, 1);
     const newPreviewImages = [...previewImage];
     newPreviewImages.splice(index, 1);
 
+    setImage(newImages);
     setPreviewImage(newPreviewImages);
   };
 
@@ -74,6 +76,8 @@ const PostAdd = ({ isEdit }) => {
         .then((res) => res.json())
         .then((result) => {
           if (result.message === 'INSERT_SUCCESS') {
+            const newImageUrl = result.imageUrl;
+            setPreviewImage([...previewImage, newImageUrl]);
             navigate('/community');
           }
         });
@@ -82,7 +86,7 @@ const PostAdd = ({ isEdit }) => {
 
   useEffect(() => {
     if (!isEdit || !id) return;
-    fetch('${BASE_AWS_AP}/feeds')
+    fetch('${BASE_AWS_API}/feeds')
       .then((res) => res.json())
       .then(({ data }) => {
         const feedData = data.feeds.find((feed) => feed.id === id);
@@ -95,20 +99,27 @@ const PostAdd = ({ isEdit }) => {
   }, [isEdit, id]);
 
   return (
-    <div className="mainContainer">
+    <div className="postAdd">
       <div className="feedContainer">
         <div className="innerSection">
-          <div className="titleSection">WEET YOU ?</div>
+          <div className="myNickName">
+            <img className="logo" src="./images/logo3.jpg" alt="로고" />
+            <h1 className="title">게시물 작성</h1>
+          </div>
           <div className="prvSection">
             {previewImage.map((image, index) => (
               <div key={index} className="previewList">
-                <img src={image} alt="preview 이미지없음" />
-                <button
-                  className="individualDeletion"
-                  onClick={() => handleRemoveImage(index)}
-                >
-                  삭제
-                </button>
+                <div className="imgFile">
+                  <img src={image} alt="preview 이미지없음" />
+                </div>
+                <div className="deleteButton">
+                  <button
+                    className="individualDeletion"
+                    onClick={() => handleRemoveImage(index)}
+                  >
+                    삭제
+                  </button>
+                </div>
               </div>
             ))}
           </div>
@@ -118,7 +129,11 @@ const PostAdd = ({ isEdit }) => {
             onSubmit={handlePost}
           >
             <div className="fileBox">
-              <label for="chooseFile">💪 UPLOAD 3 PHOTOS! 🏋️‍♀️</label>
+              <label for="chooseFile" className="labelName">
+                💪 회원님의 일상을 사진으로 공유해주세요. 💪
+                <br />
+                최대 3장까지 업로드 가능 여기를 클릭 해주세요.
+              </label>
               <input
                 type="file"
                 id="chooseFile"
@@ -139,16 +154,16 @@ const PostAdd = ({ isEdit }) => {
               <div className="textSection">
                 <textarea
                   onChange={handleText}
-                  placeholder="피드를 작성해주세요."
+                  placeholder="글을 작성해주세요.&#13;&#10; 100자 내외로 입력해주세요.&#13;&#10;W.TEE 가족에게 공유해주새요."
                   maxLength={100}
                   value={text}
                 />
               </div>
               <div className="buttonArea">
-                <button onClick={handleCancel}>취소</button>
                 <button type="submit" onClick={handlePost}>
                   {isEdit ? '수정' : '작성'}
                 </button>
+                <button onClick={handleCancel}>취소</button>
               </div>
             </section>
           </form>

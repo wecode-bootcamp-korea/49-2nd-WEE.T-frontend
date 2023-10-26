@@ -16,16 +16,24 @@ const Goal = (props) => {
 
       <Bar
         label="골격근량"
-        unit="%"
+        unit={data?.goalSkeletalMuscleMass === null ? '' : '%'}
         total={total.goalSkeletalMuscleMass}
-        value={data?.goalSkeletalMuscleMass}
+        value={
+          data?.goalSkeletalMuscleMass === null
+            ? '내 상태관리에서 업데이트 하세요.'
+            : data?.goalSkeletalMuscleMass
+        }
       />
 
       <Bar
         label="체지방량"
-        unit="%"
+        unit={data?.goalBodyFat === null ? '' : '%'}
         total={total.goalBodyFat}
-        value={data?.goalBodyFat}
+        value={
+          data?.goalBodyFat === null
+            ? '내 상태관리에서 업데이트 하세요.'
+            : data?.goalBodyFat
+        }
       />
     </div>
   );

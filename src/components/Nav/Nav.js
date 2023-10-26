@@ -104,9 +104,9 @@ const Nav = () => {
 
   const goToSubscribe = () => authenticatedNavigate('/subscribe');
   const goToCondition = () => authenticatedNavigate('/info');
-  const goToGuideLine = () => authenticatedNavigate('/');
   const goToTraining = () => authenticatedNavigate('/training');
   const goToExercise = () => authenticatedNavigate('/exercise');
+  const goToLogin = () => authenticatedNavigate('/login');
 
   return (
     <nav
@@ -150,7 +150,7 @@ const Nav = () => {
             className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
             onClick={goToLocation}
           >
-            내주변운동맛집
+            주변위치검색
           </button>
           {isLogin && <button onClick={goToCondition}>상태페이지</button>}
 
@@ -165,9 +165,12 @@ const Nav = () => {
               / 로그아웃
             </button>
           ) : (
-            <Link className="btnSignUp" to="/login">
+            <button
+              className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+              onClick={goToLogin}
+            >
               로그인
-            </Link>
+            </button>
           )}
 
           {popup.open && (

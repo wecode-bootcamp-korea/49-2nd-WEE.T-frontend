@@ -1,6 +1,7 @@
 .rankInfo {
   display: flex;
   flex-direction: column;
+  gap: 20px;
   align-items: center;
   text-align: center;
   border: 1px solid #5e3dea;
@@ -10,7 +11,7 @@
     width: 300px;
 
     h1 {
-      margin-top: 40px;
+      margin-top: 20px;
       font-size: 25px;
       font-weight: 600;
       width: 300px;
