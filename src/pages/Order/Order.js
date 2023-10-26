@@ -1,26 +1,9 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router';
 import './Order.scss';
 
 const Order = () => {
-  const location = useLocation();
-  // const subscribeId = location.state.subscribeId;
-  // console.log(subscribeId);
-
-  // const fetchOrder = () => {
-  //   fetch(`EndPoint/subscription`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       // "Authorization": TOKEN
-  //     },
-  //     body: JSON.stringify({
-  //       subscribeId,
-  //     }),
-  //   }).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
+  const navigate = useNavigate();
 
   const IMP = window.IMP;
   const handlePayment = () => {
@@ -61,6 +44,7 @@ const Order = () => {
               if (result.message === 'CREATE_ORDER_SUCCESS') {
                 localStorage.setItem('orderId', result.orderId);
                 alert('결제성공!');
+                navigate('/');
               } else {
                 alert('실패');
               }
