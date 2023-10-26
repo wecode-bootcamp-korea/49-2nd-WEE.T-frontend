@@ -5,6 +5,10 @@ import './Order.scss';
 const Order = () => {
   const navigate = useNavigate();
 
+  const subscribeId = localStorage.getItem('subscribeId');
+  const month = localStorage.getItem('month');
+  const price = localStorage.getItem('price');
+
   const IMP = window.IMP;
   const handlePayment = () => {
     IMP.init('imp21134852');
