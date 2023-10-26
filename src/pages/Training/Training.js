@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import './Training.scss';
 import TrainingContainer from '../../components/TrainingContainer/TrainingContainer';
+import { BASE_AWS_API } from '../../config';
 
 const Training = () => {
   const [trainingData, setTrainingData] = useState({});
@@ -25,8 +26,12 @@ const Training = () => {
   const remainingWeight = currentWeight - targetWeight;
 
   useEffect(() => {
-    fetch('/data/training.json', {
+    fetch(`${BASE_AWS_API}/training`, {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('accessToken'),
+      },
     })
       .then((res) => res.json())
       .then((result) => {
@@ -60,13 +65,13 @@ const Training = () => {
             <p className="badge">
               <img src="/images/icon-fat.png" alt="체중계 아이콘" />
             </p>
-            <span className="userNickname">{trainingData.nickname}</span>님
+            <span className="userNickname">{trainingData.nickName}</span>님
             목표체중까지&nbsp;&nbsp;
             <span className="userCal"> {remainingWeight}kg </span>
             &nbsp;남았습니다.
           </div>
           <div className="userWeightBarWrapper">
-            <span className="weight">시작 {trainingData.weight}kg</span>
+            <span className="weight">시작 {trainingData.startWeight}kg</span>
             <div className="targetWeightBar">
               <p className="currentBar" style={{ width: `${completionRate}%` }}>
                 현재 {currentWeight}kg
@@ -80,33 +85,33 @@ const Training = () => {
           <div className="trainingContainer">
             <h1 className="todayText">
               <p className="todayDate">2023.10.18</p>
-              &nbsp; &nbsp; {trainingData.nickname}님 오늘의 트레이닝 &nbsp;
+              &nbsp; &nbsp; {trainingData.nickName}님 오늘의 트레이닝 &nbsp;
               &nbsp;
             </h1>
             <TrainingContainer
               trainingData={trainingData.shoulder}
               iconImg={shoulderIcon}
-              exerciseArea={'어깨 운동'}
+              exerciseArea="어깨 운동"
             />
             <TrainingContainer
               trainingData={trainingData.back}
               iconImg={backIcon}
-              exerciseArea={'등 운동'}
+              exerciseArea="등 운동"
             />
             <TrainingContainer
               trainingData={trainingData.lowerBody}
               iconImg={lowerBodyIcon}
-              exerciseArea={'하체 운동'}
+              exerciseArea="하체 운동"
             />
             <TrainingContainer
               trainingData={trainingData.chest}
               iconImg={chestIcon}
-              exerciseArea={'가슴 운동'}
+              exerciseArea="가슴 운동"
             />
             <TrainingContainer
               trainingData={trainingData.arm}
               iconImg={armIcon}
-              exerciseArea={'팔 운동'}
+              exerciseArea="팔 운동"
             />
           </div>
         </div>

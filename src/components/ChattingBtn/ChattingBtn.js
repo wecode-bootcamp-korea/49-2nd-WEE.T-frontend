@@ -10,7 +10,7 @@ const ChattingBtn = () => {
   const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('accessToken');
 
   const goChatting = () => {
     // 로그인 안한 경우

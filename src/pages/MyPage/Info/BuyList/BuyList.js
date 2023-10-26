@@ -1,36 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import './BuyList.scss';
+import { BASE_AWS_API } from '../../../../config';
 
 const BuyList = (props) => {
   const { setBuyList } = props;
   const [purchaseList, setPurchaseList] = useState();
   const [purchaseDate, setPurchaseDate] = useState(sortingList[0].value);
 
-  // const token = localStorage.getItem('token');
-  // useEffect(() => {
-  //   fetch(`http://10.58.52.193:8000/users/orders?before=${purchaseDate}`, {
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       // Authorization: token,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((result) => {
-  //       setPurchaseList(result);
-  //     });
-  // }, [purchaseDate]);
+  const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    fetch('./data/orders.json')
+    fetch(`${BASE_AWS_API}/users/orders?before=${purchaseDate}`, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    })
       .then((res) => {
         return res.json();
       })
       .then((result) => {
-        setPurchaseList(result.data);
+        setPurchaseList(result);
+        console.log(result);
       });
-  }, []);
+  }, [purchaseDate, token]);
+
+  // useEffect(() => {
+  //   fetch('./data/orders.json')
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((result) => {
+  //       setPurchaseList(result.data);
+  //     });
+  // }, []);
 
   const select = (e) => {
     setPurchaseDate(e.target.value);
@@ -46,7 +49,7 @@ const BuyList = (props) => {
 
         <div className="selectBox">
           <select className="select" onChange={select}>
-            {sortingList?.deta.map((list) => {
+            {sortingList?.map((list) => {
               return (
                 <option key={list.id} value={list.value}>
                   {list.name}
@@ -66,7 +69,7 @@ const BuyList = (props) => {
               <td>구독종료일</td>
               <td>결제가격</td>
             </tr>
-            {purchaseList?.map((orders) => {
+            {purchaseList?.data.map((orders) => {
               const {
                 orderId,
                 payment,

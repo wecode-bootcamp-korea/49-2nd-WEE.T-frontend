@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.scss';
-import { LOGIN_AWS_API } from '../../config';
+import { BASE_AWS_API } from '../../config';
 
 const SignUp = () => {
   const [userInfo, setUserInfo] = useState({
@@ -21,7 +21,7 @@ const SignUp = () => {
   const handleSignUp = () => {
     const accessToken = localStorage.getItem('newUser');
     localStorage.removeItem('newUser');
-    fetch(`${LOGIN_AWS_API}/auth/signup`, {
+    fetch(`${BASE_AWS_API}/auth/signup`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -32,7 +32,7 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.message === 'MODIFIED_SUCCESS') {
-          localStorage.setItem('accessToken', localStorage.getItem('newUser'));
+          localStorage.setItem('accessToken', accessToken);
           navigate('/');
         } else if (userInfo.nickname.length > 8) {
           alert('닉네임은 8자 이내로 입력해 주세요.');
@@ -56,7 +56,7 @@ const SignUp = () => {
 
   const handleDoubleCheck = () => {
     const accessToken = localStorage.getItem('newUser');
-    fetch(`${LOGIN_AWS_API}/users/nickname`, {
+    fetch(`${BASE_AWS_API}/users/nickname`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

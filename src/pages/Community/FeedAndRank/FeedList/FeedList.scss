@@ -5,99 +5,15 @@
   overflow-y: auto;
 
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #888;
+    background-color: #5e3dea;
+    border-radius: 6px;
   }
 
   &::-webkit-scrollbar-track {
     background-color: #f0f0f0;
-  }
-
-  .feedTable {
-    border: 1px solid #ddd;
-    border-radius: 16px;
-    list-style: none;
-    line-height: 1.7em;
-    margin-bottom: 40px;
-    margin-top: 0px;
-    padding-bottom: 40px;
-
-    .feedContent {
-      .userDiv {
-        display: flex;
-        justify-content: space-between;
-        height: 40px;
-        margin-top: 10px;
-        padding: 0 5px;
-
-        .userInfo {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-
-          .badge {
-            width: 36px;
-            height: 36px;
-            justify-content: center;
-            flex-shrink: 0;
-
-            img {
-              width: 36px;
-              height: 36px;
-              border-radius: 100px;
-              border: 0.5px solid #ddd;
-            }
-          }
-
-          .nickname {
-            font-size: 14px;
-            font-weight: bold;
-          }
-        }
-
-        .btnBox {
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
-          padding-right: 7px;
-          gap: 8px;
-
-          .subBtn {
-            padding: 6px 14px;
-            border: none;
-            border-radius: 6px;
-            background-color: #ccc;
-            color: #fff;
-            text-align: center;
-            font-weight: bold;
-          }
-        }
-      }
-
-      .feedText {
-        padding: 0 12px;
-
-        .text {
-          margin: 20px 0;
-        }
-
-        .commentDiv {
-          .commentThings {
-            font-weight: bold;
-          }
-
-          .moreView {
-            cursor: pointer;
-          }
-        }
-
-        .writeDate {
-          font-size: 14px;
-        }
-      }
-    }
   }
 }
