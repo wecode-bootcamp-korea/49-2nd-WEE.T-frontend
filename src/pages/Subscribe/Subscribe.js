@@ -10,13 +10,6 @@ const Subscribe = () => {
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
   const TOKEN = localStorage.getItem('accessToken');
-
-  // 결제 페이지로 데이터 전달하기
-  const goPayment = () => {
-    const orderSubscribeId = selectedCheckbox.subscribeId;
-    navigate('/order', { state: { subscribeId: orderSubscribeId } });
-  };
-
   const closePopup = () => {
     setPopup({ ...popup, open: false });
   };
@@ -24,6 +17,8 @@ const Subscribe = () => {
   useEffect(() => {
     if (TOKEN) {
       getUserSubscribeData();
+    } else {
+      navigate('/login');
     }
   }, []);
 
@@ -37,6 +32,7 @@ const Subscribe = () => {
     })
       .then((response) => {
         if (response.ok) {
+          console.log(response);
           return response.json();
         }
       })
@@ -66,6 +62,28 @@ const Subscribe = () => {
       }
     } else {
       alert('구독하실 개월 수를 선택해주세요.');
+    }
+  };
+
+  // 결제 페이지로 데이터 전달하기
+  const goPayment = () => {
+    if (selectedCheckbox && selectedCheckbox.subscribeId) {
+      const orderSubscribeId = selectedCheckbox.subscribeId;
+      const orderSubscribeMonth = selectedCheckbox.month;
+      const orderSubscribePrice = selectedCheckbox.price;
+      localStorage.setItem('subscribeId', orderSubscribeId);
+      localStorage.setItem('month', orderSubscribeMonth);
+      localStorage.setItem('price', orderSubscribePrice);
+
+      navigate('/order', {
+        state: {
+          subscribeId: orderSubscribeId,
+          month: orderSubscribeMonth,
+          price: orderSubscribePrice,
+        },
+      });
+    } else {
+      console.error('선택한 체크박스 또는 subscribeId가 정의되지 않았습니다.');
     }
   };
 
