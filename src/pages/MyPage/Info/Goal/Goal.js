@@ -16,7 +16,7 @@ const Goal = (props) => {
 
       <Bar
         label="골격근량"
-        unit={data?.goalSkeletalMuscleMass === null ? '' : '%'}
+        unit={data?.goalSkeletalMuscleMass === null ? '' : 'kg'}
         total={total.goalSkeletalMuscleMass}
         value={
           data?.goalSkeletalMuscleMass === null

@@ -4,8 +4,8 @@
   justify-content: center;
   top: 0;
   left: 0;
-  z-index: 1000;
-
+  z-index: 3;
+  color: #fff;
   width: 100%;
   background-color: unset;
   transition: all 0.4s;
@@ -36,7 +36,7 @@
 
       button {
         border: 0;
-        color: #333;
+        color: #fff;
         font-size: 16px;
         margin-left: 26px;
         background-color: unset;
@@ -44,6 +44,9 @@
         &:hover {
           opacity: 0.8;
         }
+      }
+      button.black {
+        color: #333;
       }
 
       img {
