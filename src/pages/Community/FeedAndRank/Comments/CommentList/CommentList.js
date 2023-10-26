@@ -42,8 +42,9 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
           }),
         }).then((response) => {
           if (response.ok) {
-            fetchCommentList();
             alert('댓글이 수정되었습니다.');
+            fetchCommentList();
+            setEditingCommentId(null);
           }
         });
       } else {
