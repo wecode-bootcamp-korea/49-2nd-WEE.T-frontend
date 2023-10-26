@@ -60,7 +60,7 @@ const Order = () => {
       },
     );
   };
-
+  console.log(typeof price);
   return (
     <div className="order">
       <section className="subscribeInfo sectionInner">
@@ -82,9 +82,9 @@ const Order = () => {
             </tr>
             <tr>
               <td>{month}개월</td>
-              <td>{price}원</td>
-              <td>(-)4,900원</td>
-              <td>${price}원</td>
+              <td>{Number(price * 2).toLocaleString('ko-KR')}원</td>
+              <td>(-){Number(price / 2).toLocaleString('ko-KR')}원</td>
+              <td>{Number(price).toLocaleString('ko-KR')}원</td>
             </tr>
           </table>
         </div>
