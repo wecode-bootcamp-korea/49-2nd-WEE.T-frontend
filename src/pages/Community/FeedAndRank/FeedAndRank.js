@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import FeedList from './FeedList/FeedList';
 import Rank from './Rank/Rank';
 import './FeedAndRank.scss';
@@ -9,15 +10,25 @@ const FeedAndRank = ({
   page,
   limit,
   setPaginationParams,
+  fetchFeedList,
 }) => {
+  const navigate = useNavigate();
   const TOKEN = localStorage.getItem('accessToken');
+
+  const handleWriteFeed = () => {
+    navigate('/post-add');
+  };
 
   return (
     <section className="feedAndRank">
       <div className="feedBox">
         <div className="btnDiv">
           {TOKEN ? (
-            <button type="button" className="writeBtn">
+            <button
+              type="button"
+              className="writeBtn"
+              onClick={handleWriteFeed}
+            >
               글쓰기
             </button>
           ) : null}
@@ -31,6 +42,7 @@ const FeedAndRank = ({
           page={page}
           limit={limit}
           setPaginationParams={setPaginationParams}
+          fetchFeedList={fetchFeedList}
         />
       </div>
       <Rank />

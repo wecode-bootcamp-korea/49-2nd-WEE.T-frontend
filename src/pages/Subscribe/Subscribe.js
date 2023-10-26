@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { Redirect } from 'react-router-dom';
+import { BASE_AWS_API } from '../../config';
 import Popup from '../../components/Popup/Popup';
 import './Subscribe.scss';
 
@@ -9,35 +9,30 @@ const Subscribe = () => {
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
-  // const TOKEN = localStorage.getItem('accessToken');
-
-  // 결제 페이지로 데이터 전달하기
-  const goPayment = () => {
-    const orderSubscribeId = selectedCheckbox.subscribeId;
-    navigate('/order', { state: { subscribeId: orderSubscribeId } });
-  };
-
+  const TOKEN = localStorage.getItem('accessToken');
   const closePopup = () => {
     setPopup({ ...popup, open: false });
   };
 
   useEffect(() => {
-    // if (accessToken) {
-    getUserSubscribeData();
-    // }
+    if (TOKEN) {
+      getUserSubscribeData();
+    } else {
+      navigate('/login');
+    }
   }, []);
 
   const getUserSubscribeData = () => {
-    fetch('/data/subscribeData.json', {
-      // http://10.58.52.67:8000/subscribe
-
+    fetch(`${BASE_AWS_API}/subscribe`, {
+      // fetch(`/data/subscribeData.json`, {
       headers: {
         'Content-Type': 'application/json',
-        // Authorization: TOKEN,
+        Authorization: TOKEN,
       },
     })
       .then((response) => {
         if (response.ok) {
+          console.log(response);
           return response.json();
         }
       })
@@ -70,10 +65,27 @@ const Subscribe = () => {
     }
   };
 
-  // 사용자가 로그인하지 않았다면 로그인 페이지로 리다이렉션
-  // if (!TOKEN) {
-  //   return <Redirect to="/login" />;
-  // }
+  // 결제 페이지로 데이터 전달하기
+  const goPayment = () => {
+    if (selectedCheckbox && selectedCheckbox.subscribeId) {
+      const orderSubscribeId = selectedCheckbox.subscribeId;
+      const orderSubscribeMonth = selectedCheckbox.month;
+      const orderSubscribePrice = selectedCheckbox.price;
+      localStorage.setItem('subscribeId', orderSubscribeId);
+      localStorage.setItem('month', orderSubscribeMonth);
+      localStorage.setItem('price', orderSubscribePrice);
+
+      navigate('/order', {
+        state: {
+          subscribeId: orderSubscribeId,
+          month: orderSubscribeMonth,
+          price: orderSubscribePrice,
+        },
+      });
+    } else {
+      console.error('선택한 체크박스 또는 subscribeId가 정의되지 않았습니다.');
+    }
+  };
 
   const isEmpty = Object.keys(subscribeData).length === 0;
 

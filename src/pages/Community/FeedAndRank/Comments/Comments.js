@@ -1,41 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Comment from './Comment/Comment';
 import CommentList from './CommentList/CommentList';
 import './Comments.scss';
 
-const Comments = (feedId) => {
-  const accessToken = localStorage.getItem('accessToken');
-  const [commentData, setCommentData] = useState([]);
-
-  useEffect(() => {
-    fetchCommentList();
-  }, []);
-
-  const fetchCommentList = () => {
-    fetch(`/data/commentData.json`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        // Authorization: accessToken,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        console.log(data.data.comments);
-        setCommentData(data.data.comments);
-      });
-  };
+const Comments = ({ commentData, feedId, getCommentList }) => {
+  const TOKEN = localStorage.getItem('accessToken');
 
   return (
     <section className="comments">
       <div className="commentDiv">
-        {accessToken ? (
-          <Comment feedId={feedId} fetchCommentList={fetchCommentList} />
-        ) : null}
+        {TOKEN && <Comment feedId={feedId} getCommentList={getCommentList} />}
         <CommentList
-          feedId={feedId}
-          fetchCommentList={fetchCommentList}
+          getCommentList={getCommentList}
           commentData={commentData}
         />
       </div>

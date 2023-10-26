@@ -1,0 +1,82 @@
+.feedTable {
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  list-style: none;
+  line-height: 1.7em;
+  margin-bottom: 40px;
+  margin-top: 0px;
+  padding-bottom: 40px;
+
+  .feedContent {
+    .userDiv {
+      display: flex;
+      justify-content: space-between;
+      height: 40px;
+      margin-top: 10px;
+      padding: 0 5px;
+
+      .userInfo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .badge {
+          justify-content: center;
+          flex-shrink: 0;
+
+          img {
+            display: block;
+            width: 33px;
+            border-radius: 100px;
+            border: 0.5px solid #ddd;
+          }
+        }
+
+        .nickname {
+          font-size: 14px;
+          font-weight: bold;
+        }
+      }
+
+      .btnBox {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 7px;
+        gap: 8px;
+
+        .subBtn {
+          padding: 6px 14px;
+          border: none;
+          border-radius: 6px;
+          background-color: #ccc;
+          color: #fff;
+          text-align: center;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .feedText {
+      padding: 0 12px;
+
+      .text {
+        margin: 20px 0;
+      }
+
+      .commentDiv {
+        .commentThings {
+          font-weight: bold;
+        }
+
+        .moreView {
+          cursor: pointer;
+        }
+      }
+
+      .writeDate {
+        font-size: 14px;
+      }
+    }
+  }
+}

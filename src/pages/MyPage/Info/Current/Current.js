@@ -25,7 +25,7 @@ const Current = (props) => {
 
       <Bar
         label="골격근량"
-        unit="%"
+        unit="kg"
         total={total.skeletalMuscleMass}
         value={data?.skeletalMuscleMass}
       />

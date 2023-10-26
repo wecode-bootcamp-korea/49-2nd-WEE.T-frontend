@@ -1,0 +1,187 @@
+.postAdd {
+  width: 100%;
+  padding: 200px 0px;
+
+  .feedContainer {
+    .innerSection {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      margin: 0 auto;
+      width: 700px;
+      border: 1px solid #ede5e5;
+      border-radius: 12px;
+      .logo {
+        width: 120px;
+        display: block;
+      }
+
+      .myNickName {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        width: 700px;
+        .title {
+          font-size: 25px;
+          font-weight: 600;
+        }
+      }
+
+      .titleSection {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 50px;
+        font-size: 30px;
+        font-weight: 700;
+        padding-top: 20px;
+      }
+
+      .prvSection {
+        display: flex;
+        align-items: center;
+        height: 300px;
+        padding: 0 10px;
+        gap: 10px;
+
+        .previewList {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+
+          margin: 20px 0;
+
+          .imgFile {
+            width: 200px;
+            height: 250px;
+          }
+          .deleteButton {
+            height: 50px;
+          }
+
+          img {
+            width: 100%;
+            height: 250px;
+          }
+        }
+
+        .individualDeletion {
+          border: none;
+          border-radius: 6px;
+          margin-top: 10px;
+          width: 40px;
+          height: 20px;
+          background-color: #5e3dea;
+          color: white;
+        }
+      }
+
+      .topSection {
+        display: flex;
+        flex-direction: column;
+
+        margin-bottom: 5px;
+
+        #chooseFile {
+          visibility: hidden;
+        }
+
+        .fileBox {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          height: 100%;
+          width: 100%;
+
+          .labelName {
+            font-size: 16px;
+            text-align: center;
+            font-weight: 600;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+
+          label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1em;
+            font-size: 30px;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .buttomSection {
+        .challengeCheck {
+          display: flex;
+          justify-content: center;
+          gap: 5px;
+          padding: 10px 0px;
+          border-top: 1px solid #ede5e5;
+
+          input[type='checkbox'] {
+            width: 17px;
+            height: 17px;
+          }
+
+          span {
+            font-size: 15px;
+            margin: auto 0;
+          }
+        }
+      }
+
+      .textSection {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        textarea {
+          width: 600px;
+          height: 100px;
+          font-family: 'Pretendard';
+          border: 2px solid #9f8cf4;
+          border-radius: 6px;
+          padding: 20px 20px;
+          font-size: 18px;
+          resize: none;
+        }
+        textarea::placeholder {
+          font-size: 16px;
+          text-align: center;
+        }
+      }
+
+      .buttonArea {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+
+        button {
+          border: none;
+          border-radius: 6px;
+          width: 150px;
+          height: 40px;
+          background-color: #5e3dea;
+          color: #ffff;
+          letter-spacing: 5px;
+          margin: 20px 0px;
+          font-size: 16px;
+        }
+
+        button:hover {
+          background-color: #5e3dea;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}

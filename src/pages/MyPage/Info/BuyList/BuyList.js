@@ -1,39 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import './BuyList.scss';
-import { BUYLIST_API } from '../../../../config';
+import { BASE_AWS_API } from '../../../../config';
 
 const BuyList = (props) => {
   const { setBuyList } = props;
   const [purchaseList, setPurchaseList] = useState();
   const [purchaseDate, setPurchaseDate] = useState(sortingList[0].value);
 
-  console.log(purchaseList);
-
-  // const token = localStorage.getItem('token');
-  // useEffect(() => {
-  //   fetch(`${BUYLIST_API}?before=${purchaseDate}`, {
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       // Authorization: token,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((result) => {
-  //       setPurchaseList(result);
-  //     });
-  // }, [purchaseDate]);
+  const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    fetch('./data/orders.json')
+    // fetch('./data/orders.json', {
+    fetch(`${BASE_AWS_API}/users/orders?before=${purchaseDate}`, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    })
       .then((res) => {
         return res.json();
       })
       .then((result) => {
-        setPurchaseList(result.data);
+        setPurchaseList(result);
+        console.log(result);
       });
-  }, []);
+  }, [purchaseDate, token]);
 
   const select = (e) => {
     setPurchaseDate(e.target.value);
@@ -69,7 +60,7 @@ const BuyList = (props) => {
               <td>구독종료일</td>
               <td>결제가격</td>
             </tr>
-            {purchaseList?.map((orders) => {
+            {purchaseList?.data.map((orders) => {
               const {
                 orderId,
                 payment,
