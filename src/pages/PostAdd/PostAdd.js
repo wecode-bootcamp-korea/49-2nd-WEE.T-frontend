@@ -16,7 +16,6 @@ const PostAdd = ({ isEdit }) => {
     const newImages = [...image];
     const newPreviewImages = [...previewImage];
     const maxImages = 3;
-
     for (let i = 0; i < selectImageList.length; i++) {
       if (newImages.length < maxImages) {
         newImages.push(selectImageList[i]);
@@ -32,9 +31,12 @@ const PostAdd = ({ isEdit }) => {
   };
 
   const handleRemoveImage = (index) => {
+    const newImages = [...image];
+    newImages.splice(index, 1);
     const newPreviewImages = [...previewImage];
     newPreviewImages.splice(index, 1);
 
+    setImage(newImages);
     setPreviewImage(newPreviewImages);
   };
 
@@ -74,6 +76,8 @@ const PostAdd = ({ isEdit }) => {
         .then((res) => res.json())
         .then((result) => {
           if (result.message === 'INSERT_SUCCESS') {
+            const newImageUrl = result.imageUrl;
+            setPreviewImage([...previewImage, newImageUrl]);
             navigate('/community');
           }
         });
