@@ -17,6 +17,7 @@ const SignUp = () => {
     badge: '',
   });
   const [errors, setErrors] = useState({});
+  const [isAbledNickname, setIsAbledNickname] = useState(false);
 
   const handleSignUp = () => {
     const accessToken = localStorage.getItem('newUser');
@@ -48,6 +49,8 @@ const SignUp = () => {
           alert('체중은 500이하로 작성해 주세요.');
         } else if (userInfo.bodyFat > 100) {
           alert('체지방률은 100이하로 작성해주세요.');
+        } else if (isAbledNickname === false) {
+          alert('닉네임 중복 확인이 필요합니다.');
         } else {
           alert('오류입니다. 관리자에게 문의하세요.');
         }
@@ -67,8 +70,10 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.message === 'AVAILABLE_NICKNAME') {
+          setIsAbledNickname(true);
           alert('사용 가능한 닉네임 입니다.');
         } else {
+          setIsAbledNickname(false);
           alert('중복된 닉네임 입니다.');
         }
       });
@@ -164,6 +169,7 @@ const SignUp = () => {
         break;
     }
     setErrors({ ...errors, ...fieldErrors });
+    console.log(isAbledNickname);
   };
   return (
     <div className="SignUp flexCenter">
@@ -188,10 +194,12 @@ const SignUp = () => {
               type="text"
               placeholder="ex)홍길동이다"
               name="nickname"
+              disabled={isAbledNickname}
             />
             <button onClick={handleDoubleCheck}>중복확인</button>
             {errors.nickname && <div className="errors">{errors.nickname}</div>}
           </div>
+
           <div className="genderAndageBox">
             <div className="ageInputWrapper inputBox">
               <span>만</span>
@@ -204,33 +212,25 @@ const SignUp = () => {
               {errors.age && <div className="errors">{errors.age}</div>}
               <span>세</span>
             </div>
+
             <div className="genderCheck">
               <input
                 className="male checkBoxInput"
                 type="radio"
                 name="gender"
-                value={'male'}
+                value="male"
               />
               <label>남</label>
               <input
                 className="female checkBoxInput"
                 type="radio"
                 name="gender"
-                value={'female'}
+                value="female"
               />
               <label>여</label>
             </div>
           </div>
-          <div className="inputBox">
-            <label>몸무게 (kg)</label>
-            <input
-              className="weight"
-              type="number"
-              placeholder="ex)70"
-              name="weight"
-            />
-            {errors.weight && <div className="errors">{errors.weight}</div>}
-          </div>
+
           <div className="inputBox">
             <label>키 (cm)</label>
             <input
@@ -241,18 +241,18 @@ const SignUp = () => {
             />
             {errors.height && <div className="errors">{errors.height}</div>}
           </div>
+
           <div className="inputBox">
-            <label>목표체중 (kg)</label>
+            <label>체중 (kg)</label>
             <input
-              className="goalWeight"
+              className="weight"
               type="number"
-              placeholder="ex)60"
-              name="goalWeight"
+              placeholder="ex)70"
+              name="weight"
             />
-            {errors.goalWeight && (
-              <div className="errors">{errors.goalWeight}</div>
-            )}
+            {errors.weight && <div className="errors">{errors.weight}</div>}
           </div>
+
           <div className="inputBox">
             <label>체지방률 (%)</label>
             <input
@@ -263,6 +263,7 @@ const SignUp = () => {
             />
             {errors.bodyFat && <div className="errors">{errors.bodyFat}</div>}
           </div>
+
           <div className="inputBox">
             <label>골격근량 (kg)</label>
             <input
@@ -273,6 +274,19 @@ const SignUp = () => {
             />
             {errors.skeletalMuscleMass && (
               <div className="errors">{errors.skeletalMuscleMass}</div>
+            )}
+          </div>
+
+          <div className="inputBox">
+            <label>목표체중 (kg)</label>
+            <input
+              className="goalWeight"
+              type="number"
+              placeholder="ex)60"
+              name="goalWeight"
+            />
+            {errors.goalWeight && (
+              <div className="errors">{errors.goalWeight}</div>
             )}
           </div>
         </div>

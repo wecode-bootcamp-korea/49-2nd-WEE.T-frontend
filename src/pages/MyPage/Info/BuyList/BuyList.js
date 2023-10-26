@@ -10,6 +10,7 @@ const BuyList = (props) => {
   const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
+    // fetch('./data/orders.json', {
     fetch(`${BASE_AWS_API}/users/orders?before=${purchaseDate}`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -24,16 +25,6 @@ const BuyList = (props) => {
         console.log(result);
       });
   }, [purchaseDate, token]);
-
-  // useEffect(() => {
-  //   fetch('./data/orders.json')
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((result) => {
-  //       setPurchaseList(result.data);
-  //     });
-  // }, []);
 
   const select = (e) => {
     setPurchaseDate(e.target.value);
