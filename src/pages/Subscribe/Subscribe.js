@@ -28,8 +28,9 @@ const Subscribe = () => {
   }, []);
 
   const getUserSubscribeData = () => {
-    fetch('/data/subscribeData.json', {
+    fetch('http://10.58.52.67:8000/subscribe', {
       // http://10.58.52.67:8000/subscribe
+      // /data/subscribeData.json
 
       headers: {
         'Content-Type': 'application/json',
