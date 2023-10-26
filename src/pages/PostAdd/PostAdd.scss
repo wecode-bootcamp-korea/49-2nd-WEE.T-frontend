@@ -1,40 +1,48 @@
-.mainContainer {
+.postAdd {
   width: 100%;
-  height: 100%;
-  padding: 0 0 300px 0;
+  padding: 200px 0px;
 
   .feedContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: auto;
-    height: 600px;
-    // width: 1200px;
-    padding-top: 120px;
-    padding-bottom: 120px;
-
     .innerSection {
       display: flex;
       justify-content: center;
       flex-direction: column;
       margin: 0 auto;
-      height: 600px;
       width: 700px;
       border: 1px solid #ede5e5;
-      border-radius: 6px;
+      border-radius: 12px;
+      .logo {
+        width: 120px;
+        display: block;
+      }
+
+      .myNickName {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        width: 700px;
+        .title {
+          font-size: 25px;
+          font-weight: 600;
+        }
+      }
 
       .titleSection {
-        text-align: center;
-        margin: 5px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
-        font-size: 25px;
+        height: 50px;
+        font-size: 30px;
         font-weight: 700;
+        padding-top: 20px;
       }
 
       .prvSection {
         display: flex;
         align-items: center;
-        height: 200px;
+        height: 300px;
         padding: 0 10px;
         gap: 10px;
 
@@ -44,13 +52,20 @@
           justify-content: center;
           align-items: center;
           width: 100%;
-          height: 150px;
+
           margin: 20px 0;
 
-          & > img {
+          .imgFile {
+            width: 200px;
+            height: 250px;
+          }
+          .deleteButton {
+            height: 50px;
+          }
+
+          img {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
+            height: 250px;
           }
         }
 
@@ -82,6 +97,15 @@
           height: 100%;
           width: 100%;
 
+          .labelName {
+            font-size: 16px;
+            text-align: center;
+            font-weight: 600;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+
           label {
             display: flex;
             justify-content: center;
@@ -97,7 +121,8 @@
         .challengeCheck {
           display: flex;
           justify-content: center;
-          margin: 3px 0 0 0;
+          gap: 5px;
+          padding: 10px 0px;
           border-top: 1px solid #ede5e5;
 
           input[type='checkbox'] {
@@ -118,14 +143,18 @@
         justify-content: center;
 
         textarea {
-          width: 80%;
-          height: 6.25em;
-          border: none;
-          resize: none;
+          width: 600px;
+          height: 100px;
           font-family: 'Pretendard';
           border: 2px solid #9f8cf4;
           border-radius: 6px;
-          padding: 5px 7px;
+          padding: 20px 20px;
+          font-size: 18px;
+          resize: none;
+        }
+        textarea::placeholder {
+          font-size: 16px;
+          text-align: center;
         }
       }
 
@@ -133,22 +162,24 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 20px;
         width: 100%;
 
         button {
           border: none;
           border-radius: 6px;
-          margin: 10px 20px 10px 20px;
-          width: 120px;
+          width: 150px;
           height: 40px;
           background-color: #5e3dea;
           color: #ffff;
           letter-spacing: 5px;
+          margin: 20px 0px;
+          font-size: 16px;
         }
 
         button:hover {
-          background-color: #002ead;
-          transition: 0.7s;
+          background-color: #5e3dea;
+          opacity: 0.8;
         }
       }
     }
