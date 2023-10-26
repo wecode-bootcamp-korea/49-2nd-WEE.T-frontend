@@ -81,7 +81,7 @@ const Order = () => {
               <td>결제 금액</td>
             </tr>
             <tr>
-              <td>1개월</td>
+              <td>개월</td>
               <td>9,800원</td>
               <td>(-)4,900원</td>
               <td>4,900원</td>
