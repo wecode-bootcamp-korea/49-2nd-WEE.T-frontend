@@ -66,9 +66,11 @@ const PostAdd = ({ isEdit }) => {
     });
 
     formDataArray.map((formData) => {
-      fetch(`${BASE_AWS_API}/feeds${isEdit ? `/${id}` : ''}`, {
+      fetch(`http://10.58.52.148:8000/feeds${isEdit ? `/${id}` : ''}`, {
+        //${BASE_AWS_API}/feeds${isEdit ? `/${id}` : ''}
         method: isEdit ? 'PUT' : 'POST',
         headers: {
+          // Authorization: accessToken,
           Authorization: accessToken,
         },
         body: formData,
@@ -86,7 +88,7 @@ const PostAdd = ({ isEdit }) => {
 
   useEffect(() => {
     if (!isEdit || !id) return;
-    fetch('${BASE_AWS_API}/feeds/${id}')
+    fetch('http://10.58.52.148:8000/feeds')
       .then((res) => res.json())
       .then(({ data }) => {
         const feedData = data.feeds.find((feed) => feed.id === id);
