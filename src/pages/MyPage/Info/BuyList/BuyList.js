@@ -10,8 +10,8 @@ const BuyList = (props) => {
   const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    // fetch('./data/orders.json', {
-    fetch(`${BASE_AWS_API}/users/orders?before=${purchaseDate}`, {
+    fetch('./data/orders.json', {
+      // fetch(`${BASE_AWS_API}/users/orders?before=${purchaseDate}`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: token,

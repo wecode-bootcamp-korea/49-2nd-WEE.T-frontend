@@ -6,6 +6,7 @@ import './FeedAndRank.scss';
 
 const FeedAndRank = ({
   feedList,
+  setFeedList,
   totalCount,
   page,
   limit,
@@ -38,6 +39,7 @@ const FeedAndRank = ({
         </div>
         <FeedList
           feedList={feedList}
+          setFeedList={setFeedList}
           totalCount={totalCount}
           page={page}
           limit={limit}
