@@ -1,37 +1,50 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BASE_AWS_API } from '../../../../../config';
 import './Comment.scss';
 
-const Comment = ({ feedId, fetchCommentList }) => {
+const Comment = ({ feedId, getCommentList }) => {
   const TOKEN = localStorage.getItem('accessToken');
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const [comment, setComment] = useState('');
+
   const isCheckComment = comment.length >= 1;
 
   const handleComment = (event) => {
     setComment(event.target.value);
   };
 
-  const handleCommentPost = () => {
+  const handleCommentPost = (e) => {
+    e.preventDefault();
+
     if (TOKEN) {
       if (isCheckComment) {
-        fetch(`http://10.58.52.207:8000/comments`, {
+        fetch(`${BASE_AWS_API}/comments`, {
+          // fetch(`http://localhost:8000/comments`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Authorization: TOKEN,
           },
           body: JSON.stringify({
-            feedId: feedId.feedId,
+            feedId,
             content: comment,
           }),
-        }).then((response) => {
-          console.log('>>>>', response);
-          if (response.ok) {
-            fetchCommentList();
-          }
-        });
+        })
+          .then((response) => {
+            if (response.ok) {
+              setComment('');
+              getCommentList();
+            }
+
+            return response.json();
+          })
+          .then((result) => {
+            if (result.message === 'COMMENT_ERROR') {
+              alert('댓글은 50글자 미만으로 작성해 주세요!');
+            }
+          });
       } else {
         alert('글을 작성해주세요.');
       }
@@ -42,7 +55,7 @@ const Comment = ({ feedId, fetchCommentList }) => {
   };
 
   return (
-    <form className="comment">
+    <form className="comment" onSubmit={handleCommentPost}>
       <input
         className="commentInput"
         name="commentInput"
@@ -50,12 +63,12 @@ const Comment = ({ feedId, fetchCommentList }) => {
         maxLength="50"
         placeholder="댓글을 입력해주세요."
         onChange={handleComment}
+        value={comment}
       />
       <button
         className="commentWriteBtn"
-        type="button"
+        type="submit"
         disabled={!isCheckComment}
-        onClick={handleCommentPost}
       >
         댓글 등록
       </button>

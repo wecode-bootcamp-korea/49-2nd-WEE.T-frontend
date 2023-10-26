@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import FeedAndRank from './FeedAndRank/FeedAndRank';
+import { BASE_AWS_API } from '../../config';
 import './Community.scss';
 
 const Community = () => {
@@ -37,9 +38,8 @@ const Community = () => {
   }, [page, isMounted]);
 
   const fetchFeedList = () => {
-    fetch(`/data/communityData.json?limit=${limit}&page=${page}`, {
-      // http://10.58.52.236:8000/feeds?limit=${limit}&page=${page}
-      // /data/communityData.json?limit=${limit}&page=${page}
+    fetch(`${BASE_AWS_API}/feeds?limit=${limit}&page=${page}`, {
+      // fetch(`/data/communityData.json?limit=${limit}&page=${page}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const Community = () => {
       .then((res) => res.json())
       .then((data) => {
         const feedData = data.data;
-        const newFeedData = feedData.feeds;
+        const newFeedData = feedData.getFeedList;
         setTotalCount(feedData.feedCount);
         setFeedList((prevFeedList) => {
           return {
@@ -64,7 +64,7 @@ const Community = () => {
 
   if (!initialLoad) {
     return (
-      <div id="content" className="community">
+      <div className="community">
         <div className="container sectionInner">
           <section className="challengeBanner">
             <img

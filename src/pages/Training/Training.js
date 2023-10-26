@@ -26,7 +26,7 @@ const Training = () => {
   const remainingWeight = currentWeight - targetWeight;
 
   useEffect(() => {
-    fetch(`${BASE_AWS_API}`, {
+    fetch(`${BASE_AWS_API}/training`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -91,27 +91,27 @@ const Training = () => {
             <TrainingContainer
               trainingData={trainingData.shoulder}
               iconImg={shoulderIcon}
-              exerciseArea={'어깨 운동'}
+              exerciseArea="어깨 운동"
             />
             <TrainingContainer
               trainingData={trainingData.back}
               iconImg={backIcon}
-              exerciseArea={'등 운동'}
+              exerciseArea="등 운동"
             />
             <TrainingContainer
               trainingData={trainingData.lowerBody}
               iconImg={lowerBodyIcon}
-              exerciseArea={'하체 운동'}
+              exerciseArea="하체 운동"
             />
             <TrainingContainer
               trainingData={trainingData.chest}
               iconImg={chestIcon}
-              exerciseArea={'가슴 운동'}
+              exerciseArea="가슴 운동"
             />
             <TrainingContainer
               trainingData={trainingData.arm}
               iconImg={armIcon}
-              exerciseArea={'팔 운동'}
+              exerciseArea="팔 운동"
             />
           </div>
         </div>

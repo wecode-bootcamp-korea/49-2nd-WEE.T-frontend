@@ -19,6 +19,16 @@
       font-size: 18px;
       color: black;
     }
+    .valueUndefined {
+      font-size: 15px;
+      color: black;
+      border: none;
+      background-color: white;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
   }
 
   .barBox {

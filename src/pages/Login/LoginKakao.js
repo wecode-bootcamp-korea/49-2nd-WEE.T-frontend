@@ -18,7 +18,6 @@ const LoginKakao = () => {
             if (result.data.isNew) {
               navigate('/sign-up');
             } else {
-              console.log('1', result.data.accessToken);
               localStorage.setItem('accessToken', result.data.accessToken);
               navigate('/');
             }
