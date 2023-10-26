@@ -33,11 +33,11 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
   const handleCommentEditSave = (id) => {
     if (TOKEN) {
       if (isCheckEditComment) {
-        fetch(`http://localhost:8000/comments/${id}`, {
+        fetch(`http://localhost:8000/comments?commentId=${id}`, {
           // fetch(`${BASE_AWS_API}/comments/${id}`, {
           method: 'PUT',
           headers: {
-            'Content-Type': 'application/json;',
+            'Content-Type': 'application/json',
             Authorization: TOKEN,
           },
           body: JSON.stringify({
@@ -61,16 +61,12 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
 
   const handleCommentDelete = (id) => {
     if (TOKEN) {
-      fetch(`http://localhost:8000/comments/${id}`, {
+      fetch(`http://localhost:8000/comments?commentId=${id}`, {
         method: 'DELETE',
         headers: {
-          'Content-Type': 'application/json;',
+          'Content-Type': 'application/json',
           Authorization: TOKEN,
         },
-        body: JSON.stringify({
-          feedId,
-          content: commentEdit,
-        }),
       }).then((response) => {
         console.log(response);
         if (response.ok) {
