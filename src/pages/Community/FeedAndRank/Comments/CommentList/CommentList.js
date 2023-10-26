@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { BASE_AWS_API } from '../../../../../config';
+import { BASE_AWS_API } from '../../../../../config';
 import './CommentList.scss';
 
 const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
-  // const TOKEN = localStorage.getItem('accessToken');
-  const TOKEN =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTgyMzM3MzQsImV4cCI6MTY5ODI3NjkzNH0.lvij2fsOB81hHvYItRF3A_O8j2xNT8g7FyNxqQgdGdg';
+  const TOKEN = localStorage.getItem('accessToken');
+
   const navigate = useNavigate();
 
   const [commentEdit, setCommentEdit] = useState('');
@@ -22,8 +21,6 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
     return formattedDate;
   };
 
-  const { feedId } = feedIdData;
-
   const handleCommentEdit = (id) => {
     const commentToEdit = commentData.find((comment) => comment.id === id);
     setCommentEdit(commentToEdit.content);
@@ -33,8 +30,8 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
   const handleCommentEditSave = (id) => {
     if (TOKEN) {
       if (isCheckEditComment) {
-        fetch(`http://localhost:8000/comments?commentId=${id}`, {
-          // fetch(`${BASE_AWS_API}/comments/${id}`, {
+        fetch(`${BASE_AWS_API}/comments?commentId=${id}`, {
+          // fetch(`http://localhost:8000/comments?commentId=${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -44,7 +41,6 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
             content: commentEdit,
           }),
         }).then((response) => {
-          console.log(response);
           if (response.ok) {
             fetchCommentList();
             alert('댓글이 수정되었습니다.');
@@ -61,14 +57,14 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
 
   const handleCommentDelete = (id) => {
     if (TOKEN) {
-      fetch(`http://localhost:8000/comments?commentId=${id}`, {
+      fetch(`${BASE_AWS_API}/comments?commentId=${id}`, {
+        // fetch(`http://localhost:8000/comments?commentId=${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
           Authorization: TOKEN,
         },
       }).then((response) => {
-        console.log(response);
         if (response.ok) {
           fetchCommentList();
           alert('댓글이 삭제되었습니다.');

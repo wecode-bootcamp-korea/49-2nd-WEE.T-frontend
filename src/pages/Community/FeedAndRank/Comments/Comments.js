@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Comment from './Comment/Comment';
 import CommentList from './CommentList/CommentList';
-// import { BASE_AWS_API } from '../../../../config';
+import { BASE_AWS_API } from '../../../../config';
 import './Comments.scss';
 
 const Comments = (feedIdData) => {
-  // const TOKEN = localStorage.getItem('accessToken');
-  const TOKEN =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTgyMzM3MzQsImV4cCI6MTY5ODI3NjkzNH0.lvij2fsOB81hHvYItRF3A_O8j2xNT8g7FyNxqQgdGdg';
+  const TOKEN = localStorage.getItem('accessToken');
+
   const [commentData, setCommentData] = useState([]);
 
   useEffect(() => {
@@ -15,11 +14,10 @@ const Comments = (feedIdData) => {
   }, []);
 
   const { feedId } = feedIdData;
-  console.log(feedId);
 
   const fetchCommentList = () => {
-    fetch(`http://localhost:8000/comments?feedId=${feedId}`, {
-      // fetch(`${BASE_AWS_API}/comments?feedId=${feedId}`, {
+    fetch(`${BASE_AWS_API}/comments?feedId=${feedId}`, {
+      // fetch(`http://localhost:8000/comments?feedId=${feedId}`, {
       // fetch(`/data/commentData.json`, {
       method: 'GET',
       headers: {
@@ -34,8 +32,6 @@ const Comments = (feedIdData) => {
         return response.json();
       })
       .then((result) => {
-        console.log(result);
-        console.log(result.data);
         setCommentData(result.data);
       })
       .catch((Error) => console.log(Error));

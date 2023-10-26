@@ -10,9 +10,7 @@ const Community = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
 
-  // const TOKEN = localStorage.getItem('accessToken');
-  const TOKEN =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaXNOZXciOmZhbHNlLCJpYXQiOjE2OTgyMzM3MzQsImV4cCI6MTY5ODI3NjkzNH0.lvij2fsOB81hHvYItRF3A_O8j2xNT8g7FyNxqQgdGdg';
+  const TOKEN = localStorage.getItem('accessToken');
 
   const setPaginationParams = () => {
     const newSearchParams = new URLSearchParams(searchParams);

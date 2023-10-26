@@ -48,8 +48,6 @@ const FeedList = ({
     };
   }, [feedList, totalCount, page]);
 
-  console.log(feedList);
-
   return (
     <ul ref={listRef} className="feedList">
       {feedList.feeds?.map((feed) => (
