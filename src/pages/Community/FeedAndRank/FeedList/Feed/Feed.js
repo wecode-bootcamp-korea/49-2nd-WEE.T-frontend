@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FeedImages from '../FeedImages/FeedImages';
 import Comments from '../../Comments/Comments';
@@ -8,6 +8,7 @@ import './Feed.scss';
 const Feed = ({ getFeed, data }) => {
   const navigate = useNavigate();
   const [isCommentExtended, setIsCommentExtended] = useState(false);
+  const [commentData, setCommentData] = useState([]);
 
   const TOKEN = localStorage.getItem('accessToken');
 
@@ -18,6 +19,28 @@ const Feed = ({ getFeed, data }) => {
       day: 'numeric',
     });
     return formattedDate;
+  };
+
+  const getCommentList = () => {
+    fetch(`${BASE_AWS_API}/comments?feedId=${id}`, {
+      // fetch(`http://localhost:8000/comments?feedId=${feedId}`, {
+      // fetch(`/data/commentData.json`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(TOKEN && { Authorization: TOKEN }),
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error('[GET] 댓글 데이터 통신 실패');
+        }
+        return response.json();
+      })
+      .then((result) => {
+        setCommentData(result.data);
+      })
+      .catch((Error) => console.log(Error));
   };
 
   const handleEditFeed = (id) => {
@@ -39,8 +62,11 @@ const Feed = ({ getFeed, data }) => {
     });
   };
 
-  const { id, badge, userNickname, isMyPost, content, comment, created_at } =
-    data;
+  useEffect(() => {
+    getCommentList();
+  }, []);
+
+  const { id, badge, userNickname, isMyPost, content, created_at } = data;
 
   return (
     <li key={id} className="feedTable">
@@ -52,7 +78,7 @@ const Feed = ({ getFeed, data }) => {
             </div>
             <div className="nickname">{userNickname}</div>
           </div>
-          {TOKEN && isMyPost ? (
+          {TOKEN && isMyPost && (
             <div className="btnBox">
               <button
                 type="button"
@@ -69,20 +95,26 @@ const Feed = ({ getFeed, data }) => {
                 삭제
               </button>
             </div>
-          ) : null}
+          )}
         </div>
         <FeedImages feed={data} />
         <div className="feedText">
           <div className="text">{content}</div>
           <div className="commentDiv">
-            <div className="commentThings">댓글 {comment}개</div>
+            <div className="commentThings">댓글 {commentData.length}개</div>
             <div
               className="moreView"
               onClick={() => setIsCommentExtended(!isCommentExtended)}
             >
               {isCommentExtended ? '댓글 접기 ▲' : '댓글 더보기 ▼'}
             </div>
-            {isCommentExtended && <Comments feedId={id} />}
+            {isCommentExtended && (
+              <Comments
+                feedId={id}
+                commentData={commentData}
+                getCommentList={getCommentList}
+              />
+            )}
           </div>
           <div className="writeDate">{formatCreatedAt(created_at)}</div>
         </div>

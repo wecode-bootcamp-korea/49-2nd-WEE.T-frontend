@@ -64,7 +64,7 @@ const Community = () => {
 
   if (!initialLoad) {
     return (
-      <div id="content" className="community">
+      <div className="community">
         <div className="container sectionInner">
           <section className="challengeBanner">
             <img

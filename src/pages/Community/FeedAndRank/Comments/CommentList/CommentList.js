@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { BASE_AWS_API } from '../../../../../config';
 import './CommentList.scss';
 
-const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
+const CommentList = ({ getCommentList, commentData }) => {
   const TOKEN = localStorage.getItem('accessToken');
+
   const navigate = useNavigate();
 
   const [commentEdit, setCommentEdit] = useState('');
@@ -20,9 +21,6 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
     return formattedDate;
   };
 
-  console.log(feedIdData);
-  const { feedId } = feedIdData;
-
   const handleCommentEdit = (id) => {
     const commentToEdit = commentData.find((comment) => comment.id === id);
     setCommentEdit(commentToEdit.content);
@@ -32,20 +30,21 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
   const handleCommentEditSave = (id) => {
     if (TOKEN) {
       if (isCheckEditComment) {
-        fetch(`${BASE_AWS_API}/comments/${id}`, {
+        fetch(`${BASE_AWS_API}/comments?commentId=${id}`, {
+          // fetch(`http://localhost:8000/comments?commentId=${id}`, {
           method: 'PUT',
           headers: {
-            'Content-Type': 'application/json;',
+            'Content-Type': 'application/json',
             Authorization: TOKEN,
           },
           body: JSON.stringify({
             content: commentEdit,
           }),
         }).then((response) => {
-          console.log(response);
           if (response.ok) {
-            fetchCommentList();
             alert('댓글이 수정되었습니다.');
+            getCommentList();
+            setEditingCommentId(null);
           }
         });
       } else {
@@ -59,20 +58,16 @@ const CommentList = ({ feedIdData, fetchCommentList, commentData }) => {
 
   const handleCommentDelete = (id) => {
     if (TOKEN) {
-      fetch(`${BASE_AWS_API}/comments/${id}`, {
+      fetch(`${BASE_AWS_API}/comments?commentId=${id}`, {
+        // fetch(`http://localhost:8000/comments?commentId=${id}`, {
         method: 'DELETE',
         headers: {
-          'Content-Type': 'application/json;',
+          'Content-Type': 'application/json',
           Authorization: TOKEN,
         },
-        body: JSON.stringify({
-          feedId,
-          content: commentEdit,
-        }),
       }).then((response) => {
-        console.log(response);
         if (response.ok) {
-          fetchCommentList();
+          getCommentList();
           alert('댓글이 삭제되었습니다.');
         }
       });

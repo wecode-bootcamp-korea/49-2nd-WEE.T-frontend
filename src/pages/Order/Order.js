@@ -11,7 +11,7 @@ const Order = () => {
   const price = localStorage.getItem('price');
   console.log(subscribeId, month, price);
 
-  return <div>결제페이지 테스트</div>;
+  return <div>결제페이지 테스트{month}</div>;
 };
 
 export default Order;
