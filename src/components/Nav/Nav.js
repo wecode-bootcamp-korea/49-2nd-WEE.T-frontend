@@ -104,7 +104,6 @@ const Nav = () => {
 
   const goToSubscribe = () => authenticatedNavigate('/subscribe');
   const goToCondition = () => authenticatedNavigate('/info');
-  const goToGuideLine = () => authenticatedNavigate('/');
   const goToTraining = () => authenticatedNavigate('/training');
   const goToExercise = () => authenticatedNavigate('/exercise');
 
@@ -150,7 +149,7 @@ const Nav = () => {
             className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
             onClick={goToLocation}
           >
-            내주변운동맛집
+            주변위치검색
           </button>
           {isLogin && <button onClick={goToCondition}>상태페이지</button>}
 
