@@ -176,7 +176,11 @@ const SignUp = () => {
           추가 정보를 입력하고 <b className="fontBold">위트만의 특별한 정보</b>
           를 받아보세요.
         </p>
-        <div className="inputWrapper" onInput={(e) => saveJoinUserInfo(e)}>
+        <div
+          className="inputWrapper"
+          onInput={(e) => saveJoinUserInfo(e)}
+          onWheel={(e) => e.target.blur()}
+        >
           <label>닉네임</label>
           <div className="nickNameInput inputBox">
             <input

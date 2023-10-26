@@ -33,7 +33,7 @@ const TrainingContainer = ({ trainingData, exerciseArea, iconImg }) => {
             <div className="imgBox" style={containerStyle}>
               <div className="embed-container">
                 <iframe
-                  src={'https://www.youtube.com/embed/F60RVDh7iis'}
+                  src={`${result.link}`}
                   allowFullScreen
                   style={iframeStyle}
                 ></iframe>
