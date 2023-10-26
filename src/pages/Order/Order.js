@@ -4,63 +4,87 @@ import './Order.scss';
 
 const Order = () => {
   const navigate = useNavigate();
-
+  const [subscriptionOrderId, setSubscriptionOrderId] = useState(0);
   const subscribeId = localStorage.getItem('subscribeId');
   const month = localStorage.getItem('month');
   const price = localStorage.getItem('price');
 
   const IMP = window.IMP;
+
+  const getOrderId = () => {
+    fetch('http://url:8000/subscription/checkout', {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: localStorage.getItem('accessToken'),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setSubscriptionOrderId(data.orderId);
+        handleKakaoPayment(data.orderId);
+      });
+  };
+
+  const createCheckout = (orderId = subscriptionOrderId) => {
+    fetch(`http://url:8000/subscription/checkout`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('accessToken'),
+      },
+      body: JSON.stringify({
+        orderId,
+        paymentsId: 1,
+        subscribeId: 1,
+        requestedAt: '2023-10-03T13:04:55+09:00',
+        approvedAt: '2023-10-03T13:06:55+09:00',
+      }),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        }
+      })
+      .then((result) => {
+        if (result.message === 'CREATE_ORDER_SUCCESS') {
+          localStorage.setItem('orderId', result.orderId);
+          alert('결제성공!');
+          navigate('/');
+        } else {
+          alert('실패');
+        }
+      })
+      .catch((error) => {
+        console.error('오류 발생:', error);
+      });
+  };
+
   const handlePayment = () => {
+    getOrderId();
+  };
+
+  const handleKakaoPayment = (orderId) => {
     IMP.init('imp21134852');
     IMP.request_pay(
       {
         pg: 'kakaopay',
-        pay_method: 'card',
-        name: 'test',
-        amount: 3900,
+        name: '구독권',
+        amount: 1000,
+        merchant_uid: orderId,
       },
-      function (rsq) {
-        const { status, imp_uid } = rsq;
+      function (rsp) {
+        const { status, imp_uid } = rsp;
+        // 이 response에서, 이후  통신을 위한 키값에 쓸백엔드와의 데이터들이 있는지 확인해야 함.
+
         if (status === 'failed') {
           alert('결제에 실패했습니다. 결제정보를 다시 확인해주세요.');
         } else if (status === 'paid') {
-          fetch(`http://url:8000/subscription/checkout`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem('accessToken'),
-            },
-            body: JSON.stringify({
-              imp_uid,
-              orderId: 12345,
-              paymentsId: 1,
-              subscribeId: 1,
-              requestedAt: '2023-10-03T13:04:55+09:00',
-              approvedAt: '2023-10-03T13:06:55+09:00',
-            }),
-          })
-            .then((response) => {
-              if (response.status === 200) {
-                return response.json();
-              }
-            })
-            .then((result) => {
-              if (result.message === 'CREATE_ORDER_SUCCESS') {
-                localStorage.setItem('orderId', result.orderId);
-                alert('결제성공!');
-                navigate('/');
-              } else {
-                alert('실패');
-              }
-            })
-            .catch((error) => {
-              console.error('오류 발생:', error);
-            });
+          createCheckout(orderId);
         }
       },
     );
   };
-  console.log(typeof price);
+
   return (
     <div className="order">
       <section className="subscribeInfo sectionInner">
