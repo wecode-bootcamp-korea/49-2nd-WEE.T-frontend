@@ -78,7 +78,7 @@ const Feed = ({ getFeed, data }) => {
             </div>
             <div className="nickname">{userNickname}</div>
           </div>
-          {TOKEN && isMyPost && (
+          {TOKEN && isMyPost ? (
             <div className="btnBox">
               <button
                 type="button"
@@ -95,7 +95,7 @@ const Feed = ({ getFeed, data }) => {
                 삭제
               </button>
             </div>
-          )}
+          ) : null}
         </div>
         <FeedImages feed={data} />
         <div className="feedText">
