@@ -107,7 +107,7 @@ const Order = () => {
             <tr>
               <td>{month}개월</td>
               <td>{Number(price * 2).toLocaleString('ko-KR')}원</td>
-              <td>(-){Number(price / 2).toLocaleString('ko-KR')}원</td>
+              <td>{Number(price).toLocaleString('ko-KR')}원</td>
               <td>{Number(price).toLocaleString('ko-KR')}원</td>
             </tr>
           </table>

@@ -5,7 +5,7 @@ import Comments from '../../Comments/Comments';
 import { BASE_AWS_API } from '../../../../../config';
 import './Feed.scss';
 
-const Feed = ({ getFeed, data }) => {
+const Feed = ({ getFeed, data, removeFeed }) => {
   const navigate = useNavigate();
   const [isCommentExtended, setIsCommentExtended] = useState(false);
   const [commentData, setCommentData] = useState([]);
@@ -58,6 +58,7 @@ const Feed = ({ getFeed, data }) => {
       if (response.ok) {
         getFeed();
         alert('게시물이 삭제되었습니다.');
+        removeFeed(data);
       }
     });
   };

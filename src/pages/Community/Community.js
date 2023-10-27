@@ -75,6 +75,7 @@ const Community = () => {
           </section>
           <FeedAndRank
             feedList={feedList}
+            setFeedList={setFeedList}
             totalCount={totalCount}
             page={page}
             limit={limit}
