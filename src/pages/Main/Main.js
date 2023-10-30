@@ -54,12 +54,13 @@ const Main = () => {
   };
 
   useEffect(() => {
-    fetch(`${BASE_AWS_API}/statistics`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('accessToken'),
-      },
+    fetch('/data/main.json', {
+      // fetch(`${BASE_AWS_API}/statistics`, {
+      //   method: 'GET',
+      //   headers: {
+      //     'Content-Type': 'application/json;charset=utf-8',
+      //     Authorization: localStorage.getItem('accessToken'),
+      //   },
     })
       .then((res) => res.json())
       .then((result) => {

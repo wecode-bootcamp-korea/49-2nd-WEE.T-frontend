@@ -14,7 +14,7 @@
           "imageUrl": "/images/banana.jpg",
           "name": "바나나",
           "count": {
-            "number": 1,
+            "integer": 1,
             "denominator": 4,
             "numerator": 1
           },
@@ -26,7 +26,7 @@
           "imageUrl": "/images/food1.jpg",
           "name": "두부김치",
           "count": {
-            "number": 1,
+            "integer": 1,
             "denominator": 4,
             "numerator": 1
           },
@@ -38,7 +38,7 @@
           "imageUrl": "/images/food2.jpg",
           "name": "소고기 볶음",
           "count": {
-            "number": 1,
+            "integer": 1,
             "denominator": 4,
             "numerator": 1
           },
@@ -49,76 +49,76 @@
       "lunch": [
         {
           "nutrient": "탄수화물",
-          "imageUrl": "/images/banana.jpg",
-          "name": "바나나",
+          "imageUrl": "/images/exercise/hamburger.png",
+          "name": "닭고기 햄버거",
           "count": {
-            "number": 1,
-            "denominator": 4,
-            "numerator": 1
+            "integer": 1,
+            "denominator": 0,
+            "numerator": 0
           },
-          "gram": 23,
+          "gram": 150,
           "information": "식이섬유가 풍부하여 변비에 효과적인 식품입니다."
         },
         {
-          "nutrient": "탄수화물",
-          "imageUrl": "/images/banana.jpg",
-          "name": "바나나",
+          "nutrient": "단백질",
+          "imageUrl": "/images/exercise/choco.jpg",
+          "name": "코코아 쉐이크",
           "count": {
-            "number": 1,
-            "denominator": 4,
-            "numerator": 1
+            "integer": 1,
+            "denominator": 0,
+            "numerator": 0
           },
-          "gram": 23,
+          "gram": 250,
           "information": "식이섬유가 풍부하여 변비에 효과적인 식품입니다."
         },
         {
-          "nutrient": "탄수화물",
-          "imageUrl": "/images/banana.jpg",
-          "name": "바나나",
+          "nutrient": "지방",
+          "imageUrl": "/images/exercise/beef.jpg",
+          "name": "소고기 안심",
           "count": {
-            "number": 1,
-            "denominator": 4,
+            "integer": 0,
+            "denominator": 2,
             "numerator": 1
           },
-          "gram": 23,
+          "gram": 120,
           "information": "식이섬유가 풍부하여 변비에 효과적인 식품입니다."
         }
       ],
       "dinner": [
         {
           "nutrient": "탄수화물",
-          "imageUrl": "/images/banana.jpg",
-          "name": "바나나",
+          "imageUrl": "/images/exercise/hodu.jpg",
+          "name": "호두",
           "count": {
-            "number": 1,
-            "denominator": 4,
-            "numerator": 1
+            "integer": 3,
+            "denominator": 0,
+            "numerator": 0
           },
-          "gram": 23,
+          "gram": 40,
           "information": "식이섬유가 풍부하여 변비에 효과적인 식품입니다."
         },
         {
-          "nutrient": "탄수화물",
-          "imageUrl": "/images/banana.jpg",
-          "name": "바나나",
+          "nutrient": "단백질",
+          "imageUrl": "/images/exercise/chicken-salad.jpg",
+          "name": "닭 가슴살 샐러드",
           "count": {
-            "number": 1,
-            "denominator": 4,
-            "numerator": 1
+            "integer": 1,
+            "denominator": 0,
+            "numerator": 0
           },
-          "gram": 23,
+          "gram": 180,
           "information": "식이섬유가 풍부하여 변비에 효과적인 식품입니다."
         },
         {
-          "nutrient": "탄수화물",
-          "imageUrl": "/images/banana.jpg",
-          "name": "바나나",
+          "nutrient": "지방",
+          "imageUrl": "/images/exercise/fork.png",
+          "name": "돼지고기 수육",
           "count": {
-            "number": 1,
-            "denominator": 4,
-            "numerator": 1
+            "integer": 1,
+            "denominator": 0,
+            "numerator": 0
           },
-          "gram": 23,
+          "gram": 100,
           "information": "식이섬유가 풍부하여 변비에 효과적인 식품입니다."
         }
       ]
@@ -131,7 +131,7 @@
           "imageUrl": "/images/banana.jpg",
           "name": "바나나",
           "count": {
-            "number": 1,
+            "integer": 1,
             "denominator": 4,
             "numerator": 1
           },
@@ -143,7 +143,7 @@
           "imageUrl": "/images/banana.jpg",
           "name": "바나나",
           "count": {
-            "number": 1,
+            "integer": 1,
             "denominator": 4,
             "numerator": 1
           },
@@ -155,7 +155,7 @@
           "imageUrl": "/images/banana.jpg",
           "name": "바나나",
           "count": {
-            "number": 1,
+            "integer": 1,
             "denominator": 4,
             "numerator": 1
           },
@@ -169,7 +169,7 @@
           "imageUrl": "/images/banana.jpg",
           "name": "바나나",
           "count": {
-            "number": 1,
+            "integer": 1,
             "denominator": 4,
             "numerator": 1
           },
@@ -181,7 +181,7 @@
           "imageUrl": "/images/banana.jpg",
           "name": "바나나",
           "count": {
-            "number": 1,
+            "integer": 1,
             "denominator": 4,
             "numerator": 1
           },
@@ -193,7 +193,7 @@
           "imageUrl": "/images/banana.jpg",
           "name": "바나나",
           "count": {
-            "number": 1,
+            "integer": 1,
             "denominator": 4,
             "numerator": 1
           },
@@ -207,7 +207,7 @@
           "imageUrl": "/images/banana.jpg",
           "name": "바나나",
           "count": {
-            "number": 1,
+            "integer": 1,
             "denominator": 4,
             "numerator": 1
           },
@@ -219,7 +219,7 @@
           "imageUrl": "/images/banana.jpg",
           "name": "바나나",
           "count": {
-            "number": 1,
+            "integer": 1,
             "denominator": 4,
             "numerator": 1
           },
@@ -231,7 +231,7 @@
           "imageUrl": "/images/banana.jpg",
           "name": "바나나",
           "count": {
-            "number": 1,
+            "integer": 1,
             "denominator": 4,
             "numerator": 1
           },

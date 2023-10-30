@@ -43,6 +43,7 @@
 
         .infoText {
           margin-bottom: 12px;
+          font-weight: bold;
         }
 
         .nutrientName {
@@ -58,9 +59,11 @@
           .gram {
             display: block;
             margin: auto;
-
             color: #333;
             overflow: hidden;
+            font-weight: 300;
+            word-break: keep-all;
+            line-height: 1.2;
           }
         }
         .trainingCount {
