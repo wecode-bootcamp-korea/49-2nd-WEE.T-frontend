@@ -33,8 +33,8 @@ const Info = () => {
   };
 
   useEffect(() => {
-    // fetch('/data/condition.json', {
-    fetch(`${BASE_AWS_API}/users`, {
+    fetch('/data/condition.json', {
+      // fetch(`${BASE_AWS_API}/users`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: token,
