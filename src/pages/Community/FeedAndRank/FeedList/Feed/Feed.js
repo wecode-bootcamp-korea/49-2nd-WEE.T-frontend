@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FeedImages from '../FeedImages/FeedImages';
 import Comments from '../../Comments/Comments';
-import { BASE_AWS_API } from '../../../../../config';
+// import { BASE_AWS_API } from '../../../../../config';
 import './Feed.scss';
 
 const Feed = ({ getFeed, data, removeFeed }) => {
@@ -22,9 +22,9 @@ const Feed = ({ getFeed, data, removeFeed }) => {
   };
 
   const getCommentList = () => {
-    fetch(`${BASE_AWS_API}/comments?feedId=${id}`, {
-      // fetch(`http://localhost:8000/comments?feedId=${feedId}`, {
-      // fetch(`/data/commentData.json`, {
+    // fetch(`${BASE_AWS_API}/comments?feedId=${id}`, {
+    // fetch(`http://localhost:8000/comments?feedId=${feedId}`, {
+    fetch(`/data/commentData.json`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -38,7 +38,11 @@ const Feed = ({ getFeed, data, removeFeed }) => {
         return response.json();
       })
       .then((result) => {
-        setCommentData(result.data);
+        // 1.AWS 연결 시, 아래 setCommentData 사용
+        // setCommentData(result.data);
+
+        // 2.목데이터 연결 시, 아래 setCommentData 사용
+        setCommentData(result.data.comments);
       })
       .catch((Error) => console.log(Error));
   };
@@ -48,7 +52,8 @@ const Feed = ({ getFeed, data, removeFeed }) => {
   };
 
   const handleDeleteFeed = (id) => {
-    fetch(`${BASE_AWS_API}/feeds/${id}`, {
+    // fetch(`${BASE_AWS_API}/feeds/${id}`, {
+    fetch(`게시물삭제엔드포인트`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;',
