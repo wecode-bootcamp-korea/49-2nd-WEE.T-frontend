@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BASE_AWS_API } from '../../../../../config';
+// import { BASE_AWS_API } from '../../../../../config';
 import './CommentList.scss';
 
 const CommentList = ({ getCommentList, commentData }) => {
@@ -30,7 +30,8 @@ const CommentList = ({ getCommentList, commentData }) => {
   const handleCommentEditSave = (id) => {
     if (TOKEN) {
       if (isCheckEditComment) {
-        fetch(`${BASE_AWS_API}/comments?commentId=${id}`, {
+        fetch(`댓글수정엔드포인트`, {
+          // fetch(`${BASE_AWS_API}/comments?commentId=${id}`, {
           // fetch(`http://localhost:8000/comments?commentId=${id}`, {
           method: 'PUT',
           headers: {
@@ -58,7 +59,8 @@ const CommentList = ({ getCommentList, commentData }) => {
 
   const handleCommentDelete = (id) => {
     if (TOKEN) {
-      fetch(`${BASE_AWS_API}/comments?commentId=${id}`, {
+      fetch(`댓글삭제엔드포인트`, {
+        // fetch(`${BASE_AWS_API}/comments?commentId=${id}`, {
         // fetch(`http://localhost:8000/comments?commentId=${id}`, {
         method: 'DELETE',
         headers: {

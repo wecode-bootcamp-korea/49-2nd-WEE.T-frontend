@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BASE_AWS_API } from '../../../../config';
+// import { BASE_AWS_API } from '../../../../config';
 import './Rank.scss';
 
 const Rank = () => {
