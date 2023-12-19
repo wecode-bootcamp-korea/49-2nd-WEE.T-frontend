@@ -52,7 +52,7 @@ const PostAdd = ({ isEdit }) => {
     navigate('/community');
   };
 
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = 'token';
 
   const handlePost = (e) => {
     e.preventDefault();

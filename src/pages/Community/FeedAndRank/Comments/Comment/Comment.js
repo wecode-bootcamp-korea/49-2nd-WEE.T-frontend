@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Comment.scss';
 
 const Comment = ({ feedId, getCommentList }) => {
-  const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = 'token';
 
   const navigate = useNavigate();
   const [comment, setComment] = useState('');

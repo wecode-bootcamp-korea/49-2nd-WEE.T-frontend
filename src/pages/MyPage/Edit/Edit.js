@@ -6,7 +6,7 @@ import Button from '../../../components/Button/Button';
 import { GENDER } from '../../../data/gender';
 import { PROFILE_LIST } from '../../../data/profileData';
 import { useNavigate } from 'react-router-dom';
-import { BASE_AWS_API } from '../../../config';
+// import { BASE_AWS_API } from '../../../config';
 import Popup from '../../../components/Popup/Popup';
 
 const Edit = () => {
@@ -14,7 +14,7 @@ const Edit = () => {
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
 
-  const token = localStorage.getItem('accessToken');
+  const token = 'token';
 
   const isValid = useMemo(() => {
     const validations = {};

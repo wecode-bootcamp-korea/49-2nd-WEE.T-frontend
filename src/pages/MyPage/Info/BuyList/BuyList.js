@@ -7,7 +7,7 @@ const BuyList = (props) => {
   const [purchaseList, setPurchaseList] = useState();
   const [purchaseDate, setPurchaseDate] = useState(sortingList[0].value);
 
-  const token = localStorage.getItem('accessToken');
+  const token = 'token';
 
   useEffect(() => {
     fetch('./data/orders.json', {

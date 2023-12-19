@@ -14,7 +14,7 @@ const FeedAndRank = ({
   fetchFeedList,
 }) => {
   const navigate = useNavigate();
-  const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = 'token';
 
   const handleWriteFeed = () => {
     navigate('/post-add');

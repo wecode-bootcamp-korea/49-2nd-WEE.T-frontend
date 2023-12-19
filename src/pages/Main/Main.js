@@ -9,7 +9,7 @@ const Main = () => {
   const [statisticsData, setStatisticsData] = useState({});
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
-  const token = localStorage.getItem('accessToken');
+  const token = 'token';
 
   const closePopup = () => {
     setPopup({ ...popup, open: false });

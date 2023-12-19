@@ -19,7 +19,7 @@ const Info = () => {
   const [isBuyList, setIsBuyList] = useState(false);
   const [isChatting, setIsChatting] = useState(false);
 
-  const token = localStorage.getItem('accessToken');
+  const token = 'token';
 
   const goBuyList = () => {
     setIsBuyList(true);

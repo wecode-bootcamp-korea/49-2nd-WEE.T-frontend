@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Exercise.scss';
 import DietContainer from '../../components/DietContainer/DietContainer';
-import { BASE_AWS_API } from '../../config';
+// import { BASE_AWS_API } from '../../config';
 
 const Exercise = () => {
   const [dietData, setDietData] = useState();

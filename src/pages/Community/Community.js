@@ -10,7 +10,7 @@ const Community = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
 
-  const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = 'token';
 
   const setPaginationParams = () => {
     const newSearchParams = new URLSearchParams(searchParams);
