@@ -9,7 +9,7 @@ const Subscribe = () => {
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const [popup, setPopup] = useState({});
   const navigate = useNavigate();
-  const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = 'token';
   const closePopup = () => {
     setPopup({ ...popup, open: false });
   };

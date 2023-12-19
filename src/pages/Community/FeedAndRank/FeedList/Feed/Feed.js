@@ -10,7 +10,7 @@ const Feed = ({ getFeed, data, removeFeed }) => {
   const [isCommentExtended, setIsCommentExtended] = useState(false);
   const [commentData, setCommentData] = useState([]);
 
-  const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = 'token';
 
   const formatCreatedAt = (created_at) => {
     const formattedDate = new Date(created_at).toLocaleDateString('ko-KR', {

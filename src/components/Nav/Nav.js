@@ -6,8 +6,8 @@ import Popup from '../Popup/Popup';
 
 const Nav = () => {
   const navigate = useNavigate();
-  const isLogin = !!localStorage.getItem('accessToken');
-  const accessToken = localStorage.getItem('accessToken');
+  const isLogin = true;
+  const accessToken = 'token';
   const [userData, setUserData] = useState();
   const [scrollTop, setScrollTop] = useState(0);
   const [popup, setPopup] = useState({});
@@ -160,8 +160,8 @@ const Nav = () => {
             <button className="btnLogAuto" onClick={handleLogAuto}>
               <span className="userNickname">
                 {userData && userData.nickname}
-              </span>{' '}
-              / 로그아웃
+              </span>
+              로그아웃
             </button>
           ) : (
             <button

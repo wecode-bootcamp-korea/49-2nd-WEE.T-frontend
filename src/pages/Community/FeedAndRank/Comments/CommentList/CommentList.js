@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './CommentList.scss';
 
 const CommentList = ({ getCommentList, commentData }) => {
-  const TOKEN = localStorage.getItem('accessToken');
+  const TOKEN = 'token';
 
   const navigate = useNavigate();
 
