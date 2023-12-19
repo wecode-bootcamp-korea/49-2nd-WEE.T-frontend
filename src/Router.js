@@ -6,9 +6,9 @@ import Edit from './pages/MyPage/Edit/Edit';
 import Subscribe from './pages/Subscribe/Subscribe';
 import Nav from './components/Nav/Nav';
 import Community from './pages/Community/Community';
-import Login from './pages/Login/Login';
-import LoginKakao from './pages/Login/LoginKakao';
-import LoginNaver from './pages/Login/LoginNaver';
+// import Login from './pages/Login/Login';
+// import LoginKakao from './pages/Login/LoginKakao';
+// import LoginNaver from './pages/Login/LoginNaver';
 import PostAdd from './pages/PostAdd/PostAdd';
 import Exercise from './pages/Exercise/Exercise';
 import SignUp from './pages/SignUp/SignUp';
@@ -32,9 +32,10 @@ const Router = () => {
         <Route path="/info" element={<Info />} />
         <Route path="/subscribe" element={<Subscribe />} />
         <Route path="/community" element={<Community />} />
-        <Route path="/login" element={<Login />} />
+        {/* 프로젝트 종료로 소셜로그인 페이지 아웃 */}
+        {/* <Route path="/login" element={<Login />} />
         <Route path="/login/kakao" element={<LoginKakao />} />
-        <Route path="/login/naver" element={<LoginNaver />} />
+        <Route path="/login/naver" element={<LoginNaver />} /> */}
         <Route path="/post-add" element={<PostAdd />} />
         <Route path="/post-edit/:id" element={<PostAdd isEdit />} />
         <Route path="/exercise" element={<Exercise />} />
