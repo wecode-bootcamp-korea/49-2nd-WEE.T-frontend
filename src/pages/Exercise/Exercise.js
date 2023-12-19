@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import './Exercise.scss';
 import DietContainer from '../../components/DietContainer/DietContainer';
-import { DIET_API } from '../../config';
+import { BASE_AWS_API } from '../../config';
 
 const Exercise = () => {
   const [dietData, setDietData] = useState();
@@ -12,7 +12,7 @@ const Exercise = () => {
   // const accessToken = localStorage.getItem(accessToken);
 
   useEffect(() => {
-    fetch('/data/exercise.json', {
+    fetch(`${BASE_AWS_API}/diets`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

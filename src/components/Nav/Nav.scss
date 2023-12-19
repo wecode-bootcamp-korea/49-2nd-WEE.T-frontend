@@ -1,11 +1,14 @@
 .nav {
   display: flex;
-  position: sticky;
+  position: fixed;
   justify-content: center;
   top: 0;
-  z-index: 1;
+  left: 0;
+  z-index: 3;
+  color: #fff;
   width: 100%;
-  background-color: #ffffff;
+  background-color: unset;
+  transition: all 0.4s;
 
   .navinner {
     display: flex;
@@ -24,8 +27,6 @@
     .navList {
       display: flex;
       height: 70px;
-
-      background-color: #ffffff;
       align-items: center;
 
       .userGrade {
@@ -35,10 +36,17 @@
 
       button {
         border: 0;
-        background-color: #ffffff;
-        color: #333;
+        color: #fff;
         font-size: 16px;
         margin-left: 26px;
+        background-color: unset;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      button.black {
+        color: #333;
       }
 
       img {
@@ -49,7 +57,6 @@
 
       .btnLogAuto {
         border: 0;
-        background-color: #ffffff;
         font-family: 'Pretendard';
         font-size: 14px;
         color: #333;
@@ -69,9 +76,12 @@
         font-family: 'Pretendard';
         font-size: 14px;
         color: #333;
-        background-color: #ffffff;
         cursor: pointer;
       }
     }
   }
+}
+.nav.white {
+  background-color: #fff;
+  transition: all 0.4s;
 }

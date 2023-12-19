@@ -33,7 +33,7 @@ const TrainingContainer = ({ trainingData, exerciseArea, iconImg }) => {
             <div className="imgBox" style={containerStyle}>
               <div className="embed-container">
                 <iframe
-                  src={'https://www.youtube.com/embed/F60RVDh7iis'}
+                  src={`${result.link}`}
                   allowFullScreen
                   style={iframeStyle}
                 ></iframe>
@@ -42,9 +42,7 @@ const TrainingContainer = ({ trainingData, exerciseArea, iconImg }) => {
             <div className="dietInfo">
               <p className="infoText">{result.name}</p>
               <p className="foodName infoText">
-                <span className="gram">
-                  <img src="/images/dog.jpg" />
-                </span>
+                <span className="gram">{result.content}</span>
               </p>
               <p className="trainingCount infoText">{result.count}번</p>
               <p className="foodInfo infoText">{result.set}SET</p>

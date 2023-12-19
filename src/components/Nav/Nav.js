@@ -1,35 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Nav.scss';
-import { LOGIN_AWS_API } from '../../config';
+import { BASE_AWS_API } from '../../config';
+import Popup from '../Popup/Popup';
 
 const Nav = () => {
   const navigate = useNavigate();
   const isLogin = !!localStorage.getItem('accessToken');
-  const [userData, setUserData] = useState();
   const accessToken = localStorage.getItem('accessToken');
+  const [userData, setUserData] = useState();
+  const [scrollTop, setScrollTop] = useState(0);
+  const [popup, setPopup] = useState({});
 
-  // const getUserInfoData = () => {
-  //   fetch(`${LOGIN_AWS_API}/auth/kakao/login?code=${code}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       Authorization: accessToken,
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((result) => {
-  //       setUserData(result);
-  //     });
-  // };
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollTop = window.scrollY;
+      setScrollTop(currentScrollTop);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
 
-  // useEffect(() => {
-  //   getUserInfoData();
-  // }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     accessToken &&
-      fetch(`${LOGIN_AWS_API}/users/grades`, {
+      fetch(`${BASE_AWS_API}/users/grades`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -42,11 +40,8 @@ const Nav = () => {
         });
   }, [accessToken]);
 
-  // 댓글알람기능 구현중,전역상태관리
-  // cosnt handleAlarm = () => {
-  // };
   const handleLogAuto = () => {
-    fetch(`${LOGIN_AWS_API}/auth/logout`, {
+    fetch(`${BASE_AWS_API}/auth/logout`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -58,6 +53,7 @@ const Nav = () => {
         if (data.message === 'LOGOUT_SUCCESS') {
           localStorage.removeItem('accessToken');
           alert('로그아웃 완료');
+          navigate('/');
           window.location.reload();
         }
       });
@@ -65,11 +61,27 @@ const Nav = () => {
 
   const authenticatedNavigate = (path) => {
     if (!isLogin) {
-      alert('로그인 후 이용 가능합니다.');
-      navigate('/login');
+      setPopup({
+        open: true,
+        title: '로그인후 이용가능합니다.',
+        leftBtnValue: '로그인 하러가기',
+        rightBtnValue: '닫기',
+        leftBtnClick: goLogin,
+        rightBtnClick: closePopup,
+      });
       return;
     }
     navigate(path);
+  };
+
+  const goLogin = () => {
+    navigate('/login');
+    closePopup();
+    scrollToTop();
+  };
+
+  const closePopup = () => {
+    setPopup({ ...popup, open: false });
   };
 
   const goToMain = () => {
@@ -79,38 +91,71 @@ const Nav = () => {
   const goToCommunity = () => {
     navigate('/community');
   };
+  const goToLocation = () => {
+    navigate('/location');
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   const goToSubscribe = () => authenticatedNavigate('/subscribe');
   const goToCondition = () => authenticatedNavigate('/info');
-  const goToLocation = () => authenticatedNavigate('/location');
-  const goToGuideLine = () => authenticatedNavigate('/');
   const goToTraining = () => authenticatedNavigate('/training');
   const goToExercise = () => authenticatedNavigate('/exercise');
+  const goToLogin = () => authenticatedNavigate('/login');
 
   return (
-    <nav className="nav">
+    <nav
+      className={`${scrollTop >= 0 && scrollTop <= 30 ? 'nav' : 'nav white'}`}
+    >
       <div className="navinner">
         <div className="logoSection">
           <img
-            src="/images/logo2.png"
+            src="/images/logo-bg.png"
             onClick={goToMain}
             alt="메인로고사진없음"
           />
         </div>
+
         <div className="navList">
-          <button onClick={goToSubscribe}>구독하기</button>
-          <button onClick={goToCommunity}>커뮤니티</button>
-          <button onClick={goToTraining}>맞춤트레이닝</button>
-          <button onClick={goToExercise}>맞춤식단</button>
-          <button onClick={goToLocation}>내주변운동맛집</button>
+          <button
+            className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+            onClick={goToSubscribe}
+          >
+            구독하기
+          </button>
+          <button
+            className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+            onClick={goToCommunity}
+          >
+            커뮤니티
+          </button>
+          <button
+            className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+            onClick={goToTraining}
+          >
+            맞춤트레이닝
+          </button>
+          <button
+            className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+            onClick={goToExercise}
+          >
+            맞춤식단
+          </button>
+          <button
+            className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+            onClick={goToLocation}
+          >
+            주변위치검색
+          </button>
           {isLogin && <button onClick={goToCondition}>상태페이지</button>}
+
           <div className="userGrade">
-            {isLogin && (
-              <img
-                src={userData && userData.badgeImageUrl}
-                alt="유저 등급 이미지"
-              />
-            )}
+            {isLogin && <img src={userData && userData.badgeImageUrl} alt="" />}
           </div>
           {isLogin ? (
             <button className="btnLogAuto" onClick={handleLogAuto}>
@@ -120,16 +165,23 @@ const Nav = () => {
               / 로그아웃
             </button>
           ) : (
-            <Link className="btnSignUp" to="/login">
+            <button
+              className={`${scrollTop >= 0 && scrollTop <= 30 ? '' : 'black'}`}
+              onClick={goToLogin}
+            >
               로그인
-            </Link>
+            </button>
           )}
-          {/* <img
-          src="images/chatImage.png"
-          alt="알림이미지"
-          onClick={handleAlarm}
-        />{' '}
-        피드 댓글 알람기능 구현중 */}
+
+          {popup.open && (
+            <Popup
+              title={popup.title}
+              leftBtnValue={popup.leftBtnValue}
+              rightBtnValue={popup.rightBtnValue}
+              leftBtnClick={popup.leftBtnClick}
+              rightBtnClick={popup.rightBtnClick}
+            />
+          )}
         </div>
       </div>
     </nav>
