@@ -39,8 +39,8 @@ const Feed = ({ getFeed, data }) => {
       })
       .then((result) => {
         setCommentData(result.data);
-      })
-      .catch((Error) => console.log(Error));
+      });
+    // .catch((Error) => console.log(Error));
   };
 
   const handleEditFeed = (id) => {
