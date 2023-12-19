@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FeedImages from '../FeedImages/FeedImages';
 import Comments from '../../Comments/Comments';
-import { BASE_AWS_API } from '../../../../../config';
+// import { BASE_AWS_API } from '../../../../../config';
 import './Feed.scss';
 
-const Feed = ({ getFeed, data }) => {
+const Feed = ({ getFeed, data, removeFeed }) => {
   const navigate = useNavigate();
   const [isCommentExtended, setIsCommentExtended] = useState(false);
   const [commentData, setCommentData] = useState([]);
@@ -22,9 +22,9 @@ const Feed = ({ getFeed, data }) => {
   };
 
   const getCommentList = () => {
-    fetch(`${BASE_AWS_API}/comments?feedId=${id}`, {
-      // fetch(`http://localhost:8000/comments?feedId=${feedId}`, {
-      // fetch(`/data/commentData.json`, {
+    // fetch(`${BASE_AWS_API}/comments?feedId=${id}`, {
+    // fetch(`http://localhost:8000/comments?feedId=${feedId}`, {
+    fetch(`/data/commentData.json`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -38,9 +38,13 @@ const Feed = ({ getFeed, data }) => {
         return response.json();
       })
       .then((result) => {
-        setCommentData(result.data);
-      });
-    // .catch((Error) => console.log(Error));
+        // 1.AWS 연결 시, 아래 setCommentData 사용
+        // setCommentData(result.data);
+
+        // 2.목데이터 연결 시, 아래 setCommentData 사용
+        setCommentData(result.data.comments);
+      })
+      .catch((Error) => console.log(Error));
   };
 
   const handleEditFeed = (id) => {
@@ -48,7 +52,8 @@ const Feed = ({ getFeed, data }) => {
   };
 
   const handleDeleteFeed = (id) => {
-    fetch(`${BASE_AWS_API}/feeds/${id}`, {
+    // fetch(`${BASE_AWS_API}/feeds/${id}`, {
+    fetch(`게시물삭제엔드포인트`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;',
@@ -58,6 +63,7 @@ const Feed = ({ getFeed, data }) => {
       if (response.ok) {
         getFeed();
         alert('게시물이 삭제되었습니다.');
+        removeFeed(data);
       }
     });
   };
@@ -78,7 +84,7 @@ const Feed = ({ getFeed, data }) => {
             </div>
             <div className="nickname">{userNickname}</div>
           </div>
-          {TOKEN && isMyPost && (
+          {TOKEN && isMyPost ? (
             <div className="btnBox">
               <button
                 type="button"
@@ -95,7 +101,7 @@ const Feed = ({ getFeed, data }) => {
                 삭제
               </button>
             </div>
-          )}
+          ) : null}
         </div>
         <FeedImages feed={data} />
         <div className="feedText">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BASE_AWS_API } from '../../config';
+// import { BASE_AWS_API } from '../../config';
 import Popup from '../../components/Popup/Popup';
 import './Subscribe.scss';
 
@@ -23,8 +23,8 @@ const Subscribe = () => {
   }, []);
 
   const getUserSubscribeData = () => {
-    fetch(`${BASE_AWS_API}/subscribe`, {
-      // fetch(`/data/subscribeData.json`, {
+    // fetch(`${BASE_AWS_API}/subscribe`, {
+    fetch(`/data/subscribeData.json`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: TOKEN,
@@ -32,7 +32,6 @@ const Subscribe = () => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log(response);
           return response.json();
         }
       })

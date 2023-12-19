@@ -4,6 +4,7 @@ import './FeedList.scss';
 
 const FeedList = ({
   feedList,
+  setFeedList,
   totalCount,
   page,
   limit,
@@ -48,10 +49,20 @@ const FeedList = ({
     };
   }, [feedList, totalCount, page]);
 
+  const removeFeed = (feed) => {
+    const index = feedList.feeds.indexOf(feed);
+    setFeedList(feedList.feeds.splice(index, 1));
+  };
+
   return (
     <ul ref={listRef} className="feedList">
       {feedList.feeds?.map((feed) => (
-        <Feed key={feed.id} getFeed={fetchFeedList} data={feed} />
+        <Feed
+          key={feed.id}
+          getFeed={fetchFeedList}
+          data={feed}
+          removeFeed={removeFeed}
+        />
       ))}
     </ul>
   );

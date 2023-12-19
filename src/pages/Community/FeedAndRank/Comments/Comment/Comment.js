@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BASE_AWS_API } from '../../../../../config';
+// import { BASE_AWS_API } from '../../../../../config';
 import './Comment.scss';
 
 const Comment = ({ feedId, getCommentList }) => {
@@ -20,7 +20,8 @@ const Comment = ({ feedId, getCommentList }) => {
 
     if (TOKEN) {
       if (isCheckComment) {
-        fetch(`${BASE_AWS_API}/comments`, {
+        fetch(`댓글저장엔드포인트`, {
+          // fetch(`${BASE_AWS_API}/comments`, {
           // fetch(`http://localhost:8000/comments`, {
           method: 'POST',
           headers: {

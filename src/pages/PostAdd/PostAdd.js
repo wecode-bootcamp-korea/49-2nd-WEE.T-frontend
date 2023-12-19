@@ -66,11 +66,10 @@ const PostAdd = ({ isEdit }) => {
     });
 
     formDataArray.map((formData) => {
-      fetch(`http://10.58.52.148:8000/feeds${isEdit ? `/${id}` : ''}`, {
-        //${BASE_AWS_API}/feeds${isEdit ? `/${id}` : ''}
+      // fetch(`http://10.58.52.148:8000/feeds${isEdit ? `/${id}` : ''}`, {
+      fetch(`${BASE_AWS_API}/feeds${isEdit ? `/${id}` : ''}`, {
         method: isEdit ? 'PUT' : 'POST',
         headers: {
-          // Authorization: accessToken,
           Authorization: accessToken,
         },
         body: formData,
@@ -88,13 +87,14 @@ const PostAdd = ({ isEdit }) => {
 
   useEffect(() => {
     if (!isEdit || !id) return;
-    fetch('http://10.58.52.148:8000/feeds')
+    fetch(`${BASE_AWS_API}/feeds/${id}`)
       .then((res) => res.json())
       .then(({ data }) => {
-        const feedData = data.feeds.find((feed) => feed.id === id);
-        const { imgUrl, content, challenge } = feedData;
+        debugger;
+        const { imgurl, content, challenge } = data.feedList;
 
-        setImage(imgUrl.map(({ url }) => url));
+        setImage(imgurl.map(({ url }) => url));
+        setPreviewImage(imgurl.map(({ url }) => url));
         setText(content);
         setIsChecked(Number(challenge));
       });
@@ -105,7 +105,7 @@ const PostAdd = ({ isEdit }) => {
       <div className="feedContainer">
         <div className="innerSection">
           <div className="myNickName">
-            <img className="logo" src="./images/logo3.jpg" alt="로고" />
+            <img className="logo" src="/images/logo3.jpg" alt="로고" />
             <h1 className="title">게시물 작성</h1>
           </div>
           <div className="prvSection">

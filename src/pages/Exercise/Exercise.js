@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
 import './Exercise.scss';
 import DietContainer from '../../components/DietContainer/DietContainer';
 import { BASE_AWS_API } from '../../config';
@@ -12,12 +11,13 @@ const Exercise = () => {
   // const accessToken = localStorage.getItem(accessToken);
 
   useEffect(() => {
-    fetch(`${BASE_AWS_API}/diets`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('accessToken'),
-      },
+    fetch('/data/exercise.json', {
+      // fetch(`${BASE_AWS_API}/diets`, {
+      //   method: 'GET',
+      //   headers: {
+      //     'Content-Type': 'application/json;charset=utf-8',
+      //     Authorization: localStorage.getItem('accessToken'),
+      //   },
     })
       .then((res) => res.json())
       .then((result) => {

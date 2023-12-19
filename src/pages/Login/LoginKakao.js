@@ -30,7 +30,7 @@ const LoginKakao = () => {
         }
       });
   }, []);
-  return <></>;
+  return;
 };
 
 export default LoginKakao;

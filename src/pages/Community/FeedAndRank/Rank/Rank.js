@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BASE_AWS_API } from '../../../../config';
+// import { BASE_AWS_API } from '../../../../config';
 import './Rank.scss';
 
 const Rank = () => {
@@ -10,8 +10,8 @@ const Rank = () => {
   }, []);
 
   const fetchRankTop10 = () => {
-    fetch(`${BASE_AWS_API}/feeds/rank`, {
-      // fetch(`/data/feedRank.json`, {
+    // fetch(`${BASE_AWS_API}/feeds/rank`, {
+    fetch(`/data/feedRank.json`, {
       method: 'GET',
     })
       .then((res) => res.json())

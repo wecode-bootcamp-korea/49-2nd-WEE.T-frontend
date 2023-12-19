@@ -52,7 +52,6 @@ const Nav = () => {
       .then((data) => {
         if (data.message === 'LOGOUT_SUCCESS') {
           localStorage.removeItem('accessToken');
-          alert('로그아웃 완료');
           navigate('/');
           window.location.reload();
         }
